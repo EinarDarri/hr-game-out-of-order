@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=4 uid="uid://ouqwelutt3ob"]
+
+[ext_resource type="Texture2D" uid="uid://cifvsdngpgri3" path="res://tileset.png" id="1_e2o6t"]
+[ext_resource type="PackedScene" uid="uid://bhfbbwbrjypis" path="res://player/player.tscn" id="2_e2o6t"]
+[ext_resource type="PackedScene" uid="uid://dvum5k052ihe6" path="res://enemy/enemy.tscn" id="3_feb5d"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fc0e3"]
+texture = ExtResource("1_e2o6t")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_7jktm"]
+physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 2
+sources/0 = SubResource("TileSetAtlasSource_fc0e3")
+
+[node name="Game" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD8/wEAAAAAAAAAAAD9/wEAAAAAAAAAAAD+/wEAAAAAAAAAAAD//wEAAAAAAAAAAAAAAAEAAAAAAAAAAAABAAEAAAAAAAAAAAACAAEAAAAAAAAAAAADAAEAAAAAAAAAAAADAAIAAAAAAAAAAAACAAIAAAAAAAAAAAABAAIAAAAAAAAAAAAAAAIAAAAAAAAAAAD//wIAAAAAAAAAAAD+/wIAAAAAAAAAAAD9/wIAAAAAAAAAAAD8/wIAAAAAAAAAAAD7/wIAAAAAAAAAAAD6/wIAAAAAAAAAAAD7/wEAAAAAAAAAAAD6/wEAAAAAAAAAAAAEAAEAAAAAAAAAAAAEAAIAAAAAAAAAAAAFAAIAAAAAAAAAAAAFAAEAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_7jktm")
+
+[node name="Player" parent="." instance=ExtResource("2_e2o6t")]
+collision_mask = 1
+
+[node name="Enemy" parent="." instance=ExtResource("3_feb5d")]
+position = Vector2(-49, 0)
+collision_layer = 4
+collision_mask = 3
