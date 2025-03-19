@@ -8,15 +8,19 @@ const JUMP_VELOCITY = -400.0
 @onready var slash: Area2D = $Slash
 @onready var slash_sprite: Sprite2D = $Slash/SlashSprite
 
+@onready var _dash_timer: Timer = $Dash_timer
+
 const EXTRA_JUMP_AMMOUNT = 1
 
 var _enable_extra_jump := false
 var _extra_jump_counter := 0
-var _enable_dash := true
+var _enable_dash := false
+var _can_dash := true
 
 func _init() -> void:
 	Game.set_player(self)
 	enable_extra_jump()
+	enable_dash()
 
 func _ready() -> void:
 	slash_sprite.visible = false
@@ -35,6 +39,9 @@ func _process(delta: float) -> void:
 func enable_extra_jump() -> void:
 	_enable_extra_jump = true
 	_extra_jump_counter = EXTRA_JUMP_AMMOUNT
+
+func enable_dash() -> void:
+	_enable_dash = true
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -56,9 +63,15 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		
-	if Input.is_action_just_pressed("move_dash"):
+	if Input.is_action_just_pressed("move_dash") and _enable_dash and _can_dash:
 		velocity.x *= 40
 		velocity.y *= 2
+		_can_dash = false
+		_dash_timer.start()
 		
 
 	move_and_slide()
+
+
+func _on_dash_timer_timeout() -> void:
+	_can_dash = true
