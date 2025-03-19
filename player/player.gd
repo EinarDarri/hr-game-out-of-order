@@ -8,8 +8,15 @@ const JUMP_VELOCITY = -400.0
 @onready var slash: Area2D = $Slash
 @onready var slash_sprite: Sprite2D = $Slash/SlashSprite
 
+const EXTRA_JUMP_AMMOUNT = 1
+
+var _enable_extra_jump := false
+var _extra_jump_counter := 0
+var _enable_dash := true
+
 func _init() -> void:
 	Game.set_player(self)
+	enable_extra_jump()
 
 func _ready() -> void:
 	slash_sprite.visible = false
@@ -25,14 +32,22 @@ func _process(delta: float) -> void:
 		await get_tree().create_timer(0.05).timeout
 		slash_sprite.visible = false
 
+func enable_extra_jump() -> void:
+	_enable_extra_jump = true
+	_extra_jump_counter = EXTRA_JUMP_AMMOUNT
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
 	# Handle jump.
-	if Input.is_action_just_pressed("move_jump") and is_on_floor():
+	if Input.is_action_just_pressed("move_jump") and (is_on_floor() or _extra_jump_counter > 0):
 		velocity.y = JUMP_VELOCITY
+		if is_on_floor() and _enable_extra_jump:
+			_extra_jump_counter = EXTRA_JUMP_AMMOUNT
+		else:
+			_extra_jump_counter -= 1;
 
 	var direction := Input.get_axis("move_left", "move_right")
 	if direction:
