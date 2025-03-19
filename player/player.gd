@@ -55,5 +55,10 @@ func _physics_process(delta: float) -> void:
 		sprite_2d.flip_h = direction < 0
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+		
+	if Input.is_action_just_pressed("move_dash"):
+		velocity.x *= 40
+		velocity.y *= 2
+		
 
 	move_and_slide()
