@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://ouqwelutt3ob"]
+[gd_scene load_steps=7 format=4 uid="uid://ouqwelutt3ob"]
 
 [ext_resource type="Texture2D" uid="uid://cifvsdngpgri3" path="res://tileset.png" id="1_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://bhfbbwbrjypis" path="res://player/player.tscn" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://dvum5k052ihe6" path="res://enemy/enemy.tscn" id="3_feb5d"]
+[ext_resource type="PackedScene" uid="uid://1qfwhnvx40bb" path="res://spawner/spawner.tscn" id="4_fc0e3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fc0e3"]
 texture = ExtResource("1_e2o6t")
@@ -28,3 +29,10 @@ collision_mask = 1
 position = Vector2(-49, 0)
 collision_layer = 4
 collision_mask = 3
+
+[node name="Spawner" parent="." instance=ExtResource("4_fc0e3")]
+spawing = ExtResource("3_feb5d")
+LIMIT_LEFT = -220
+LIMIT_TOP = -225
+LIMIT_RIGHT = 300
+LIMIT_BOTTOM = 15
