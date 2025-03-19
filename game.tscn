@@ -35,4 +35,4 @@ spawing = ExtResource("3_feb5d")
 LIMIT_LEFT = -220
 LIMIT_TOP = -225
 LIMIT_RIGHT = 300
-LIMIT_BOTTOM = 15
+LIMIT_BOTTOM = 13
