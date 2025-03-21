@@ -5,8 +5,8 @@ const JUMP_VELOCITY = -400.0
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
-@onready var slash: Area2D = $Slash
-@onready var slash_sprite: Sprite2D = $Slash/SlashSprite
+@onready var slash: Area2D = $LookDirection/Slash
+@onready var slash_sprite: Sprite2D = $LookDirection/Slash/SlashSprite
 
 @onready var _dash_timer: Timer = $Dash_timer
 
@@ -26,8 +26,6 @@ func _ready() -> void:
 	slash_sprite.visible = false
 
 func _process(delta: float) -> void:
-	slash.look_at(get_global_mouse_position())
-	
 	if Input.is_action_just_pressed("attack"):
 		slash_sprite.visible = true
 		for enemy: Enemy in slash.get_overlapping_bodies():
