@@ -5,7 +5,7 @@ class_name Spawner extends Node2D
 @onready var timer: Timer = $"timer"
 
 @export var spawing: PackedScene
-@export var time_betwine_spawns: float = 5.0
+@export var time_between_spawns: float = 5.0
 
 @export_group("Spawn box")
 @export var LIMIT_LEFT:int = -250:

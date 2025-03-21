@@ -32,6 +32,7 @@ collision_mask = 3
 
 [node name="Spawner" parent="." instance=ExtResource("4_fc0e3")]
 spawing = ExtResource("3_feb5d")
+time_between_spawns = null
 LIMIT_LEFT = -220
 LIMIT_TOP = -225
 LIMIT_RIGHT = 300

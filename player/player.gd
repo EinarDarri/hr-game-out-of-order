@@ -10,7 +10,7 @@ const JUMP_VELOCITY = -400.0
 
 @onready var _dash_timer: Timer = $Dash_timer
 
-const EXTRA_JUMP_AMMOUNT = 1
+const EXTRA_JUMP_AMOUNT = 1
 
 var _enable_extra_jump := false
 var _extra_jump_counter := 0
@@ -38,7 +38,7 @@ func _process(delta: float) -> void:
 
 func enable_extra_jump() -> void:
 	_enable_extra_jump = true
-	_extra_jump_counter = EXTRA_JUMP_AMMOUNT
+	_extra_jump_counter = EXTRA_JUMP_AMOUNT
 
 func enable_dash() -> void:
 	_enable_dash = true
@@ -52,7 +52,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("move_jump") and (is_on_floor() or _extra_jump_counter > 0):
 		velocity.y = JUMP_VELOCITY
 		if is_on_floor() and _enable_extra_jump:
-			_extra_jump_counter = EXTRA_JUMP_AMMOUNT
+			_extra_jump_counter = EXTRA_JUMP_AMOUNT
 		else:
 			_extra_jump_counter -= 1;
 
