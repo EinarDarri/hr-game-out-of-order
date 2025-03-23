@@ -6,37 +6,52 @@ const JUMP_VELOCITY = -400.0
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var attack_timer: Timer = $AttackTimer
 @onready var attack_animation_timer: Timer = $AttackAnimationTimer
+@onready var slash: Area2D = $LookDirection/Slash
+@onready var slash_sprite: Sprite2D = $LookDirection/Slash/SlashSprite
 
-@onready var slash: Area2D = $Slash
+@onready var _dash_timer: Timer = $DashTimer
 
-var attack_buffered = false
+const EXTRA_JUMP_AMOUNT = 1
+
+var _enable_extra_jump := false
+var _extra_jump_counter := 0
+var _enable_dash := false
+var _can_dash := true
+var _attack_buffered := false
+
 
 func _init() -> void:
 	Game.set_player(self)
+	enable_extra_jump()
+	enable_dash()
 
 func _ready() -> void:
 	animated_sprite_2d.play("Idle")
 
 func _process(delta: float) -> void:
-	slash.look_at(get_global_mouse_position())
-	
 	if Input.is_action_just_pressed("attack"):
-		attack_buffered = true
+		_attack_buffered = true
 	
-	if attack_buffered and attack_timer.time_left == 0:
+	if _attack_buffered and attack_timer.time_left == 0:
 		animated_sprite_2d.play("Slash")
 		animated_sprite_2d.frame = 0
 		attack_timer.start()
 		attack_animation_timer.start()
-		attack_buffered = false
+		_attack_buffered = false
 		
 		for enemy: Enemy in slash.get_overlapping_bodies():
 			enemy.take_damage(30)
 		
 		await get_tree().create_timer(0.05).timeout
 
+func enable_extra_jump() -> void:
+	_enable_extra_jump = true
+	_extra_jump_counter = EXTRA_JUMP_AMOUNT
+
+func enable_dash() -> void:
+	_enable_dash = true
+
 func _physics_process(delta: float) -> void:
-	
 	if attack_timer.time_left > 0:
 		velocity = Vector2.ZERO
 	else:
@@ -44,7 +59,15 @@ func _physics_process(delta: float) -> void:
 		if not is_on_floor():
 			velocity += get_gravity() * delta
 
-		
+		# Handle jump.
+		if Input.is_action_just_pressed("move_jump") and (is_on_floor() or _extra_jump_counter > 0):
+			animated_sprite_2d.play("Jump")
+			velocity.y = JUMP_VELOCITY
+			if is_on_floor() and _enable_extra_jump:
+				_extra_jump_counter = EXTRA_JUMP_AMOUNT
+			else:
+				_extra_jump_counter -= 1;
+
 		var direction := Input.get_axis("move_left", "move_right")
 		if direction:
 			if is_on_floor() and attack_animation_timer.time_left == 0:
@@ -56,9 +79,14 @@ func _physics_process(delta: float) -> void:
 				animated_sprite_2d.play("Idle")
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			
-		# Handle jump.
-		if Input.is_action_just_pressed("move_jump") and is_on_floor():
-			animated_sprite_2d.play("Jump")
-			velocity.y = JUMP_VELOCITY
+		if Input.is_action_just_pressed("move_dash") and _enable_dash and _can_dash:
+			velocity.x *= 40
+			velocity.y *= 2
+			_can_dash = false
+			_dash_timer.start()
 
 	move_and_slide()
+
+
+func _on_dash_timer_timeout() -> void:
+	_can_dash = true
