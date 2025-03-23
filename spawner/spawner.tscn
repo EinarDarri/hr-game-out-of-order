@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://1qfwhnvx40bb"]
+
+[ext_resource type="Script" uid="uid://bok7vq1h87yjd" path="res://spawner/spawner.gd" id="1_khvsl"]
+[ext_resource type="Script" uid="uid://clg23uyrw5q1a" path="res://spawner/spawner_draw.gd" id="2_nhote"]
+
+[node name="Spawner" type="Node2D"]
+script = ExtResource("1_khvsl")
+time_between_spawns = null
+
+[node name="Draw stuff" type="Node2D" parent="."]
+z_index = 4096
+script = ExtResource("2_nhote")
+
+[node name="timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]

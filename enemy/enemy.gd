@@ -5,7 +5,13 @@ const SPEED = 100.0
 var _health: int = 100
 
 func _physics_process(delta: float) -> void:
-	var dir = (Game.get_player().global_position - global_position).normalized()
+	# Add the gravity.
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+	
+	# store direction as vector with no y coordinate for consistant x movement
+	var dirVector = Vector2((Game.get_player().global_position.x-global_position.x),0)
+	var dir = dirVector.normalized()
 	velocity.x = dir.x * SPEED
 	move_and_slide()
 
