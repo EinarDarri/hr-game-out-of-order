@@ -4,7 +4,7 @@ extends Camera2D
 
 @export var extra_speed:int = 500
 
-const MAX_POS = 150
+const MAX_POS = Vector2(150,100)
 const MAX_SPEED = 100
 
 func _process(delta: float) -> void:
@@ -19,7 +19,8 @@ func _process(delta: float) -> void:
 	) * delta
 
 	position = Vector2(
-		clampf(position.x + pos.x,-MAX_POS,MAX_POS),
-		clampf(position.y + pos.y,-MAX_POS,MAX_POS)
+		clampf(position.x + pos.x,-MAX_POS.x,MAX_POS.x),
+		clampf(position.y + pos.y,-MAX_POS.y,MAX_POS.y)
 	)
+	print(position)
 	
