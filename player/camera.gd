@@ -12,7 +12,7 @@ func _process(delta: float) -> void:
 		
 	var to := mvdir * extra_speed
 	
-	const LERP_WEIGHT = 5
+	const LERP_WEIGHT = 30
 	var pos := Vector2(
 		clampf(lerpf(position.x,to.x,LERP_WEIGHT),-MAX_SPEED,MAX_SPEED),
 		clampf(lerpf(position.y,to.y,LERP_WEIGHT),-MAX_SPEED,MAX_SPEED)
@@ -22,5 +22,4 @@ func _process(delta: float) -> void:
 		clampf(position.x + pos.x,-MAX_POS.x,MAX_POS.x),
 		clampf(position.y + pos.y,-MAX_POS.y,MAX_POS.y)
 	)
-	print(position)
 	

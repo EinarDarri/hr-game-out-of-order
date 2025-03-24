@@ -1,9 +1,10 @@
-[gd_scene load_steps=26 format=3 uid="uid://r2kg4a8p4sld"]
+[gd_scene load_steps=27 format=3 uid="uid://r2kg4a8p4sld"]
 
 [ext_resource type="Script" uid="uid://bvwwocn1ycoyr" path="res://player/player.gd" id="1_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://mlpbvaqcpuvt" path="res://player/player.png" id="2_hqtel"]
 [ext_resource type="Script" uid="uid://biehrvcex47r" path="res://player/look_direction.gd" id="3_g1dw6"]
 [ext_resource type="Script" uid="uid://dkjj6uf4g82d1" path="res://player/camera.gd" id="3_yw30f"]
+[ext_resource type="Script" uid="uid://ch56xqeo31dw5" path="res://player/state_man.gd" id="5_qjkh3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g1dw6"]
 atlas = ExtResource("2_hqtel")
@@ -187,6 +188,7 @@ wait_time = 0.35
 one_shot = true
 
 [node name="LookDirection" type="Node2D" parent="."]
+position = Vector2(-1, 1)
 script = ExtResource("3_g1dw6")
 
 [node name="Slash" type="Area2D" parent="LookDirection"]
@@ -200,5 +202,8 @@ shape = SubResource("RectangleShape2D_g1dw6")
 
 [node name="DashTimer" type="Timer" parent="."]
 wait_time = 2.0
+
+[node name="StateMan" type="Node" parent="."]
+script = ExtResource("5_qjkh3")
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
