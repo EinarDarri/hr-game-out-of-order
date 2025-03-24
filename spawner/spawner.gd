@@ -4,6 +4,7 @@ class_name Spawner extends Node2D
 @onready var drawing: SpawnerDrawer = $"Draw stuff"
 @onready var timer: Timer = $"timer"
 
+@export var enable:bool = true
 @export var spawing: PackedScene
 @export var time_between_spawns: float = 5.0
 
@@ -43,6 +44,9 @@ func get_random_cords() -> Vector2:
 	return Vector2(x,y)
 	
 func _spawn() -> void:
+	if not enable:
+		return
+
 	var pos:Vector2 = get_random_cords()
 	var spawnd:= spawing.instantiate()
 	

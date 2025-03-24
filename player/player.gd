@@ -8,11 +8,12 @@ const JUMP_VELOCITY = -400.0
 @onready var attack_animation_timer: Timer = $AttackAnimationTimer
 @onready var slash: Area2D = $LookDirection/Slash
 @onready var slash_sprite: Sprite2D = $LookDirection/Slash/SlashSprite
-
 @onready var _dash_timer: Timer = $DashTimer
 
-const EXTRA_JUMP_AMOUNT = 1
+var _player_movement:Vector2 = Vector2.ZERO
 
+# Extra jump and dash variables
+const EXTRA_JUMP_AMOUNT = 1
 var _enable_extra_jump := false
 var _extra_jump_counter := 0
 var _enable_dash := false
@@ -29,6 +30,12 @@ func _ready() -> void:
 	animated_sprite_2d.play("Idle")
 
 func _process(delta: float) -> void:
+	_player_movement = Vector2(
+		Input.get_axis("move_left", "move_right"),
+		-Input.get_axis("look_down","look_up")
+	).normalized()
+	
+	
 	if Input.is_action_just_pressed("attack"):
 		_attack_buffered = true
 	
@@ -50,6 +57,10 @@ func enable_extra_jump() -> void:
 
 func enable_dash() -> void:
 	_enable_dash = true
+	
+func get_movement_dir() -> Vector2:
+	return _player_movement
+
 
 func _physics_process(delta: float) -> void:
 	if attack_timer.time_left > 0:
