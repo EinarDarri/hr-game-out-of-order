@@ -33,15 +33,61 @@ lifetime = 1.11
 explosiveness = 0.5
 randomness = 0.22
 
-[node name="Enemy" parent="." instance=ExtResource("3_feb5d")]
-position = Vector2(-49, 0)
-collision_layer = 4
-collision_mask = 3
-
 [node name="Spawner" parent="." instance=ExtResource("4_fc0e3")]
+position = Vector2(-300, 200)
 spawing = ExtResource("3_feb5d")
-time_between_spawns = 5.0
-LIMIT_LEFT = -220
-LIMIT_TOP = -225
+time_between_spawns = 0.5
+total_spawns = 1
+LIMIT_LEFT = -180
+LIMIT_TOP = -100
+LIMIT_RIGHT = 100
+LIMIT_BOTTOM = 0
+
+[node name="Spawner2" parent="." instance=ExtResource("4_fc0e3")]
+position = Vector2(-500, 370)
+spawing = ExtResource("3_feb5d")
+time_between_spawns = 2.0
+total_spawns = 2
+LIMIT_LEFT = -170
+LIMIT_TOP = -130
 LIMIT_RIGHT = 300
+LIMIT_BOTTOM = 13
+
+[node name="Spawner3" parent="." instance=ExtResource("4_fc0e3")]
+position = Vector2(-400, 560)
+spawing = ExtResource("3_feb5d")
+time_between_spawns = 2.0
+LIMIT_LEFT = -220
+LIMIT_TOP = -140
+LIMIT_RIGHT = 300
+LIMIT_BOTTOM = 13
+
+[node name="Spawner4" parent="." instance=ExtResource("4_fc0e3")]
+position = Vector2(-1380, 50)
+spawing = ExtResource("3_feb5d")
+time_between_spawns = 2.0
+total_spawns = 4
+LIMIT_LEFT = -220
+LIMIT_TOP = -100
+LIMIT_RIGHT = 260
+LIMIT_BOTTOM = 13
+
+[node name="Spawner5" parent="." instance=ExtResource("4_fc0e3")]
+position = Vector2(-2300, 70)
+spawing = ExtResource("3_feb5d")
+time_between_spawns = 2.0
+total_spawns = 2
+LIMIT_LEFT = -220
+LIMIT_TOP = -160
+LIMIT_RIGHT = 130
+LIMIT_BOTTOM = 13
+
+[node name="Spawner6" parent="." instance=ExtResource("4_fc0e3")]
+position = Vector2(-2400, 423)
+spawing = ExtResource("3_feb5d")
+time_between_spawns = 2.0
+total_spawns = 5
+LIMIT_LEFT = -130
+LIMIT_TOP = -70
+LIMIT_RIGHT = 230
 LIMIT_BOTTOM = 13
