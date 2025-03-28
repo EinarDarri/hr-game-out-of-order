@@ -3,4 +3,8 @@
 [ext_resource type="Material" uid="uid://4f7lisxr1lbw" path="res://particles/blood.tres" id="1_aas14"]
 
 [node name="Blood" type="GPUParticles2D"]
+emitting = false
+lifetime = 0.74
+one_shot = true
+explosiveness = 0.18
 process_material = ExtResource("1_aas14")
