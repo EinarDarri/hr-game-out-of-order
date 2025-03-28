@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=4 uid="uid://ouqwelutt3ob"]
+[gd_scene load_steps=7 format=4 uid="uid://ouqwelutt3ob"]
 
 [ext_resource type="Texture2D" uid="uid://cifvsdngpgri3" path="res://tileset.png" id="1_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://r2kg4a8p4sld" path="res://player/player.tscn" id="2_e2o6t"]
-[ext_resource type="PackedScene" uid="uid://cyuyf5tenyw1g" path="res://particles/blood.tscn" id="3_7jktm"]
 [ext_resource type="PackedScene" uid="uid://dvum5k052ihe6" path="res://enemy/enemy.tscn" id="3_feb5d"]
 [ext_resource type="PackedScene" uid="uid://1qfwhnvx40bb" path="res://spawner/spawner.tscn" id="4_fc0e3"]
 
@@ -26,11 +25,6 @@ tile_set = SubResource("TileSet_7jktm")
 
 [node name="Player" parent="." instance=ExtResource("2_e2o6t")]
 collision_mask = 1
-
-[node name="Blood" parent="Player" instance=ExtResource("3_7jktm")]
-lifetime = 1.11
-explosiveness = 0.5
-randomness = 0.22
 
 [node name="Spawner" parent="." instance=ExtResource("4_fc0e3")]
 position = Vector2(-300, 200)
