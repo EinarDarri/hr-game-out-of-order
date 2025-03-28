@@ -2,6 +2,7 @@ extends Node2D
 
 ## Handles rotation based on the input mapping and input state.
 func _physics_process(_delta: float) -> void:
+	return
 	var dir := Vector2.ZERO
 	if Input.is_action_pressed("move_left"):
 		dir = dir.direction_to(Vector2.LEFT)
