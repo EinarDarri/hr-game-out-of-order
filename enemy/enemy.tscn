@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dvum5k052ihe6"]
+[gd_scene load_steps=5 format=3 uid="uid://dvum5k052ihe6"]
 
 [ext_resource type="Texture2D" uid="uid://b0v4v2u847xfk" path="res://enemy/enemy.png" id="1_2mvqj"]
 [ext_resource type="Script" uid="uid://tqp5e23bougv" path="res://enemy/enemy.gd" id="1_ofsxj"]
+[ext_resource type="PackedScene" uid="uid://cyuyf5tenyw1g" path="res://particles/blood.tscn" id="2_ppra6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fc0e3"]
 radius = 4.0
@@ -11,6 +12,7 @@ height = 20.0
 collision_layer = 5
 collision_mask = 5
 script = ExtResource("1_ofsxj")
+take_damage_particle = ExtResource("2_ppra6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 6)

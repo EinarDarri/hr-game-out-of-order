@@ -4,6 +4,8 @@ const SPEED = 100.0
 
 var _health: int = 100
 
+@export var take_damage_particle: PackedScene
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
@@ -17,6 +19,10 @@ func _physics_process(delta: float) -> void:
 
 func take_damage(amount: int) -> void:
 	_health -= amount
+	# instantiate blood particle effect
+	var blood := take_damage_particle.instantiate()
+	add_child(blood)
+	blood.emitting = true # manually turn on emitting since blood is a oneshot.
 	if _health <= 0:
 		_health = 0
 		queue_free()

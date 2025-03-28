@@ -28,7 +28,6 @@ tile_set = SubResource("TileSet_7jktm")
 collision_mask = 1
 
 [node name="Blood" parent="Player" instance=ExtResource("3_7jktm")]
-visible = false
 lifetime = 1.11
 explosiveness = 0.5
 randomness = 0.22
