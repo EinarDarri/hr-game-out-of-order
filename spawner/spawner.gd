@@ -4,6 +4,7 @@ class_name Spawner extends Node2D
 @onready var drawing: SpawnerDrawer = $"Draw stuff"
 @onready var timer: Timer = $"timer"
 
+@export var enable:bool = true
 @export var spawing: PackedScene
 @export var time_between_spawns: float = 5.0
 @export var total_spawns: int = 3
