@@ -1,7 +1,7 @@
-[gd_scene load_steps=27 format=3 uid="uid://r2kg4a8p4sld"]
+[gd_scene load_steps=28 format=3 uid="uid://r2kg4a8p4sld"]
 
 [ext_resource type="Script" uid="uid://bvwwocn1ycoyr" path="res://player/player.gd" id="1_i3pqv"]
-[ext_resource type="Texture2D" uid="uid://djf7gx5t2v5rg" path="res://player/player_animations.png" id="2_qjkh3"]
+[ext_resource type="Texture2D" uid="uid://mlpbvaqcpuvt" path="res://player/player.png" id="2_qjkh3"]
 [ext_resource type="Script" uid="uid://biehrvcex47r" path="res://player/look_direction.gd" id="3_g1dw6"]
 [ext_resource type="Script" uid="uid://dkjj6uf4g82d1" path="res://player/camera.gd" id="3_yw30f"]
 [ext_resource type="Script" uid="uid://ch56xqeo31dw5" path="res://player/state_man.gd" id="5_qjkh3"]
@@ -78,6 +78,10 @@ region = Rect2(336, 63, 112, 63)
 atlas = ExtResource("2_qjkh3")
 region = Rect2(448, 63, 112, 63)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_g4c7l"]
+atlas = ExtResource("2_qjkh3")
+region = Rect2(560, 63, 112, 63)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_x7c3f"]
 animations = [{
 "frames": [{
@@ -149,6 +153,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_s7qer")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g4c7l")
 }],
 "loop": false,
 "name": &"Slash",
@@ -171,6 +178,8 @@ script = ExtResource("1_i3pqv")
 position = Vector2(0, -17)
 sprite_frames = SubResource("SpriteFrames_x7c3f")
 animation = &"Slash"
+frame = 5
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -10)

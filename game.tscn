@@ -1,9 +1,17 @@
-[gd_scene load_steps=7 format=4 uid="uid://ouqwelutt3ob"]
+[gd_scene load_steps=15 format=4 uid="uid://ouqwelutt3ob"]
 
 [ext_resource type="Texture2D" uid="uid://cifvsdngpgri3" path="res://tileset.png" id="1_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://r2kg4a8p4sld" path="res://player/player.tscn" id="2_e2o6t"]
+[ext_resource type="Texture2D" uid="uid://ddrtsvcu03bbj" path="res://map/background/layer1.png" id="2_iotsf"]
 [ext_resource type="PackedScene" uid="uid://dvum5k052ihe6" path="res://enemy/enemy.tscn" id="3_feb5d"]
+[ext_resource type="Texture2D" uid="uid://yqnf44hiopp" path="res://map/background/layer2.png" id="3_lc2xo"]
+[ext_resource type="Texture2D" uid="uid://cstnpx2g78ffw" path="res://map/background/layer3.png" id="4_215e1"]
 [ext_resource type="PackedScene" uid="uid://1qfwhnvx40bb" path="res://spawner/spawner.tscn" id="4_fc0e3"]
+[ext_resource type="Texture2D" uid="uid://y4xvggwpbb4l" path="res://map/background/background.png" id="5_7jktm"]
+[ext_resource type="Texture2D" uid="uid://bt74b1sfkcynu" path="res://map/background/layer4.png" id="5_7sc4i"]
+[ext_resource type="Texture2D" uid="uid://cb8cikrh68cku" path="res://map/background/layer5.png" id="6_80cx4"]
+[ext_resource type="Texture2D" uid="uid://bqu0nshed3o7m" path="res://map/background/layer6.png" id="7_e8heu"]
+[ext_resource type="Texture2D" uid="uid://dj80s3u8gxbg0" path="res://map/background/layer7.png" id="8_rvswv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fc0e3"]
 texture = ExtResource("1_e2o6t")
@@ -17,6 +25,81 @@ physics_layer_0/collision_mask = 2
 sources/0 = SubResource("TileSetAtlasSource_fc0e3")
 
 [node name="Game" type="Node2D"]
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="Parallax2D" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0, 0)
+scroll_offset = Vector2(256, 159)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D"]
+position = Vector2(-23, 25)
+scale = Vector2(1.62977, 1.62977)
+texture = ExtResource("5_7jktm")
+
+[node name="Parallax2D2" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.01, 0.01)
+scroll_offset = Vector2(256, 158)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D2"]
+position = Vector2(-23, 12)
+scale = Vector2(1.62977, 1.62977)
+texture = ExtResource("2_iotsf")
+
+[node name="Parallax2D3" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.02, 0.02)
+scroll_offset = Vector2(256, 128)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D3"]
+position = Vector2(-23, 12)
+scale = Vector2(1.62977, 1.62977)
+texture = ExtResource("3_lc2xo")
+
+[node name="Parallax2D4" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.03, 0.03)
+scroll_offset = Vector2(256, 128)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D4"]
+position = Vector2(-23, 12)
+scale = Vector2(1.62977, 1.62977)
+texture = ExtResource("4_215e1")
+
+[node name="Parallax2D5" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.04, 0.04)
+scroll_offset = Vector2(256, 128)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D5"]
+position = Vector2(-23, 12)
+scale = Vector2(1.62977, 1.62977)
+texture = ExtResource("5_7sc4i")
+
+[node name="Parallax2D6" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.05, 0.05)
+scroll_offset = Vector2(256, 128)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D6"]
+position = Vector2(-23, 81)
+scale = Vector2(1.76655, 1.76655)
+texture = ExtResource("6_80cx4")
+
+[node name="Parallax2D7" type="Parallax2D" parent="Background"]
+scale = Vector2(1.14898, 1.14898)
+scroll_scale = Vector2(0.08, 0.08)
+scroll_offset = Vector2(256, 128)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D7"]
+position = Vector2(-23, 12)
+scale = Vector2(1.97426, 1.97426)
+texture = ExtResource("7_e8heu")
+
+[node name="Parallax2D8" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.15, 0.15)
+scroll_offset = Vector2(256, 128)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D8"]
+position = Vector2(-23, -48)
+scale = Vector2(3.01744, 3.01744)
+texture = ExtResource("8_rvswv")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 rotation = 0.00196404

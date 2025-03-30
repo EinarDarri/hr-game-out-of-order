@@ -50,7 +50,6 @@ func _process(delta: float) -> void:
 	
 	if _attack_buffered and attack_timer.time_left == 0:
 		animated_sprite_2d.play("Slash")
-		animated_sprite_2d.frame = 0
 		attack_timer.start()
 		attack_animation_timer.start()
 		_attack_buffered = false
