@@ -2,6 +2,7 @@ class_name Player extends CharacterBody2D
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
+const EXTRA_JUMP_AMOUNT = 1
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var attack_timer: Timer = $AttackTimer
@@ -11,17 +12,21 @@ const JUMP_VELOCITY = -400.0
 @onready var _dash_timer: Timer = $DashTimer
 @onready var state_man: StateManager = $StateMan
 
-var _player_movement:Vector2 = Vector2.ZERO
+var _player_movement:Vector2 = Vector2.ZERO:
+	set(new_vec):
+		if new_vec.x != 0:
+			animated_sprite_2d.flip_h = _player_movement.x < 0
+		
+		_player_movement = new_vec
 
 # Extra jump and dash variables
-const EXTRA_JUMP_AMOUNT = 1
 var _enable_extra_jump := false
-var _extra_jump_counter := 0
+var extra_jump_counter := 0
 var _enable_dash := false
 var _can_dash := true
-var _attack_buffered := false
-var _jump_buffered := false
-var _dash_buffered := false
+var attack_buffered := false
+var jump_buffered := false
+var dash_buffered := false
 
 
 func _init() -> void:
@@ -39,21 +44,23 @@ func _process(delta: float) -> void:
 	).normalized()
 	
 	
+	
+	
 	if Input.is_action_just_pressed("attack"):
-		_attack_buffered = true
+		attack_buffered = true
 		
 	if Input.is_action_just_pressed("move_jump"):
-		_jump_buffered = true
+		jump_buffered = true
 		
 	if Input.is_action_just_pressed("move_dash"):
-		_dash_buffered = true
+		dash_buffered = true
 	
-	if _attack_buffered and attack_timer.time_left == 0:
+	if attack_buffered and attack_timer.time_left == 0:
 		animated_sprite_2d.play("Slash")
 		animated_sprite_2d.frame = 0
 		attack_timer.start()
 		attack_animation_timer.start()
-		_attack_buffered = false
+		attack_buffered = false
 		
 		for enemy: Enemy in slash.get_overlapping_bodies():
 			enemy.take_damage(30)
@@ -62,7 +69,7 @@ func _process(delta: float) -> void:
 
 func enable_extra_jump() -> void:
 	_enable_extra_jump = true
-	_extra_jump_counter = EXTRA_JUMP_AMOUNT
+	extra_jump_counter = EXTRA_JUMP_AMOUNT
 
 func enable_dash() -> void:
 	_enable_dash = true
@@ -71,14 +78,16 @@ func get_movement_dir() -> Vector2:
 	return _player_movement
 	
 func get_jump() -> bool:
-	return _jump_buffered
+	return jump_buffered
 	
 func can_jump() -> bool:
-	return (is_on_floor() or _extra_jump_counter > 0)
+	return (is_on_floor() or extra_jump_counter > 0)
 	
 func get_dash() -> bool:
-	return _dash_buffered
-
+	return dash_buffered
+	
+func can_dash() -> bool:
+	return _enable_dash and _can_dash
 
 func _physics_process(delta: float) -> void:
 	if attack_timer.time_left > 0:
@@ -89,37 +98,19 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 		
-	state_man.active_state.update_state()
-
-	# Handle jump.
-	if _jump_buffered and (is_on_floor() or _extra_jump_counter > 0):
-		animated_sprite_2d.play("Jump")
-		velocity.y = JUMP_VELOCITY
-		if is_on_floor() and _enable_extra_jump:
-			_extra_jump_counter = EXTRA_JUMP_AMOUNT
-		else:
-			_extra_jump_counter -= 1;
+	state_man.active_state.update_state(delta)
+	
+	dash_buffered = false
+	jump_buffered = false
+	attack_buffered = false
 		
-		_jump_buffered = false
-
-	var direction := _player_movement.x
-	if direction:
-		if is_on_floor() and attack_animation_timer.time_left == 0:
-			animated_sprite_2d.play("Running")
-		velocity.x = direction * SPEED
-		animated_sprite_2d.flip_h = direction < 0
-	else:
-		if is_on_floor() and attack_animation_timer.time_left == 0:
-			animated_sprite_2d.play("Idle")
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		
-	if _dash_buffered and _enable_dash and _can_dash:
+	if dash_buffered and _enable_dash and _can_dash:
 		velocity.x *= 40
 		velocity.y = -JUMP_VELOCITY * _player_movement.y * 2
 		print(velocity.y)
 		_can_dash = false
 		_dash_timer.start()
-		_dash_buffered = false
+		dash_buffered = false
 
 	move_and_slide()
 

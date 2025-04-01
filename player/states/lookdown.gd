@@ -7,8 +7,10 @@ extends PlayerState
 @export var dash_state: PlayerState
 @export var running_state: PlayerState
 
+func start_state() -> void:
+	pass
 
-func update_state():
+func update_state(_delta):
 	if player.get_jump() == true:
 		stateman.active_state = jump_state
 		return
@@ -29,3 +31,6 @@ func update_state():
 	elif movedir.y < 0:
 		stateman.active_state = lookdown_up
 		return
+
+func end_state() -> void:
+	pass

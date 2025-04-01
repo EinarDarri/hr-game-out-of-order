@@ -7,14 +7,19 @@ extends PlayerState
 @export var lookup_state: PlayerState
 @export var lookdown_state: PlayerState
 
+func start_state() -> void:
+	player.animated_sprite_2d.play("Idle")
 
-func update_state():
+func update_state(delta):
 	
-	if player.get_jump() == true:
+	player.velocity.x = move_toward(player.velocity.x, 0,Player.SPEED*delta*4) #TODO test what value works best on a scale from 3 - 5
+	
+	if player.get_jump() and player.can_jump():
 		stateman.active_state = jump_state
+		player.extra_jump_counter = player.EXTRA_JUMP_AMOUNT
 		return
 		
-	if player.get_dash() == true:
+	if player.get_dash() and player.can_dash():
 		stateman.active_state = dash_state
 		return
 
@@ -32,3 +37,8 @@ func update_state():
 	else:
 		stateman.active_state = lookup_state 
 		return
+		
+	
+
+func end_state() -> void:
+	player.animated_sprite_2d.stop()
