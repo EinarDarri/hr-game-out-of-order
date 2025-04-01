@@ -1,4 +1,10 @@
 extends PlayerState
 
-func update_state(dirVec:Vector2, jumping:bool, Dashing:bool):
+func start_state() -> void:
+	pass
+
+func update_state(_delta):
+	pass
+
+func end_state() -> void:
 	pass

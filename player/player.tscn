@@ -1,10 +1,15 @@
-[gd_scene load_steps=28 format=3 uid="uid://r2kg4a8p4sld"]
+[gd_scene load_steps=33 format=3 uid="uid://r2kg4a8p4sld"]
 
 [ext_resource type="Script" uid="uid://bvwwocn1ycoyr" path="res://player/player.gd" id="1_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://mlpbvaqcpuvt" path="res://player/player.png" id="2_qjkh3"]
 [ext_resource type="Script" uid="uid://biehrvcex47r" path="res://player/look_direction.gd" id="3_g1dw6"]
 [ext_resource type="Script" uid="uid://dkjj6uf4g82d1" path="res://player/camera.gd" id="3_yw30f"]
 [ext_resource type="Script" uid="uid://ch56xqeo31dw5" path="res://player/state_man.gd" id="5_qjkh3"]
+[ext_resource type="Script" uid="uid://bfptb64ig2ix" path="res://player/states/attacking.gd" id="6_yllr7"]
+[ext_resource type="Script" uid="uid://085b2hwnl5pw" path="res://player/states/dashing.gd" id="7_kb6p2"]
+[ext_resource type="Script" uid="uid://72wh6qg13v81" path="res://player/states/idle.gd" id="9_32hag"]
+[ext_resource type="Script" uid="uid://bggcpd5cuyypk" path="res://player/states/air.gd" id="10_tqiix"]
+[ext_resource type="Script" uid="uid://dmlukrut636ub" path="res://player/states/running.gd" id="13_65viv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g6k8r"]
 atlas = ExtResource("2_qjkh3")
@@ -185,14 +190,6 @@ shape = SubResource("CapsuleShape2D_ryrav")
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("3_yw30f")
 
-[node name="AttackTimer" type="Timer" parent="."]
-wait_time = 0.2
-one_shot = true
-
-[node name="AttackAnimationTimer" type="Timer" parent="."]
-wait_time = 0.35
-one_shot = true
-
 [node name="LookDirection" type="Node2D" parent="."]
 position = Vector2(-1, 1)
 script = ExtResource("3_g1dw6")
@@ -209,7 +206,49 @@ shape = SubResource("RectangleShape2D_g1dw6")
 [node name="DashTimer" type="Timer" parent="."]
 wait_time = 2.0
 
-[node name="StateMan" type="Node" parent="."]
+[node name="StateMan" type="Node" parent="." node_paths=PackedStringArray("active_state")]
 script = ExtResource("5_qjkh3")
+active_state = NodePath("Idle")
+
+[node name="Attacking" type="Node" parent="StateMan" node_paths=PackedStringArray("idle_state", "air_state", "running_state")]
+script = ExtResource("6_yllr7")
+idle_state = NodePath("../Idle")
+air_state = NodePath("../Air")
+running_state = NodePath("../Running")
+
+[node name="AttackTimer" type="Timer" parent="StateMan/Attacking"]
+wait_time = 0.2
+one_shot = true
+
+[node name="Deleay" type="Timer" parent="StateMan/Attacking"]
+wait_time = 0.2
+
+[node name="Dashing" type="Node" parent="StateMan"]
+script = ExtResource("7_kb6p2")
+
+[node name="Idle" type="Node" parent="StateMan" node_paths=PackedStringArray("air_state", "dash_state", "running_state", "attacking_state")]
+script = ExtResource("9_32hag")
+air_state = NodePath("../Air")
+dash_state = NodePath("../Dashing")
+running_state = NodePath("../Running")
+attacking_state = NodePath("../Attacking")
+
+[node name="Air" type="Node" parent="StateMan" node_paths=PackedStringArray("idle_state", "running_state", "attacking_state")]
+script = ExtResource("10_tqiix")
+idle_state = NodePath("../Idle")
+running_state = NodePath("../Running")
+attacking_state = NodePath("../Attacking")
+
+[node name="Timer" type="Timer" parent="StateMan/Air"]
+
+[node name="Running" type="Node" parent="StateMan" node_paths=PackedStringArray("idle_state", "air_state", "dash_state", "attacking_state")]
+script = ExtResource("13_65viv")
+idle_state = NodePath("../Idle")
+air_state = NodePath("../Air")
+dash_state = NodePath("../Dashing")
+attacking_state = NodePath("../Attacking")
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="StateMan/Attacking/AttackTimer" to="StateMan/Attacking" method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="StateMan/Attacking/Deleay" to="StateMan/Attacking" method="_on_deleay_timeout"]
+[connection signal="timeout" from="StateMan/Air/Timer" to="StateMan/Air" method="_on_timer_timeout"]
