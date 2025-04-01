@@ -1,15 +1,14 @@
 extends PlayerState
 
 @export_category("States")
+@export var idle_state: PlayerState
+@export var lookdown_state: PlayerState
 @export var jump_state: PlayerState
 @export var dash_state: PlayerState
 @export var running_state: PlayerState
-@export var lookup_state: PlayerState
-@export var lookdown_state: PlayerState
 
 
 func update_state():
-	
 	if player.get_jump() == true:
 		stateman.active_state = jump_state
 		return
@@ -25,10 +24,8 @@ func update_state():
 		return
 
 	if movedir.y == 0:
-		pass
+		stateman.active_state = idle_state
+		return
 	elif movedir.y > 0:
 		stateman.active_state = lookdown_state
-		return
-	else:
-		stateman.active_state = lookup_state 
 		return

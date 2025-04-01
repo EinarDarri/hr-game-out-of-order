@@ -69,6 +69,15 @@ func enable_dash() -> void:
 	
 func get_movement_dir() -> Vector2:
 	return _player_movement
+	
+func get_jump() -> bool:
+	return _jump_buffered
+	
+func can_jump() -> bool:
+	return (is_on_floor() or _extra_jump_counter > 0)
+	
+func get_dash() -> bool:
+	return _dash_buffered
 
 
 func _physics_process(delta: float) -> void:
@@ -79,6 +88,8 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity. 
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+		
+	state_man.active_state.update_state()
 
 	# Handle jump.
 	if _jump_buffered and (is_on_floor() or _extra_jump_counter > 0):
