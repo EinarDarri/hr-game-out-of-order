@@ -4,7 +4,7 @@ extends Camera2D
 
 @export var extra_speed:int = 500
 
-const MAX_POS = Vector2(150,100)
+const MAX_POS = Vector2(50,60)
 const MAX_SPEED = 100
 
 func _process(delta: float) -> void:

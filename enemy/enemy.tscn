@@ -9,7 +9,7 @@ radius = 4.0
 height = 20.0
 
 [node name="Enemy" type="CharacterBody2D"]
-collision_layer = 5
+collision_layer = 4
 collision_mask = 5
 script = ExtResource("1_ofsxj")
 take_damage_particle = ExtResource("2_ppra6")

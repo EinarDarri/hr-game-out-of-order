@@ -23,7 +23,7 @@ var _can_dash := true
 func _init() -> void:
 	Game.set_player(self)
 	enable_extra_jump()
-	enable_dash()
+	# enable_dash()
 
 func _ready() -> void:
 	animated_sprite_2d.play("Idle")
