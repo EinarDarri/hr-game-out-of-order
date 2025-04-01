@@ -5,6 +5,7 @@ extends PlayerState
 @export_category("States")
 @export var idle_state: PlayerState
 @export var running_state: PlayerState
+@export var attacking_state: PlayerState
 
 const JUMP_VELOCITY = -400.0
 const EXTRA_JUMP_AMOUNT = 1
@@ -35,6 +36,10 @@ func update_state(delta):
 			extra_jump_counter -= 1
 			player.velocity.y = JUMP_VELOCITY
 			return
+			
+	if Input.is_action_just_pressed("attack"):
+		stateman.active_state = attacking_state
+		return
 	
 	
 	# so the player can fine tune there movement while in the air

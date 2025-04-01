@@ -2,10 +2,7 @@ class_name Player extends CharacterBody2D
 
 const SPEED = 300.0
 
-
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
-@onready var attack_timer: Timer = $AttackTimer
-@onready var attack_animation_timer: Timer = $AttackAnimationTimer
 @onready var slash: Area2D = $LookDirection/Slash
 @onready var slash_sprite: Sprite2D = $LookDirection/Slash/SlashSprite
 @onready var _dash_timer: Timer = $DashTimer
@@ -23,8 +20,6 @@ var _enable_extra_jump := false
 var _enable_dash := false
 var _can_dash := true
 
-var attack_buffered := false
-
 func _init() -> void:
 	Game.set_player(self)
 	enable_extra_jump()
@@ -39,21 +34,9 @@ func _process(_delta: float) -> void:
 		-Input.get_axis("look_down","look_up")
 	).normalized()
 	
-	if Input.is_action_just_pressed("attack"):
-		attack_buffered = true
+func get_facing() -> int:
+	return -1 if animated_sprite_2d.flip_h else 1
 	
-	if attack_buffered and attack_timer.time_left == 0:
-		animated_sprite_2d.play("Slash")
-		animated_sprite_2d.frame = 0
-		attack_timer.start()
-		attack_animation_timer.start()
-		attack_buffered = false
-		
-		for enemy: Enemy in slash.get_overlapping_bodies():
-			enemy.take_damage(30)
-		
-		await get_tree().create_timer(0.05).timeout
-
 func enable_extra_jump() -> void:
 	_enable_extra_jump = true
 	
@@ -73,11 +56,6 @@ func can_dash() -> bool:
 	return _enable_dash and _can_dash
 
 func _physics_process(delta: float) -> void:
-	if attack_timer.time_left > 0:
-		velocity = Vector2.ZERO
-		return
-
-		
 	state_man.active_state.update_state(delta)
 		
 	#if dash_buffered and _enable_dash and _can_dash:
