@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://r2kg4a8p4sld"]
+[gd_scene load_steps=32 format=3 uid="uid://r2kg4a8p4sld"]
 
 [ext_resource type="Script" uid="uid://bvwwocn1ycoyr" path="res://player/player.gd" id="1_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://mlpbvaqcpuvt" path="res://player/player.png" id="2_hqtel"]
@@ -7,11 +7,8 @@
 [ext_resource type="Script" uid="uid://ch56xqeo31dw5" path="res://player/state_man.gd" id="5_qjkh3"]
 [ext_resource type="Script" uid="uid://bfptb64ig2ix" path="res://player/states/attacking.gd" id="6_yllr7"]
 [ext_resource type="Script" uid="uid://085b2hwnl5pw" path="res://player/states/dashing.gd" id="7_kb6p2"]
-[ext_resource type="Script" uid="uid://cpida4jq1vv1" path="res://player/states/falling.gd" id="8_wodsf"]
 [ext_resource type="Script" uid="uid://72wh6qg13v81" path="res://player/states/idle.gd" id="9_32hag"]
-[ext_resource type="Script" uid="uid://bggcpd5cuyypk" path="res://player/states/jumping.gd" id="10_tqiix"]
-[ext_resource type="Script" uid="uid://c6v8quens22qd" path="res://player/states/LookUp.gd" id="11_e7oew"]
-[ext_resource type="Script" uid="uid://df2iqqgn3j6rt" path="res://player/states/lookdown.gd" id="12_c35mf"]
+[ext_resource type="Script" uid="uid://bggcpd5cuyypk" path="res://player/states/air.gd" id="10_tqiix"]
 [ext_resource type="Script" uid="uid://dmlukrut636ub" path="res://player/states/running.gd" id="13_65viv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g1dw6"]
@@ -221,44 +218,24 @@ script = ExtResource("6_yllr7")
 [node name="Dashing" type="Node" parent="StateMan"]
 script = ExtResource("7_kb6p2")
 
-[node name="Falling" type="Node" parent="StateMan" node_paths=PackedStringArray("idle_state", "jumping_state", "running_state")]
-script = ExtResource("8_wodsf")
-idle_state = NodePath("../Idle")
-jumping_state = NodePath("../Jump")
-running_state = NodePath("../Running")
-
-[node name="Idle" type="Node" parent="StateMan" node_paths=PackedStringArray("jump_state", "dash_state", "running_state", "lookup_state", "lookdown_state")]
+[node name="Idle" type="Node" parent="StateMan" node_paths=PackedStringArray("jump_state", "dash_state", "running_state")]
 script = ExtResource("9_32hag")
-jump_state = NodePath("../Jump")
+jump_state = NodePath("../Air")
 dash_state = NodePath("../Dashing")
 running_state = NodePath("../Running")
-lookup_state = NodePath("../LookUp")
-lookdown_state = NodePath("../LookDown")
 
-[node name="Jump" type="Node" parent="StateMan" node_paths=PackedStringArray("falling_state")]
+[node name="Air" type="Node" parent="StateMan" node_paths=PackedStringArray("idle_state", "running_state")]
 script = ExtResource("10_tqiix")
-falling_state = NodePath("../Falling")
-
-[node name="LookUp" type="Node" parent="StateMan" node_paths=PackedStringArray("idle_state", "lookdown_state", "jump_state", "dash_state", "running_state")]
-script = ExtResource("11_e7oew")
 idle_state = NodePath("../Idle")
-lookdown_state = NodePath("../LookDown")
-jump_state = NodePath("../Jump")
-dash_state = NodePath("../Dashing")
 running_state = NodePath("../Running")
 
-[node name="LookDown" type="Node" parent="StateMan" node_paths=PackedStringArray("idle_state", "lookdown_up", "jump_state", "dash_state", "running_state")]
-script = ExtResource("12_c35mf")
-idle_state = NodePath("../Idle")
-lookdown_up = NodePath("../LookUp")
-jump_state = NodePath("../Jump")
-dash_state = NodePath("../Dashing")
-running_state = NodePath("../Running")
+[node name="Timer" type="Timer" parent="StateMan/Air"]
 
 [node name="Running" type="Node" parent="StateMan" node_paths=PackedStringArray("idle_state", "jump_state", "dash_state")]
 script = ExtResource("13_65viv")
 idle_state = NodePath("../Idle")
-jump_state = NodePath("../Jump")
+jump_state = NodePath("../Air")
 dash_state = NodePath("../Dashing")
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="StateMan/Air/Timer" to="StateMan/Air" method="_on_timer_timeout"]

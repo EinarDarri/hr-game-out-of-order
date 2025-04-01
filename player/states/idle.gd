@@ -4,8 +4,6 @@ extends PlayerState
 @export var jump_state: PlayerState
 @export var dash_state: PlayerState
 @export var running_state: PlayerState
-@export var lookup_state: PlayerState
-@export var lookdown_state: PlayerState
 
 func start_state() -> void:
 	player.animated_sprite_2d.play("Idle")
@@ -14,12 +12,11 @@ func update_state(delta):
 	
 	player.velocity.x = move_toward(player.velocity.x, 0,Player.SPEED*delta*4) #TODO test what value works best on a scale from 3 - 5
 	
-	if player.get_jump() and player.can_jump():
+	if not player.is_on_floor() or Input.is_action_just_pressed("move_jump"):
 		stateman.active_state = jump_state
-		player.extra_jump_counter = player.EXTRA_JUMP_AMOUNT
 		return
 		
-	if player.get_dash() and player.can_dash():
+	if Input.is_action_just_pressed("move_dash") and player.can_dash():
 		stateman.active_state = dash_state
 		return
 
@@ -27,15 +24,6 @@ func update_state(delta):
 
 	if movedir.x != 0:
 		stateman.active_state = running_state
-		return
-
-	if movedir.y == 0:
-		pass
-	elif movedir.y > 0:
-		stateman.active_state = lookdown_state
-		return
-	else:
-		stateman.active_state = lookup_state 
 		return
 		
 	

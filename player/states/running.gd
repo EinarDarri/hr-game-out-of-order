@@ -14,13 +14,13 @@ func update_state(delta):
 		stateman.active_state = idle_state
 		return
 		
-	player.velocity.x = move_toward(player.velocity.x, player.get_movement_dir().x * player.SPEED, delta*Player.SPEED*4)
+	player.velocity.x = move_toward(player.velocity.x, player.get_movement_dir().x * player.SPEED, delta*Player.SPEED*7)
 		
-	if player.get_jump():
+	if Input.is_action_just_pressed("move_jump") or not player.is_on_floor():
 		stateman.active_state = jump_state
 		return
 	
-	if player.get_dash():
+	if Input.is_action_just_pressed("move_dash"):
 		stateman.active_state = dash_state
 		return
 

@@ -6,7 +6,7 @@ class_name PlayerState extends Node
 func start_state() -> void:
 	pass
 
-func update_state(delta: float) -> void:
+func update_state(_delta: float) -> void:
 	pass
 	
 func end_state() -> void:

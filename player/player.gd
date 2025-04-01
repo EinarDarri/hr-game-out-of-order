@@ -1,8 +1,7 @@
 class_name Player extends CharacterBody2D
 
 const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
-const EXTRA_JUMP_AMOUNT = 1
+
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var attack_timer: Timer = $AttackTimer
@@ -21,13 +20,10 @@ var _player_movement:Vector2 = Vector2.ZERO:
 
 # Extra jump and dash variables
 var _enable_extra_jump := false
-var extra_jump_counter := 0
 var _enable_dash := false
 var _can_dash := true
-var attack_buffered := false
-var jump_buffered := false
-var dash_buffered := false
 
+var attack_buffered := false
 
 func _init() -> void:
 	Game.set_player(self)
@@ -37,23 +33,14 @@ func _init() -> void:
 func _ready() -> void:
 	animated_sprite_2d.play("Idle")
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	_player_movement = Vector2(
 		Input.get_axis("move_left", "move_right"),
 		-Input.get_axis("look_down","look_up")
 	).normalized()
 	
-	
-	
-	
 	if Input.is_action_just_pressed("attack"):
 		attack_buffered = true
-		
-	if Input.is_action_just_pressed("move_jump"):
-		jump_buffered = true
-		
-	if Input.is_action_just_pressed("move_dash"):
-		dash_buffered = true
 	
 	if attack_buffered and attack_timer.time_left == 0:
 		animated_sprite_2d.play("Slash")
@@ -69,22 +56,18 @@ func _process(delta: float) -> void:
 
 func enable_extra_jump() -> void:
 	_enable_extra_jump = true
-	extra_jump_counter = EXTRA_JUMP_AMOUNT
+	
+func is_extra_jump_enabled() -> bool:
+	return _enable_extra_jump
 
 func enable_dash() -> void:
 	_enable_dash = true
+
+func is_dash_enabled() -> bool:
+	return _enable_dash
 	
 func get_movement_dir() -> Vector2:
 	return _player_movement
-	
-func get_jump() -> bool:
-	return jump_buffered
-	
-func can_jump() -> bool:
-	return (is_on_floor() or extra_jump_counter > 0)
-	
-func get_dash() -> bool:
-	return dash_buffered
 	
 func can_dash() -> bool:
 	return _enable_dash and _can_dash
@@ -94,23 +77,16 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2.ZERO
 		return
 
-	# Add the gravity. 
-	if not is_on_floor():
-		velocity += get_gravity() * delta
 		
 	state_man.active_state.update_state(delta)
-	
-	dash_buffered = false
-	jump_buffered = false
-	attack_buffered = false
 		
-	if dash_buffered and _enable_dash and _can_dash:
-		velocity.x *= 40
-		velocity.y = -JUMP_VELOCITY * _player_movement.y * 2
-		print(velocity.y)
-		_can_dash = false
-		_dash_timer.start()
-		dash_buffered = false
+	#if dash_buffered and _enable_dash and _can_dash:
+		#velocity.x *= 40
+		#velocity.y = -JUMP_VELOCITY * _player_movement.y * 2
+		#print(velocity.y)
+		#_can_dash = false
+		#_dash_timer.start()
+		#dash_buffered = false
 
 	move_and_slide()
 
