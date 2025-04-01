@@ -8,3 +8,4 @@ class_name StateManager extends Node
 			active_state.end_state()
 			new_state.start_state()
 		active_state = new_state
+		print(active_state)

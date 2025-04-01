@@ -36,7 +36,10 @@ func update_state(delta: float) -> void:
 
 	var movedir := player.get_movement_dir()
 
-	if movedir.x != 0:
+	if movedir.x == 0:
+		stateman.active_state = idle_state
+		return
+	else:
 		stateman.active_state = running_state
 		return
 	
