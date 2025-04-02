@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://ouqwelutt3ob"]
+[gd_scene load_steps=14 format=4 uid="uid://ouqwelutt3ob"]
 
 [ext_resource type="PackedScene" uid="uid://r2kg4a8p4sld" path="res://player/player.tscn" id="2_e2o6t"]
 [ext_resource type="Texture2D" uid="uid://ddrtsvcu03bbj" path="res://map/background/layer1.png" id="2_iotsf"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bqu0nshed3o7m" path="res://map/background/layer6.png" id="7_e8heu"]
 [ext_resource type="Texture2D" uid="uid://dj80s3u8gxbg0" path="res://map/background/layer7.png" id="8_rvswv"]
 [ext_resource type="TileSet" uid="uid://cqvi740oor33h" path="res://map/tilesets/tileset.tres" id="9_iotsf"]
+[ext_resource type="PackedScene" uid="uid://cx4kt1teqeebj" path="res://ui/components/health_bar.tscn" id="13_lc2xo"]
 
 [node name="Game" type="Node2D"]
 
@@ -96,6 +97,7 @@ tile_map_data = PackedByteArray("AAD8/wEAAAADAAUAAAD9/wEAAAADAAUAAAD+/wEAAAADAAU
 tile_set = ExtResource("9_iotsf")
 
 [node name="Player" parent="." instance=ExtResource("2_e2o6t")]
+unique_name_in_owner = true
 
 [node name="Spawner" parent="." instance=ExtResource("4_fc0e3")]
 position = Vector2(-300, 200)
@@ -155,3 +157,9 @@ LIMIT_LEFT = -130
 LIMIT_TOP = -70
 LIMIT_RIGHT = 230
 LIMIT_BOTTOM = 13
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" parent="HUD" node_paths=PackedStringArray("target") instance=ExtResource("13_lc2xo")]
+target = NodePath("../../Player")
+show_number = true

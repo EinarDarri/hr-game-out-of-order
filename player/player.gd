@@ -23,6 +23,14 @@ var _attack_buffered := false
 var _jump_buffered := false
 var _dash_buffered := false
 
+var _health := 100
+var _max_health := 100
+
+func get_health() -> int:
+	return _health
+
+func get_max_health() -> int:
+	return _max_health
 
 func _init() -> void:
 	Game.set_player(self)

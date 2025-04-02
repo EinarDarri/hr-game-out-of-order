@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dvum5k052ihe6"]
+[gd_scene load_steps=6 format=3 uid="uid://dvum5k052ihe6"]
 
 [ext_resource type="Texture2D" uid="uid://b0v4v2u847xfk" path="res://enemy/enemy.png" id="1_2mvqj"]
 [ext_resource type="Script" uid="uid://tqp5e23bougv" path="res://enemy/enemy.gd" id="1_ofsxj"]
 [ext_resource type="PackedScene" uid="uid://cyuyf5tenyw1g" path="res://particles/blood.tscn" id="2_ppra6"]
+[ext_resource type="PackedScene" uid="uid://cx4kt1teqeebj" path="res://ui/components/health_bar.tscn" id="4_p200p"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fc0e3"]
 radius = 4.0
@@ -22,3 +23,11 @@ shape = SubResource("CapsuleShape2D_fc0e3")
 texture = ExtResource("1_2mvqj")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="HealthBar" parent="." node_paths=PackedStringArray("target") instance=ExtResource("4_p200p")]
+offset_left = -18.0
+offset_top = -25.0
+offset_right = 19.0
+offset_bottom = -23.0
+target = NodePath("..")
+show_number = false

@@ -1,0 +1,33 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://qs06qg7wf5vt"]
+
+[ext_resource type="FontFile" uid="uid://b115b4v6om1y7" path="res://fonts/BigBlueTermPlusNerdFontMono-Regular.ttf" id="1_513cy"]
+[ext_resource type="FontFile" uid="uid://dutl4chf61tyn" path="res://fonts/visitor1.ttf" id="1_dmuvm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6fd7q"]
+bg_color = Color(0.0509804, 0.0509804, 0.0509804, 0.54902)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_513cy"]
+bg_color = Color(0.839489, 0.154698, 0.245527, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dmuvm"]
+bg_color = Color(0, 0, 0, 0.611765)
+
+[resource]
+default_font = ExtResource("1_513cy")
+default_font_size = 12
+HealthBar/base_type = &"ProgressBar"
+HealthBar/constants/outline_size = 4
+HealthBar/font_sizes/font_size = 10
+HealthBar/fonts/font = ExtResource("1_dmuvm")
+HealthBar/styles/background = SubResource("StyleBoxFlat_6fd7q")
+HealthBar/styles/fill = SubResource("StyleBoxFlat_513cy")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_dmuvm")

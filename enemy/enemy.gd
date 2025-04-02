@@ -3,8 +3,15 @@ class_name Enemy extends CharacterBody2D
 const SPEED = 100.0
 
 var _health: int = 100
+var _max_health: int = 100
 
 @export var take_damage_particle: PackedScene
+
+func get_health() -> int:
+	return _health
+
+func get_max_health() -> int:
+	return _max_health
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
