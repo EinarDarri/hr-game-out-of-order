@@ -22,7 +22,6 @@ theme_type_variation = &"HealthBar"
 value = 100.0
 show_percentage = false
 script = ExtResource("2_tilui")
-show_number = null
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1

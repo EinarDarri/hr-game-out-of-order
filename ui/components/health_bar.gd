@@ -16,11 +16,11 @@ class_name HealthBar extends ProgressBar
 func _ready() -> void:
 	update_configuration_warnings()
 	
-	if target != null and target.has_method("get_max_health"):
+	if not Engine.is_editor_hint() and target != null and target.has_method("get_max_health"):
 		max_value = target.get_max_health()
 
 func _process(delta: float) -> void:
-	if target == null || not target.has_method("get_health"):
+	if Engine.is_editor_hint() || target == null || not target.has_method("get_health"):
 		return
 	
 	value = target.get_health()
