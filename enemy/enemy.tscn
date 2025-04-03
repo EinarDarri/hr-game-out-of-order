@@ -1,13 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://dvum5k052ihe6"]
+[gd_scene load_steps=9 format=3 uid="uid://dvum5k052ihe6"]
 
 [ext_resource type="Texture2D" uid="uid://b0v4v2u847xfk" path="res://enemy/enemy.png" id="1_2mvqj"]
 [ext_resource type="Script" uid="uid://tqp5e23bougv" path="res://enemy/enemy.gd" id="1_ofsxj"]
+[ext_resource type="Shader" uid="uid://cnctf4usjpyop" path="res://enemy/enemy.gdshader" id="1_pmsee"]
 [ext_resource type="PackedScene" uid="uid://cyuyf5tenyw1g" path="res://particles/blood.tscn" id="2_ppra6"]
 [ext_resource type="PackedScene" uid="uid://cx4kt1teqeebj" path="res://ui/components/health_bar.tscn" id="4_p200p"]
+[ext_resource type="AudioStream" uid="uid://dceyvduije81h" path="res://enemy/hit.wav" id="6_1wwld"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fc0e3"]
 radius = 4.0
 height = 20.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pmsee"]
+resource_local_to_scene = true
+shader = ExtResource("1_pmsee")
+shader_parameter/flash = false
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 4
@@ -20,6 +27,7 @@ position = Vector2(0, 6)
 shape = SubResource("CapsuleShape2D_fc0e3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_pmsee")
 texture = ExtResource("1_2mvqj")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
@@ -31,3 +39,7 @@ offset_right = 19.0
 offset_bottom = -23.0
 target = NodePath("..")
 show_number = false
+
+[node name="HitSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_1wwld")
+volume_db = -10.0

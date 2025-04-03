@@ -7,7 +7,7 @@ extends PlayerState
 @export var running_state: PlayerState
 @export var attacking_state: PlayerState
 
-const JUMP_VELOCITY = -400.0
+const JUMP_VELOCITY = -350.0
 const EXTRA_JUMP_AMOUNT = 1
 const COYOTE_TIME = 0.05
 

@@ -1,10 +1,9 @@
 class_name Player extends CharacterBody2D
 
-const SPEED = 300.0
+const SPEED = 175.0
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var slash: Area2D = $LookDirection/Slash
-@onready var slash_sprite: Sprite2D = $LookDirection/Slash/SlashSprite
 @onready var _dash_timer: Timer = $DashTimer
 @onready var state_man: StateManager = $StateMan
 
