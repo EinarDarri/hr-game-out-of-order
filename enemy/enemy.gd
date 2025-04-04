@@ -7,6 +7,7 @@ var _max_health: int = 100
 var _target_velocity: Vector2
 
 @export var take_damage_particle: PackedScene
+@export var death_particle: PackedScene
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var hit_sfx: AudioStreamPlayer = $HitSFX
 
@@ -42,6 +43,8 @@ func take_damage(attack: Attack) -> void:
 	if _health <= 0:
 		_health = 0
 		get_tree().root.add_child(SfxOneOff.new(DEATH, -10.0))
+		var blood_explosion := death_particle.instantiate() # needs to be fixed i think this is spawning at 0,0?
+		get_tree().root.add_child(blood_explosion)
 		queue_free()
 		return
 	
