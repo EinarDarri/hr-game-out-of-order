@@ -560,6 +560,22 @@ frame_progress = 0.830091
 position = Vector2(-1329, 206)
 frame_progress = 0.830091
 
+[node name="Lantern22" parent="Lights" instance=ExtResource("15_7sc4i")]
+position = Vector2(-2453, 401)
+frame_progress = 0.830091
+
+[node name="Lantern25" parent="Lights" instance=ExtResource("15_7sc4i")]
+position = Vector2(-2269, 401)
+frame_progress = 0.830091
+
+[node name="Lantern23" parent="Lights" instance=ExtResource("15_7sc4i")]
+position = Vector2(-2244, 279)
+frame_progress = 0.830091
+
+[node name="Lantern24" parent="Lights" instance=ExtResource("15_7sc4i")]
+position = Vector2(-2464, 155)
+frame_progress = 0.830091
+
 [node name="Lantern21" parent="Lights" instance=ExtResource("15_7sc4i")]
 position = Vector2(-1429, 104)
 frame_progress = 0.830091
