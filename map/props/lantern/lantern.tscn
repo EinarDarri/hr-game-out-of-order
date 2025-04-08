@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://colmiolq4dmxc"]
+
+[ext_resource type="Texture2D" uid="uid://sqesxxyt15ty" path="res://map/props/lantern/lantern.png" id="1_tu7jj"]
+[ext_resource type="Script" uid="uid://chhy5ygbvuer3" path="res://map/props/lantern/lantern.gd" id="2_582wc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_582wc"]
+atlas = ExtResource("1_tu7jj")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w30ih"]
+atlas = ExtResource("1_tu7jj")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2g0mo"]
+atlas = ExtResource("1_tu7jj")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nrhua"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_582wc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w30ih")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2g0mo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_tu7jj"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_582wc"]
+gradient = SubResource("Gradient_tu7jj")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[node name="Lantern" type="AnimatedSprite2D"]
+light_mask = 0
+sprite_frames = SubResource("SpriteFrames_nrhua")
+frame_progress = 0.410617
+script = ExtResource("2_582wc")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.962556, 0.256056, 0, 1)
+energy = 3.5
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_582wc")
+metadata/_edit_lock_ = true

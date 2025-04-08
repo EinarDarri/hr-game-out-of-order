@@ -13,8 +13,10 @@ func start_state() -> void:
 func physics_update(delta):
 	
 	player.velocity.x = move_toward(player.velocity.x, 0,Player.SPEED*delta*5) #TODO test what value works best on a scale from 3 - 5
-
-		
+	
+	if not player.can_control():
+		return
+	
 	if Input.is_action_just_pressed("attack"):
 		stateman.active_state = attacking_state
 		return

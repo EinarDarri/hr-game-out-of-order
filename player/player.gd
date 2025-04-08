@@ -38,12 +38,16 @@ func _init() -> void:
 
 func _ready() -> void:
 	animated_sprite_2d.play("Idle")
+	Dialogic.start('game_start')
 
 func _process(_delta: float) -> void:
 	_player_movement = Vector2(
 		Input.get_axis("move_left", "move_right"),
 		-Input.get_axis("look_down","look_up")
 	).normalized()
+	
+	if not can_control():
+		_player_movement = Vector2.ZERO
 
 func take_damage(attack: Attack) -> void:
 	attack_received.emit(attack)
@@ -68,6 +72,9 @@ func get_movement_dir() -> Vector2:
 	
 func can_dash() -> bool:
 	return _enable_dash and _can_dash
+
+func can_control() -> bool:
+	return Dialogic.current_timeline == null
 
 func _physics_process(delta: float) -> void:
 	move_and_slide()
