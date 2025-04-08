@@ -1,4 +1,4 @@
-extends PlayerState
+class_name PlayerAirState extends PlayerState
 
 @onready var timer: Timer = $Timer
 
@@ -27,7 +27,7 @@ func start_state() -> void:
 		_coyote_flag = true
 
 
-func update_state(delta):
+func physics_update(delta):
 	if Input.is_action_just_pressed("move_jump"):
 		if _coyote_flag:
 			player.velocity.y = JUMP_VELOCITY
@@ -60,3 +60,10 @@ func end_state() -> void:
 
 func _on_timer_timeout() -> void:
 	_coyote_flag = false
+
+func attack_received(attack: Attack) -> void:
+	player.hit_sfx.pitch_scale = randf_range(0.9, 1.1)
+	player.hit_sfx.play()
+	player.apply_damage(attack.damage)
+	player.global_position += Vector2.UP * 2
+	player.velocity = attack.knockback

@@ -6,8 +6,11 @@ const SPEED = 175.0
 @onready var slash: Area2D = $LookDirection/Slash
 @onready var _dash_timer: Timer = $DashTimer
 @onready var state_man: StateManager = $StateMan
+@onready var hit_sfx: AudioStreamPlayer = $HitSFX
 
-var _player_movement:Vector2 = Vector2.ZERO:
+signal attack_received(attack: Attack)
+
+var _player_movement: Vector2 = Vector2.ZERO:
 	set(new_vec):
 		if new_vec.x != 0:
 			animated_sprite_2d.flip_h = _player_movement.x < 0
@@ -31,7 +34,7 @@ func get_max_health() -> int:
 func _init() -> void:
 	Game.set_player(self)
 	enable_extra_jump()
-	# enable_dash()
+	enable_dash()
 
 func _ready() -> void:
 	animated_sprite_2d.play("Idle")
@@ -41,7 +44,10 @@ func _process(_delta: float) -> void:
 		Input.get_axis("move_left", "move_right"),
 		-Input.get_axis("look_down","look_up")
 	).normalized()
-	
+
+func take_damage(attack: Attack) -> void:
+	attack_received.emit(attack)
+
 func get_facing() -> int:
 	return -1 if animated_sprite_2d.flip_h else 1
 	
@@ -64,19 +70,10 @@ func can_dash() -> bool:
 	return _enable_dash and _can_dash
 
 func _physics_process(delta: float) -> void:
-	state_man.active_state.update_state(delta)
-		
-	#if dash_buffered and _enable_dash and _can_dash:
-		#velocity.x *= 40
-		#velocity.y = -JUMP_VELOCITY * _player_movement.y * 2
-		#print(velocity.y)
-		#_can_dash = false
-		#_dash_timer.start()
-		#dash_buffered = false
-
 	move_and_slide()
 
+func apply_damage(amount: int) -> void:
+	_health = max(_health - amount, 0)
 
 func _on_dash_timer_timeout() -> void:
 	_can_dash = true
-	print("Can dash")

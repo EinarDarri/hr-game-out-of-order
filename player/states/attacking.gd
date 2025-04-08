@@ -1,4 +1,4 @@
-extends PlayerState
+class_name PlayerAttackState extends PlayerState
 
 @onready var attack_timer: Timer = $AttackTimer
 @onready var delay_timer: Timer = $Delay
@@ -33,11 +33,11 @@ func start_state() -> void:
 	for enemy: Enemy in player.slash.get_overlapping_bodies():
 		var attack := Attack.new()
 		attack.damage = 30
-		attack.knockback = Vector2(500*player.get_facing(),-100)
+		attack.knockback = Vector2(200*player.get_facing(),-100)
 		enemy.take_damage(attack)
 		shaker_component_2d.play_shake()
 
-func update_state(delta: float) -> void:
+func physics_update(delta: float) -> void:
 	if Input.is_action_just_pressed("attack"):
 		attack_buffer = true
 	

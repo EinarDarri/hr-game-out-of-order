@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://r2kg4a8p4sld"]
+[gd_scene load_steps=43 format=3 uid="uid://r2kg4a8p4sld"]
 
 [ext_resource type="Script" uid="uid://bvwwocn1ycoyr" path="res://player/player.gd" id="1_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://mlpbvaqcpuvt" path="res://player/player.png" id="2_qjkh3"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://bggcpd5cuyypk" path="res://player/states/air.gd" id="10_tqiix"]
 [ext_resource type="AudioStream" uid="uid://bnud66whgw0p4" path="res://player/attack.wav" id="12_32hag"]
 [ext_resource type="Script" uid="uid://dmlukrut636ub" path="res://player/states/running.gd" id="13_65viv"]
+[ext_resource type="AudioStream" uid="uid://dceyvduije81h" path="res://enemy/hit.wav" id="17_tqiix"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g6k8r"]
 atlas = ExtResource("2_qjkh3")
@@ -309,6 +310,10 @@ idle_state = NodePath("../Idle")
 air_state = NodePath("../Air")
 dash_state = NodePath("../Dashing")
 attacking_state = NodePath("../Attacking")
+
+[node name="HitSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_tqiix")
+volume_db = -10.0
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="StateMan/Attacking/AttackTimer" to="StateMan/Attacking" method="_on_attack_timer_timeout"]

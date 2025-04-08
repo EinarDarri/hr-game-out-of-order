@@ -11,3 +11,6 @@ func update_state(_delta: float) -> void:
 	
 func end_state() -> void:
 	pass
+
+func attack_received(attack: Attack) -> void:
+	pass

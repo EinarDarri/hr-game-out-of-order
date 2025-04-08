@@ -1,4 +1,4 @@
-extends PlayerState
+class_name PlayerRunState extends PlayerState
 
 @export_category("States")
 @export var idle_state: PlayerState
@@ -9,7 +9,7 @@ extends PlayerState
 func start_state() -> void:
 	player.animated_sprite_2d.play("Running")
 
-func update_state(delta):
+func physics_update(delta):
 	
 	if Input.is_action_just_pressed("attack"):
 		stateman.active_state = attacking_state
@@ -31,3 +31,11 @@ func update_state(delta):
 
 func end_state() -> void:
 	player.animated_sprite_2d.stop()
+
+func attack_received(attack: Attack) -> void:
+	player.hit_sfx.pitch_scale = randf_range(0.9, 1.1)
+	player.hit_sfx.play()
+	player.apply_damage(attack.damage)
+	player.global_position += Vector2.UP * 2
+	player.velocity = attack.knockback
+	stateman.active_state = air_state
