@@ -1,10 +1,10 @@
 class_name PlayerRunState extends PlayerState
 
 @export_category("States")
-@export var idle_state: PlayerState
-@export var air_state: PlayerState
-@export var dash_state: PlayerState
-@export var attacking_state: PlayerState
+@export var idle_state: PlayerIdleState
+@export var air_state: PlayerAirState
+@export var dash_state: PlayerDashState
+@export var attacking_state: PlayerAttackState
 
 func start_state() -> void:
 	player.animated_sprite_2d.play("Running")
@@ -26,6 +26,7 @@ func physics_update(delta):
 		return
 	
 	if Input.is_action_just_pressed("move_dash"):
+		dash_state.previus_state = self
 		stateman.active_state = dash_state
 		return
 

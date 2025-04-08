@@ -1,10 +1,10 @@
 class_name PlayerIdleState extends PlayerState
 
 @export_category("States")
-@export var air_state: PlayerState
-@export var dash_state: PlayerState
-@export var running_state: PlayerState
-@export var attacking_state: PlayerState
+@export var air_state: PlayerAirState
+@export var dash_state: PlayerDashState
+@export var running_state: PlayerRunState
+@export var attacking_state: PlayerAttackState
 
 
 	
@@ -25,9 +25,11 @@ func physics_update(delta):
 
 	if Input.is_action_pressed("look_down"): # needs fixing
 		player.position.y += 1
+		Player
 		return
 
 	if Input.is_action_just_pressed("move_dash") and player.can_dash():
+		dash_state.previus_state = self
 		stateman.active_state = dash_state
 		return
 
