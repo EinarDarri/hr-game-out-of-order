@@ -6,13 +6,19 @@ class_name PlayerIdleState extends PlayerState
 @export var running_state: PlayerState
 @export var attacking_state: PlayerState
 
+
+	
 func start_state() -> void:
 	player.animated_sprite_2d.play("Idle")
-
 func physics_update(delta):
 	
 	player.velocity.x = move_toward(player.velocity.x, 0,Player.SPEED*delta*5) #TODO test what value works best on a scale from 3 - 5
-	
+
+	if Input.is_action_pressed("look_down"): # needs fixing
+		player.position.y += 1
+		return
+
+		
 	if Input.is_action_just_pressed("attack"):
 		stateman.active_state = attacking_state
 		return
