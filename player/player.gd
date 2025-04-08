@@ -1,6 +1,7 @@
 class_name Player extends CharacterBody2D
 
 const SPEED = 175.0
+const DEAD_ZONE = .2
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var slash: Area2D = $LookDirection/Slash
@@ -41,9 +42,11 @@ func _ready() -> void:
 	Dialogic.start('game_start')
 
 func _process(_delta: float) -> void:
+	var x:float = Input.get_axis("move_left", "move_right")
+	var y:float = -Input.get_axis("look_down","look_up")
 	_player_movement = Vector2(
-		Input.get_axis("move_left", "move_right"),
-		-Input.get_axis("look_down","look_up")
+		0 if abs(x) <= DEAD_ZONE else x,
+		0 if abs(y) <= DEAD_ZONE else y
 	).normalized()
 	
 	if not can_control():

@@ -308,10 +308,11 @@ dash_state = NodePath("../Dashing")
 running_state = NodePath("../Running")
 attacking_state = NodePath("../Attacking")
 
-[node name="Air" type="Node" parent="StateMan" node_paths=PackedStringArray("idle_state", "running_state", "attacking_state")]
+[node name="Air" type="Node" parent="StateMan" node_paths=PackedStringArray("idle_state", "running_state", "dash_state", "attacking_state")]
 script = ExtResource("10_tqiix")
 idle_state = NodePath("../Idle")
 running_state = NodePath("../Running")
+dash_state = NodePath("../Dashing")
 attacking_state = NodePath("../Attacking")
 
 [node name="Timer" type="Timer" parent="StateMan/Air"]
