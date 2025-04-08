@@ -7,6 +7,7 @@ const SPEED = 175.0
 @onready var _dash_timer: Timer = $DashTimer
 @onready var state_man: StateManager = $StateMan
 @onready var hit_sfx: AudioStreamPlayer = $HitSFX
+@onready var center: Marker2D = $Center
 
 signal attack_received(attack: Attack)
 
@@ -24,6 +25,9 @@ var _can_dash := true
 
 var _health := 100
 var _max_health := 100
+
+func get_center() -> Vector2:
+	return center.get_global_position()
 
 func get_health() -> int:
 	return _health

@@ -217,6 +217,9 @@ size = Vector2(55.5, 10)
 collision_layer = 2
 script = ExtResource("1_i3pqv")
 
+[node name="Center" type="Marker2D" parent="."]
+position = Vector2(0, -10)
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_x7c3f")
