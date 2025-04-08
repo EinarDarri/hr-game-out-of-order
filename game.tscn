@@ -311,47 +311,47 @@ texture = ExtResource("9_215e1")
 
 [node name="CastleWall68" type="Sprite2D" parent="Castle Walls"]
 modulate = Color(0.363116, 0.422079, 0.515909, 1)
-position = Vector2(-2374, 155)
+position = Vector2(-2368, 155)
 texture = ExtResource("9_215e1")
 
 [node name="CastleWall70" type="Sprite2D" parent="Castle Walls"]
 modulate = Color(0.363116, 0.422079, 0.515909, 1)
-position = Vector2(-2502, 155)
+position = Vector2(-2496, 155)
 texture = ExtResource("9_215e1")
 
 [node name="CastleWall69" type="Sprite2D" parent="Castle Walls"]
 modulate = Color(0.363116, 0.422079, 0.515909, 1)
-position = Vector2(-2246, 155)
+position = Vector2(-2240, 155)
 texture = ExtResource("9_215e1")
 
 [node name="CastleWall71" type="Sprite2D" parent="Castle Walls"]
 modulate = Color(0.363116, 0.422079, 0.515909, 1)
-position = Vector2(-2374, 283)
+position = Vector2(-2368, 283)
 texture = ExtResource("9_215e1")
 
 [node name="CastleWall72" type="Sprite2D" parent="Castle Walls"]
 modulate = Color(0.363116, 0.422079, 0.515909, 1)
-position = Vector2(-2502, 283)
+position = Vector2(-2496, 283)
 texture = ExtResource("9_215e1")
 
 [node name="CastleWall73" type="Sprite2D" parent="Castle Walls"]
 modulate = Color(0.363116, 0.422079, 0.515909, 1)
-position = Vector2(-2246, 283)
+position = Vector2(-2240, 283)
 texture = ExtResource("9_215e1")
 
 [node name="CastleWall74" type="Sprite2D" parent="Castle Walls"]
 modulate = Color(0.363116, 0.422079, 0.515909, 1)
-position = Vector2(-2374, 411)
+position = Vector2(-2368, 411)
 texture = ExtResource("9_215e1")
 
 [node name="CastleWall75" type="Sprite2D" parent="Castle Walls"]
 modulate = Color(0.363116, 0.422079, 0.515909, 1)
-position = Vector2(-2502, 411)
+position = Vector2(-2496, 411)
 texture = ExtResource("9_215e1")
 
 [node name="CastleWall76" type="Sprite2D" parent="Castle Walls"]
 modulate = Color(0.363116, 0.422079, 0.515909, 1)
-position = Vector2(-2246, 411)
+position = Vector2(-2240, 411)
 texture = ExtResource("9_215e1")
 
 [node name="CastleWall36" type="Sprite2D" parent="Castle Walls"]
