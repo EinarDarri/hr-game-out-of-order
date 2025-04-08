@@ -12,7 +12,7 @@ func start_state() -> void:
 	_dir = enemy.global_position.direction_to(Game.get_player().get_center())
 	_start_pos = enemy.global_position
 	_end_pos = _dir * max_distance
-	var rot = _dir.angle() + PI/2
+	var rot = atan2(_dir.y, _dir.x) + PI/2
 	enemy.global_rotation = rot
 	#print((rot*180)/PI)
 
