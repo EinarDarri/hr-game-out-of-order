@@ -24,8 +24,8 @@ Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 [dialogic]
 
 directories/dch_directory={
-"guard": "res://dialogue/characters/guard.dch",
-"player": "res://dialogue/characters/player.dch"
+"characters/player": "res://dialogue/characters/player.dch",
+"guard": "res://dialogue/characters/guard.dch"
 }
 directories/dtl_directory={
 "game_start": "res://dialogue/game_start.dtl",
