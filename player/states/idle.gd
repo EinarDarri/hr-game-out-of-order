@@ -14,10 +14,6 @@ func physics_update(delta):
 	
 	player.velocity.x = move_toward(player.velocity.x, 0,Player.SPEED*delta*5) #TODO test what value works best on a scale from 3 - 5
 
-	if Input.is_action_pressed("look_down"): # needs fixing
-		player.position.y += 1
-		return
-
 		
 	if Input.is_action_just_pressed("attack"):
 		stateman.active_state = attacking_state
@@ -26,7 +22,11 @@ func physics_update(delta):
 	if not player.is_on_floor() or Input.is_action_just_pressed("move_jump"):
 		stateman.active_state = air_state
 		return
-		
+
+	if Input.is_action_pressed("look_down"): # needs fixing
+		player.position.y += 1
+		return
+
 	if Input.is_action_just_pressed("move_dash") and player.can_dash():
 		stateman.active_state = dash_state
 		return
