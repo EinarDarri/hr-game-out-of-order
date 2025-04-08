@@ -24,10 +24,12 @@ Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 [dialogic]
 
 directories/dch_directory={
+"guard": "res://dialogue/characters/guard.dch",
 "player": "res://dialogue/characters/player.dch"
 }
 directories/dtl_directory={
-"game_start": "res://dialogue/game_start.dtl"
+"game_start": "res://dialogue/game_start.dtl",
+"stole_the_sword": "res://dialogue/text/stole_the_sword.dtl"
 }
 extensions_folder="res://addons/dialogic_additions"
 text/letter_speed=0.01
@@ -54,6 +56,7 @@ layout/style_list=["res://dialogue/theme.tres"]
 layout/default_style="res://dialogue/theme.tres"
 variables={}
 layout/end_behaviour=0
+glossary/glossary_files=[]
 
 [display]
 

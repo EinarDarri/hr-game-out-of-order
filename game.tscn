@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://ouqwelutt3ob"]
+[gd_scene load_steps=18 format=4 uid="uid://ouqwelutt3ob"]
 
 [ext_resource type="PackedScene" uid="uid://r2kg4a8p4sld" path="res://player/player.tscn" id="2_e2o6t"]
 [ext_resource type="Texture2D" uid="uid://ddrtsvcu03bbj" path="res://map/background/layer1.png" id="2_iotsf"]
@@ -15,6 +15,10 @@
 [ext_resource type="TileSet" uid="uid://cqvi740oor33h" path="res://map/tilesets/tileset.tres" id="9_iotsf"]
 [ext_resource type="PackedScene" uid="uid://cx4kt1teqeebj" path="res://ui/components/health_bar.tscn" id="13_lc2xo"]
 [ext_resource type="PackedScene" uid="uid://colmiolq4dmxc" path="res://map/props/lantern/lantern.tscn" id="15_7sc4i"]
+[ext_resource type="Script" uid="uid://r1dmijulheyr" path="res://dialogue/play_dialog.gd" id="16_80cx4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e8heu"]
+size = Vector2(48, 65)
 
 [node name="Game" type="Node2D"]
 
@@ -658,3 +662,17 @@ LIMIT_LEFT = -130
 LIMIT_TOP = -70
 LIMIT_RIGHT = 230
 LIMIT_BOTTOM = 13
+
+[node name="Dialog" type="Node2D" parent="."]
+position = Vector2(-2400, 423)
+
+[node name="Stole_sword" type="Area2D" parent="Dialog"]
+position = Vector2(2231, -447)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("16_80cx4")
+dialog_name = "stole_the_sword"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dialog/Stole_sword"]
+position = Vector2(2, 7.5)
+shape = SubResource("RectangleShape2D_e8heu")
