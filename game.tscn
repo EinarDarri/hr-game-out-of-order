@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://ouqwelutt3ob"]
+[gd_scene load_steps=15 format=4 uid="uid://ouqwelutt3ob"]
 
 [ext_resource type="PackedScene" uid="uid://r2kg4a8p4sld" path="res://player/player.tscn" id="2_e2o6t"]
 [ext_resource type="Texture2D" uid="uid://ddrtsvcu03bbj" path="res://map/background/layer1.png" id="2_iotsf"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dj80s3u8gxbg0" path="res://map/background/layer7.png" id="8_rvswv"]
 [ext_resource type="TileSet" uid="uid://cqvi740oor33h" path="res://map/tilesets/tileset.tres" id="9_iotsf"]
 [ext_resource type="PackedScene" uid="uid://cx4kt1teqeebj" path="res://ui/components/health_bar.tscn" id="13_lc2xo"]
+[ext_resource type="PackedScene" uid="uid://bgnh4af87pgi2" path="res://enemy/enemies/spirit_blade.tscn" id="14_215e1"]
 
 [node name="Game" type="Node2D"]
 
@@ -111,6 +112,7 @@ unique_name_in_owner = true
 
 [node name="Spawner8" parent="." instance=ExtResource("4_fc0e3")]
 position = Vector2(-1352.59, 585.665)
+enable = false
 spawing = ExtResource("3_feb5d")
 time_between_spawns = 0.5
 total_spawns = 4
@@ -121,6 +123,7 @@ LIMIT_BOTTOM = 0
 
 [node name="Spawner7" parent="." instance=ExtResource("4_fc0e3")]
 position = Vector2(76, -11)
+enable = false
 spawing = ExtResource("3_feb5d")
 time_between_spawns = 0.5
 total_spawns = 1
@@ -131,6 +134,7 @@ LIMIT_BOTTOM = 0
 
 [node name="Spawner" parent="." instance=ExtResource("4_fc0e3")]
 position = Vector2(-300, 200)
+enable = false
 spawing = ExtResource("3_feb5d")
 time_between_spawns = 0.5
 total_spawns = 2
@@ -141,6 +145,7 @@ LIMIT_BOTTOM = 0
 
 [node name="Spawner2" parent="." instance=ExtResource("4_fc0e3")]
 position = Vector2(-500, 370)
+enable = false
 spawing = ExtResource("3_feb5d")
 time_between_spawns = 2.0
 LIMIT_LEFT = -170
@@ -150,6 +155,7 @@ LIMIT_BOTTOM = 13
 
 [node name="Spawner3" parent="." instance=ExtResource("4_fc0e3")]
 position = Vector2(-400, 560)
+enable = false
 spawing = ExtResource("3_feb5d")
 time_between_spawns = 2.0
 total_spawns = 5
@@ -160,6 +166,7 @@ LIMIT_BOTTOM = 13
 
 [node name="Spawner4" parent="." instance=ExtResource("4_fc0e3")]
 position = Vector2(-1380, 50)
+enable = false
 spawing = ExtResource("3_feb5d")
 time_between_spawns = 2.0
 total_spawns = 4
@@ -170,6 +177,7 @@ LIMIT_BOTTOM = 13
 
 [node name="Spawner5" parent="." instance=ExtResource("4_fc0e3")]
 position = Vector2(-2300, 70)
+enable = false
 spawing = ExtResource("3_feb5d")
 time_between_spawns = 2.0
 LIMIT_LEFT = -220
@@ -179,6 +187,7 @@ LIMIT_BOTTOM = 13
 
 [node name="Spawner6" parent="." instance=ExtResource("4_fc0e3")]
 position = Vector2(-2400, 423)
+enable = false
 spawing = ExtResource("3_feb5d")
 time_between_spawns = 2.0
 total_spawns = 5
@@ -191,3 +200,6 @@ LIMIT_BOTTOM = 13
 
 [node name="HealthBar" parent="HUD" node_paths=PackedStringArray("target") instance=ExtResource("13_lc2xo")]
 target = NodePath("../../Player")
+
+[node name="SpiritBlade" parent="." instance=ExtResource("14_215e1")]
+position = Vector2(138, -69)

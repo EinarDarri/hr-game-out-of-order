@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://dvum5k052ihe6"]
 
 [ext_resource type="Texture2D" uid="uid://b0v4v2u847xfk" path="res://enemy/enemy.png" id="1_2mvqj"]
-[ext_resource type="Script" uid="uid://tqp5e23bougv" path="res://enemy/enemy.gd" id="1_ofsxj"]
+[ext_resource type="Script" uid="uid://tqp5e23bougv" path="res://enemy/enemy_old.gd" id="1_ofsxj"]
 [ext_resource type="Shader" uid="uid://cnctf4usjpyop" path="res://enemy/enemy.gdshader" id="1_pmsee"]
 [ext_resource type="PackedScene" uid="uid://cyuyf5tenyw1g" path="res://enemy/effects/blood.tscn" id="2_ppra6"]
 [ext_resource type="PackedScene" uid="uid://46duorod3o8p" path="res://enemy/effects/death_effect.tscn" id="3_y5vj3"]

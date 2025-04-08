@@ -1,0 +1,87 @@
+[gd_scene load_steps=10 format=3 uid="uid://bgnh4af87pgi2"]
+
+[ext_resource type="Script" uid="uid://bm7kn8cgsy3br" path="res://enemy/enemies/enemy.gd" id="1_1cad4"]
+[ext_resource type="Texture2D" uid="uid://dxkds0tufkbmy" path="res://enemy/spirit_blade.png" id="2_16am5"]
+[ext_resource type="Script" uid="uid://dxj8qrg4j1hio" path="res://enemy/enemies/enemy_state_manager.gd" id="3_16am5"]
+[ext_resource type="Script" uid="uid://jqadv650vbp1" path="res://enemy/enemies/wander_state.gd" id="4_wwi1j"]
+[ext_resource type="Script" uid="uid://bpe3wg8tiq4cq" path="res://enemy/enemies/chase_state.gd" id="5_8l0dc"]
+[ext_resource type="Script" uid="uid://dsltu5hqco1ln" path="res://enemy/enemies/charge_state.gd" id="6_i820n"]
+[ext_resource type="Script" uid="uid://du1oai83nge5w" path="res://enemy/enemies/launch_state.gd" id="7_cwkky"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wwi1j"]
+size = Vector2(70, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_16am5"]
+radius = 120.0
+
+[node name="SpiritBlade" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_1cad4")
+movement_speed = 45.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_16am5")
+
+[node name="StateManager" type="Node" parent="." node_paths=PackedStringArray("enemy", "active_state")]
+script = ExtResource("3_16am5")
+enemy = NodePath("..")
+active_state = NodePath("WanderState")
+
+[node name="WanderState" type="Node" parent="StateManager" node_paths=PackedStringArray("chase_state", "enemy", "state_manager")]
+script = ExtResource("4_wwi1j")
+chase_state = NodePath("../ChaseState")
+enemy = NodePath("../..")
+state_manager = NodePath("..")
+
+[node name="ChaseState" type="Node" parent="StateManager" node_paths=PackedStringArray("charge_state", "enemy", "state_manager")]
+script = ExtResource("5_8l0dc")
+distance_to_attack = 100.0
+charge_state = NodePath("../ChargeState")
+chase_speed = 95.0
+enemy = NodePath("../..")
+state_manager = NodePath("..")
+metadata/_custom_type_script = "uid://d3dsllt0af854"
+
+[node name="ChargeState" type="Node" parent="StateManager" node_paths=PackedStringArray("launch_state", "enemy", "state_manager")]
+script = ExtResource("6_i820n")
+charge_time = 2.5
+launch_state = NodePath("../LaunchState")
+enemy = NodePath("../..")
+state_manager = NodePath("..")
+metadata/_custom_type_script = "uid://d3dsllt0af854"
+
+[node name="ChargeTimer" type="Timer" parent="StateManager/ChargeState"]
+
+[node name="LaunchTimer" type="Timer" parent="StateManager/ChargeState"]
+
+[node name="LaunchState" type="Node" parent="StateManager" node_paths=PackedStringArray("chase_state", "enemy", "state_manager")]
+script = ExtResource("7_cwkky")
+launch_speed = 250.0
+chase_state = NodePath("../ChaseState")
+max_distance = 250.0
+enemy = NodePath("../..")
+state_manager = NodePath("..")
+metadata/_custom_type_script = "uid://d3dsllt0af854"
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="WallChecker" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallChecker"]
+shape = SubResource("RectangleShape2D_wwi1j")
+
+[node name="Hitbox" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, -38, -20, -25, -20, 32, 0, 38, 20, 32, 20, -25)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="AggroRadius" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_16am5")
+
+[connection signal="timeout" from="StateManager/ChargeState/LaunchTimer" to="StateManager/ChargeState" method="_on_launch_timer_timeout"]
+[connection signal="body_entered" from="WallChecker" to="StateManager/WanderState" method="_on_wall_checker_body_entered"]
+[connection signal="body_entered" from="Area2D" to="StateManager/WanderState" method="_on_area_2d_body_entered"]
