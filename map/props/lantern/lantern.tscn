@@ -46,7 +46,7 @@ fill_to = Vector2(0.5, 0)
 [node name="Lantern" type="AnimatedSprite2D"]
 light_mask = 0
 sprite_frames = SubResource("SpriteFrames_nrhua")
-frame_progress = 0.847826
+frame_progress = 0.120714
 script = ExtResource("2_582wc")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
