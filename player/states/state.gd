@@ -8,7 +8,10 @@ func start_state() -> void:
 
 func update_state(_delta: float) -> void:
 	pass
-	
+
+func physics_update(_delta: float) -> void:
+	pass
+
 func end_state() -> void:
 	pass
 
