@@ -52,6 +52,5 @@ script = ExtResource("2_582wc")
 [node name="PointLight2D" type="PointLight2D" parent="."]
 color = Color(0.962556, 0.256056, 0, 1)
 energy = 3.5
-shadow_enabled = true
 texture = SubResource("GradientTexture2D_582wc")
 metadata/_edit_lock_ = true
