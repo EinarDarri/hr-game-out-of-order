@@ -1,6 +1,5 @@
 class_name Player extends CharacterBody2D
 
-const SPEED = 175.0
 const DEAD_ZONE = .2
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D

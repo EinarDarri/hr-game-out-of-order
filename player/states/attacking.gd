@@ -12,6 +12,7 @@ class_name PlayerAttackState extends PlayerState
 @export var running_state: PlayerState
 
 var attack_buffer := false
+var attack_just_started := false
 
 var slashes: Array[String] = ["Slash1", "Slash2"]
 var current_slash := 0
@@ -33,6 +34,9 @@ func slash() -> void:
 	attack_sfx.pitch_scale = randf_range(0.6, 1.3)
 	attack_sfx.play()
 	
+	# I hate this
+	attack_just_started = true
+	
 	for enemy: Enemy in player.slash.get_overlapping_bodies():
 		var attack := Attack.new()
 		attack.damage = 30
@@ -41,8 +45,12 @@ func slash() -> void:
 		shaker_component_2d.play_shake()
 
 func update_state(delta: float) -> void:
-	if Input.is_action_just_pressed("attack"):
+	player.velocity = player.velocity.lerp(Vector2.ZERO, delta * 5)
+	
+	if Input.is_action_just_pressed("attack") and not attack_just_started:
 		attack_buffer = true
+	
+	attack_just_started = false
 
 func end_state() -> void:
 	animated_sprite_2d.stop()
@@ -75,7 +83,7 @@ func _get_attack_velocity() -> Vector2:
 	if wall_check.has_overlapping_bodies():
 		return Vector2(10 * player.get_facing(), 0)
 	else:
-		return Vector2(200 * player.get_facing(), 0)
+		return Vector2(800 * player.get_facing(), 0)
 
 func can_enter() -> bool:
 	return delay_timer.is_stopped()
