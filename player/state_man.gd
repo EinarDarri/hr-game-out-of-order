@@ -17,12 +17,11 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	active_state.update_state(delta)
-	
-	if Debug.enabled:
-		ImGui.Begin("State Manager")
-		ImGui.Text("Active State: %s" % active_state.name)
-		active_state.gui()
-		ImGui.End()
+
+func gui() -> void:
+	ImGui.Text("Active State: %s" % active_state.name)
+	ImGui.Separator()
+	active_state.gui()
 
 func _physics_process(delta: float) -> void:
 	active_state.physics_update(delta)

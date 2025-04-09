@@ -55,6 +55,14 @@ func _process(_delta: float) -> void:
 	
 	if not can_control():
 		_player_movement = Vector2.ZERO
+	
+	if Debug.enabled:
+		ImGui.Begin("Player Info")
+		ImGui.Text("Velocity: %.1f, %.1f" % [velocity.x, velocity.y])
+		ImGui.Text("Health: %d / %d" % [_health, _max_health])
+		ImGui.Separator()
+		state_man.gui()
+		ImGui.End()
 
 func take_damage(attack: Attack) -> void:
 	attack_received.emit(attack)
