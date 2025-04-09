@@ -54,7 +54,9 @@ text/autopauses={}
 glossary/default_case_sensitive=true
 layout/style_list=["res://dialogue/theme.tres"]
 layout/default_style="res://dialogue/theme.tres"
-variables={}
+variables={
+"enable": false
+}
 layout/end_behaviour=0
 glossary/glossary_files=[]
 

@@ -1,7 +1,7 @@
 class_name EnemyState extends Node
 
-@export var enemy: Enemy
-@export var state_manager: EnemyStateManager
+@onready var enemy: Enemy = $"../.."
+@onready var state_manager: EnemyStateManager = $".."
 
 var _active: bool = false
 

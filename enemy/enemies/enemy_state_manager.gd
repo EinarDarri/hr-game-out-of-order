@@ -1,6 +1,6 @@
 class_name EnemyStateManager extends Node
 
-@export var enemy: Enemy
+@onready var enemy: Enemy = $".."
 
 @export var active_state: EnemyState:
 	set(new_state):

@@ -13,4 +13,7 @@ func physics_update(delta: float) -> void:
 		state_manager.active_state = charge_state
 		return
 	var dir_vec: Vector2 = enemy.global_position.direction_to(player.global_position)
-	enemy.global_position += dir_vec * chase_speed * delta
+	enemy.velocity += dir_vec * chase_speed * delta
+
+func end_state() -> void:
+	enemy.velocity = Vector2.ZERO

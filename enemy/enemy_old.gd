@@ -1,4 +1,4 @@
-class_name EnemyOld extends CharacterBody2D
+class_name GroundEnemy extends CharacterBody2D
 
 const SPEED = 100.0
 
