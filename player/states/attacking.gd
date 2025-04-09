@@ -4,7 +4,6 @@ class_name PlayerAttackState extends PlayerState
 @onready var delay_timer: Timer = $Delay
 @onready var shaker_component_2d: ShakerComponent2D = $"../../Camera2D/ShakerComponent2D"
 @onready var attack_sfx: AudioStreamPlayer = $AttackSFX
-@onready var wall_check: Area2D = $"../../LookDirection/WallCheck"
 
 @export_category("States")
 @export var idle_state: PlayerState
@@ -14,7 +13,7 @@ class_name PlayerAttackState extends PlayerState
 var attack_buffer := false
 var attack_just_started := false
 
-var slashes: Array[String] = ["Slash1", "Slash2"]
+var slashes: Array[String] = ["Slash1", "Slash2", "Slash1"]
 var current_slash := 0
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $"../../AnimatedSprite2D"
@@ -80,8 +79,8 @@ func _exit_state() -> void:
 	stateman.active_state = running_state
 
 func _get_attack_velocity() -> Vector2:
-	if wall_check.has_overlapping_bodies():
-		return Vector2(10 * player.get_facing(), 0)
+	if player.get_movement_dir().x == 0:
+		return Vector2(100 * player.get_facing(), 0)
 	else:
 		return Vector2(800 * player.get_facing(), 0)
 
