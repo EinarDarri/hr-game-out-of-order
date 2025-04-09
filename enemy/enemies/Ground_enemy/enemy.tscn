@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dvum5k052ihe6"]
+[gd_scene load_steps=11 format=3 uid="uid://dvum5k052ihe6"]
 
-[ext_resource type="Script" uid="uid://tqp5e23bougv" path="res://enemy/enemy_old.gd" id="1_1wwld"]
-[ext_resource type="Texture2D" uid="uid://b0v4v2u847xfk" path="res://enemy/enemy.png" id="1_2mvqj"]
+[ext_resource type="Texture2D" uid="uid://b0v4v2u847xfk" path="res://enemy/enemies/Ground_enemy/enemy.png" id="1_2mvqj"]
 [ext_resource type="Shader" uid="uid://cnctf4usjpyop" path="res://enemy/enemy.gdshader" id="1_pmsee"]
+[ext_resource type="Script" uid="uid://bm7kn8cgsy3br" path="res://enemy/enemy.gd" id="1_y5vj3"]
+[ext_resource type="Script" uid="uid://dxj8qrg4j1hio" path="res://enemy/enemy_state_manager.gd" id="2_y5vj3"]
+[ext_resource type="Script" uid="uid://jqadv650vbp1" path="res://enemy/enemies/Spirit_blade/states/wander_state.gd" id="3_5ffra"]
 [ext_resource type="PackedScene" uid="uid://cx4kt1teqeebj" path="res://ui/components/health_bar.tscn" id="4_p200p"]
 [ext_resource type="AudioStream" uid="uid://dceyvduije81h" path="res://enemy/hit.wav" id="6_1wwld"]
 
@@ -23,7 +25,15 @@ height = 28.0
 light_mask = 0
 collision_layer = 0
 collision_mask = 5
-script = ExtResource("1_1wwld")
+script = ExtResource("1_y5vj3")
+
+[node name="StateManager" type="Node" parent="." node_paths=PackedStringArray("active_state")]
+script = ExtResource("2_y5vj3")
+active_state = NodePath("WanderState")
+
+[node name="WanderState" type="Node" parent="StateManager" node_paths=PackedStringArray("state_manager")]
+script = ExtResource("3_5ffra")
+state_manager = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 6)

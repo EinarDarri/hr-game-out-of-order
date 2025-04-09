@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxkds0tufkbmy"
-path="res://.godot/imported/spirit_blade.png-83bbb4873550fa83b3ddb9bb51b3f427.ctex"
+uid="uid://b0v4v2u847xfk"
+path="res://.godot/imported/enemy.png-28c1f59048fadafc22f60cdd157d054a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemy/spirit_blade.png"
-dest_files=["res://.godot/imported/spirit_blade.png-83bbb4873550fa83b3ddb9bb51b3f427.ctex"]
+source_file="res://enemy/enemies/Ground_enemy/enemy.png"
+dest_files=["res://.godot/imported/enemy.png-28c1f59048fadafc22f60cdd157d054a.ctex"]
 
 [params]
 

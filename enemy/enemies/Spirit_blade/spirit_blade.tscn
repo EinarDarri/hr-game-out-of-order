@@ -1,12 +1,12 @@
 [gd_scene load_steps=10 format=3 uid="uid://bgnh4af87pgi2"]
 
-[ext_resource type="Script" uid="uid://bm7kn8cgsy3br" path="res://enemy/enemies/enemy.gd" id="1_1cad4"]
-[ext_resource type="Texture2D" uid="uid://dxkds0tufkbmy" path="res://enemy/spirit_blade.png" id="2_16am5"]
-[ext_resource type="Script" uid="uid://dxj8qrg4j1hio" path="res://enemy/enemies/enemy_state_manager.gd" id="3_16am5"]
-[ext_resource type="Script" uid="uid://jqadv650vbp1" path="res://enemy/enemies/wander_state.gd" id="4_wwi1j"]
-[ext_resource type="Script" uid="uid://bpe3wg8tiq4cq" path="res://enemy/enemies/chase_state.gd" id="5_8l0dc"]
-[ext_resource type="Script" uid="uid://dsltu5hqco1ln" path="res://enemy/enemies/charge_state.gd" id="6_i820n"]
-[ext_resource type="Script" uid="uid://du1oai83nge5w" path="res://enemy/enemies/launch_state.gd" id="7_cwkky"]
+[ext_resource type="Script" uid="uid://bm7kn8cgsy3br" path="res://enemy/enemy.gd" id="1_jwmku"]
+[ext_resource type="Script" uid="uid://dxj8qrg4j1hio" path="res://enemy/enemy_state_manager.gd" id="2_i531w"]
+[ext_resource type="Script" uid="uid://jqadv650vbp1" path="res://enemy/enemies/Spirit_blade/states/wander_state.gd" id="3_kidv1"]
+[ext_resource type="Script" uid="uid://bpe3wg8tiq4cq" path="res://enemy/enemies/Spirit_blade/states/chase_state.gd" id="4_mcgxg"]
+[ext_resource type="Script" uid="uid://dsltu5hqco1ln" path="res://enemy/enemies/Spirit_blade/states/charge_state.gd" id="5_2t328"]
+[ext_resource type="Script" uid="uid://du1oai83nge5w" path="res://enemy/enemies/Spirit_blade/states/launch_state.gd" id="6_hgo3a"]
+[ext_resource type="Texture2D" uid="uid://dxkds0tufkbmy" path="res://enemy/enemies/Spirit_blade/spirit_blade.png" id="7_4e5r2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wwi1j"]
 size = Vector2(22, 47)
@@ -17,23 +17,23 @@ radius = 120.0
 [node name="SpiritBlade" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 0
-script = ExtResource("1_1cad4")
+script = ExtResource("1_jwmku")
 movement_speed = 45.0
 
 [node name="StateManager" type="Node" parent="." node_paths=PackedStringArray("enemy", "active_state")]
-script = ExtResource("3_16am5")
+script = ExtResource("2_i531w")
 enemy = NodePath("..")
 active_state = NodePath("WanderState")
 
 [node name="WanderState" type="Node" parent="StateManager" node_paths=PackedStringArray("wall_ray", "chase_state", "enemy", "state_manager")]
-script = ExtResource("4_wwi1j")
+script = ExtResource("3_kidv1")
 wall_ray = NodePath("../../WallRay")
 chase_state = NodePath("../ChaseState")
 enemy = NodePath("../..")
 state_manager = NodePath("..")
 
 [node name="ChaseState" type="Node" parent="StateManager" node_paths=PackedStringArray("charge_state", "enemy", "state_manager")]
-script = ExtResource("5_8l0dc")
+script = ExtResource("4_mcgxg")
 distance_to_attack = 100.0
 chase_speed = 95.0
 charge_state = NodePath("../ChargeState")
@@ -42,7 +42,7 @@ state_manager = NodePath("..")
 metadata/_custom_type_script = "uid://d3dsllt0af854"
 
 [node name="ChargeState" type="Node" parent="StateManager" node_paths=PackedStringArray("launch_state", "enemy", "state_manager")]
-script = ExtResource("6_i820n")
+script = ExtResource("5_2t328")
 charge_time = 2.5
 launch_state = NodePath("../LaunchState")
 enemy = NodePath("../..")
@@ -54,7 +54,7 @@ metadata/_custom_type_script = "uid://d3dsllt0af854"
 [node name="LaunchTimer" type="Timer" parent="StateManager/ChargeState"]
 
 [node name="LaunchState" type="Node" parent="StateManager" node_paths=PackedStringArray("chase_state", "enemy", "state_manager")]
-script = ExtResource("7_cwkky")
+script = ExtResource("6_hgo3a")
 launch_speed = 250.0
 max_distance = 250.0
 chase_state = NodePath("../ChaseState")
@@ -63,7 +63,7 @@ state_manager = NodePath("..")
 metadata/_custom_type_script = "uid://d3dsllt0af854"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_16am5")
+texture = ExtResource("7_4e5r2")
 
 [node name="Marker2D" type="Marker2D" parent="."]
 

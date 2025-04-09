@@ -1,8 +1,8 @@
-[gd_scene load_steps=19 format=4 uid="uid://ouqwelutt3ob"]
+[gd_scene load_steps=18 format=4 uid="uid://ouqwelutt3ob"]
 
 [ext_resource type="PackedScene" uid="uid://r2kg4a8p4sld" path="res://player/player.tscn" id="2_e2o6t"]
 [ext_resource type="Texture2D" uid="uid://ddrtsvcu03bbj" path="res://map/background/layer1.png" id="2_iotsf"]
-[ext_resource type="PackedScene" uid="uid://dvum5k052ihe6" path="res://enemy/enemy.tscn" id="3_feb5d"]
+[ext_resource type="PackedScene" uid="uid://dvum5k052ihe6" path="res://enemy/enemies/Ground_enemy/enemy.tscn" id="3_feb5d"]
 [ext_resource type="Texture2D" uid="uid://yqnf44hiopp" path="res://map/background/layer2.png" id="3_lc2xo"]
 [ext_resource type="Texture2D" uid="uid://cstnpx2g78ffw" path="res://map/background/layer3.png" id="4_215e1"]
 [ext_resource type="PackedScene" uid="uid://1qfwhnvx40bb" path="res://spawner/spawner.tscn" id="4_fc0e3"]
@@ -16,7 +16,6 @@
 [ext_resource type="PackedScene" uid="uid://cx4kt1teqeebj" path="res://ui/components/health_bar.tscn" id="13_lc2xo"]
 [ext_resource type="PackedScene" uid="uid://colmiolq4dmxc" path="res://map/props/lantern/lantern.tscn" id="15_7sc4i"]
 [ext_resource type="Script" uid="uid://r1dmijulheyr" path="res://dialogue/play_dialog.gd" id="16_80cx4"]
-[ext_resource type="PackedScene" uid="uid://bgnh4af87pgi2" path="res://enemy/enemies/spirit_blade.tscn" id="17_e8heu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e8heu"]
 size = Vector2(48, 65)
@@ -684,8 +683,5 @@ dialog_name = "stole_the_sword"
 position = Vector2(2, 7.5)
 shape = SubResource("RectangleShape2D_e8heu")
 
-[node name="SpiritBlade" parent="." instance=ExtResource("17_e8heu")]
-position = Vector2(-334, -100)
-
 [node name="Enemy" parent="." instance=ExtResource("3_feb5d")]
-position = Vector2(-385, 164)
+position = Vector2(-336, -22)
