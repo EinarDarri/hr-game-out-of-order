@@ -1,8 +1,12 @@
 extends EnemyState
 
+@export_group("Variables")
 @export var distance_to_attack: float
-@export var charge_state: EnemyState
 @export var chase_speed: float = 10.0
+
+@export_group("Other States")
+@export var charge_state: EnemyState
+
 
 func start_state() -> void:
 	enemy.global_rotation = 0.0

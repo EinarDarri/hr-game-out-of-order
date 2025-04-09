@@ -26,5 +26,5 @@ func take_damage(attack: Attack) -> void:
 	pass
 	
 func _physics_process(delta: float) -> void:
-	move_and_slide()	
+	move_and_slide()
 	

@@ -20,37 +20,46 @@ collision_mask = 0
 script = ExtResource("1_1cad4")
 movement_speed = 45.0
 
-[node name="StateManager" type="Node" parent="." node_paths=PackedStringArray("active_state")]
+[node name="StateManager" type="Node" parent="." node_paths=PackedStringArray("enemy", "active_state")]
 script = ExtResource("3_16am5")
+enemy = NodePath("..")
 active_state = NodePath("WanderState")
 
-[node name="WanderState" type="Node" parent="StateManager" node_paths=PackedStringArray("chase_state", "wall_ray")]
+[node name="WanderState" type="Node" parent="StateManager" node_paths=PackedStringArray("wall_ray", "chase_state", "enemy", "state_manager")]
 script = ExtResource("4_wwi1j")
-chase_state = NodePath("../ChaseState")
 wall_ray = NodePath("../../WallRay")
+chase_state = NodePath("../ChaseState")
+enemy = NodePath("../..")
+state_manager = NodePath("..")
 
-[node name="ChaseState" type="Node" parent="StateManager" node_paths=PackedStringArray("charge_state")]
+[node name="ChaseState" type="Node" parent="StateManager" node_paths=PackedStringArray("charge_state", "enemy", "state_manager")]
 script = ExtResource("5_8l0dc")
 distance_to_attack = 100.0
-charge_state = NodePath("../ChargeState")
 chase_speed = 95.0
+charge_state = NodePath("../ChargeState")
+enemy = NodePath("../..")
+state_manager = NodePath("..")
 metadata/_custom_type_script = "uid://d3dsllt0af854"
 
-[node name="ChargeState" type="Node" parent="StateManager" node_paths=PackedStringArray("launch_state")]
+[node name="ChargeState" type="Node" parent="StateManager" node_paths=PackedStringArray("launch_state", "enemy", "state_manager")]
 script = ExtResource("6_i820n")
 charge_time = 2.5
 launch_state = NodePath("../LaunchState")
+enemy = NodePath("../..")
+state_manager = NodePath("..")
 metadata/_custom_type_script = "uid://d3dsllt0af854"
 
 [node name="ChargeTimer" type="Timer" parent="StateManager/ChargeState"]
 
 [node name="LaunchTimer" type="Timer" parent="StateManager/ChargeState"]
 
-[node name="LaunchState" type="Node" parent="StateManager" node_paths=PackedStringArray("chase_state")]
+[node name="LaunchState" type="Node" parent="StateManager" node_paths=PackedStringArray("chase_state", "enemy", "state_manager")]
 script = ExtResource("7_cwkky")
 launch_speed = 250.0
-chase_state = NodePath("../ChaseState")
 max_distance = 250.0
+chase_state = NodePath("../ChaseState")
+enemy = NodePath("../..")
+state_manager = NodePath("..")
 metadata/_custom_type_script = "uid://d3dsllt0af854"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

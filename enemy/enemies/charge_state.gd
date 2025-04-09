@@ -1,8 +1,12 @@
 extends EnemyState
 
+@export_group("Variables")
 ## The time it takes to fully charge the spin attack
 @export var charge_time: float
+
+@export_group("Other States")
 @export var launch_state: EnemyState
+
 ## The speed at which the enemy rotates
 var _rotation_speed: float = 0
 ## Affects how large of a factor delta is for the rotation acceleration

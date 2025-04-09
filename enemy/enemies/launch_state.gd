@@ -1,8 +1,11 @@
 extends EnemyState
 
+@export_group("Variables")
 @export var launch_speed: float = 10.0
-@export var chase_state: EnemyState
 @export var max_distance: float
+
+@export_group("Other States")
+@export var chase_state: EnemyState
 
 var _dir: Vector2
 var _start_pos: Vector2

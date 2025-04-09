@@ -2,9 +2,15 @@ extends EnemyState
 
 var _dir: Vector2 = Vector2.RIGHT
 
-@export var chase_state: EnemyState
-@export var speed: float = 50
 @export var wall_ray: RayCast2D
+
+
+@export_group("Variables")
+@export var speed: float = 50
+
+@export_group("Other States")
+@export var chase_state: EnemyState
+
 
 func start_state() -> void:
 	_active = true
