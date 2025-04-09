@@ -18,7 +18,7 @@ func end_state() -> void:
 func gui() -> void:
 	pass
 
-func attack_received(attack: Attack) -> void:
+func attack_received(_attack: Attack) -> void:
 	pass
 
 func can_enter() -> bool:

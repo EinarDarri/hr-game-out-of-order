@@ -27,7 +27,6 @@ func physics_update(delta):
 
 	if Input.is_action_pressed("look_down"): # needs fixing
 		player.position.y += 1
-		Player
 		return
 
 	if Input.is_action_just_pressed("move_dash") and player.can_dash():

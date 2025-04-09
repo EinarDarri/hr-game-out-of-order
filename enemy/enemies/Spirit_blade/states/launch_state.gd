@@ -2,7 +2,6 @@ extends EnemyState
 
 @export_group("Variables")
 @export var launch_speed: float = 10.0
-@export var max_distance: float
 
 @export_group("Other States")
 @export var chase_state: EnemyState
@@ -14,7 +13,6 @@ var _end_pos: Vector2
 func start_state() -> void:
 	_dir = enemy.global_position.direction_to(Game.get_player().get_center())
 	_start_pos = enemy.global_position
-	_end_pos = _dir * max_distance
 	var rot = atan2(_dir.y, _dir.x) + PI/2
 	enemy.global_rotation = rot
 	enemy.velocity += _dir * launch_speed
@@ -25,7 +23,7 @@ func physics_update(delta: float) -> void:
 		move_toward(enemy.velocity.y, 0, ( absf(_dir.y) *launch_speed * delta) / 2)
 	)
 	
-	if enemy.global_position.distance_to(_start_pos) >= max_distance:
+	if enemy.global_position.distance_to(_start_pos) >= launch_speed:
 		state_manager.active_state = chase_state
 
 func end_state() -> void:

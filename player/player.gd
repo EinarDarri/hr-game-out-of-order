@@ -50,11 +50,11 @@ func _input(event: InputEvent) -> void:
 		Debug.enabled = not Debug.enabled
 
 func _process(_delta: float) -> void:
-	var x:float = Input.get_axis("move_left", "move_right")
-	var y:float = -Input.get_axis("look_down","look_up")
+	var x: float = Input.get_axis("move_left", "move_right")
+	var y: float = -Input.get_axis("look_down","look_up")
 	_player_movement = Vector2(
-		0 if abs(x) <= DEAD_ZONE else x,
-		0 if abs(y) <= DEAD_ZONE else y
+		0.0 if abs(x) <= DEAD_ZONE else x,
+		0.0 if abs(y) <= DEAD_ZONE else y
 	).normalized()
 	
 	if not can_control():
@@ -95,7 +95,7 @@ func can_dash() -> bool:
 func can_control() -> bool:
 	return Dialogic.current_timeline == null
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func apply_damage(amount: int) -> void:

@@ -18,5 +18,5 @@ func physics_update(_delta: float) -> void:
 func end_state() -> void:
 	pass
 
-func attack_received(attack: Attack) -> void:
+func attack_received(_attack: Attack) -> void:
 	pass

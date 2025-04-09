@@ -3,6 +3,7 @@ extends EnemyState
 @export_group("Variables")
 ## The time it takes to fully charge the spin attack
 @export var charge_time: float
+@export var launch_delay: float
 
 @export_group("Other States")
 @export var launch_state: EnemyState
@@ -18,7 +19,7 @@ var _time_to_launch: float
 @onready var charge_timer: Timer = $ChargeTimer
 
 func _ready() -> void:
-	_time_to_launch = charge_time + 1.0
+	_time_to_launch = charge_time + launch_delay
 	
 func start_state() -> void:
 	_rotation_speed = 0

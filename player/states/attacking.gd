@@ -1,6 +1,5 @@
 class_name PlayerAttackState extends PlayerState
 
-@onready var attack_timer: Timer = $AttackTimer
 @onready var delay_timer: Timer = $Delay
 @onready var shaker_component_2d: ShakerComponent2D = $"../../Camera2D/ShakerComponent2D"
 @onready var attack_sfx: AudioStreamPlayer = $AttackSFX
