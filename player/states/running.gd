@@ -6,6 +6,8 @@ class_name PlayerRunState extends PlayerState
 @export var dash_state: PlayerDashState
 @export var attacking_state: PlayerAttackState
 
+const RUNNING_SPEED = 250.0
+
 func start_state() -> void:
 	player.animated_sprite_2d.play("Running")
 
@@ -19,7 +21,7 @@ func physics_update(delta):
 		stateman.active_state = idle_state
 		return
 		
-	player.velocity.x = move_toward(player.velocity.x, player.get_movement_dir().x * player.SPEED, delta*Player.SPEED*7)
+	player.velocity.x = move_toward(player.velocity.x, player.get_movement_dir().x * RUNNING_SPEED, delta * RUNNING_SPEED * 7)
 		
 	if Input.is_action_just_pressed("move_jump") or not player.is_on_floor():
 		stateman.active_state = air_state
@@ -32,6 +34,9 @@ func physics_update(delta):
 
 func end_state() -> void:
 	player.animated_sprite_2d.stop()
+
+func gui() -> void:
+	ImGui.Text("Velocity: %d" % player.velocity.x)
 
 func attack_received(attack: Attack) -> void:
 	player.hit_sfx.pitch_scale = randf_range(0.9, 1.1)

@@ -12,6 +12,8 @@ const JUMP_VELOCITY = -350.0
 const EXTRA_JUMP_AMOUNT = 1
 const COYOTE_TIME = 0.05
 
+const AIR_SPEED = 250.0
+
 var _coyote_flag := true
 var extra_jump_counter := 0
 
@@ -49,7 +51,7 @@ func physics_update(delta):
 	
 	
 	# so the player can fine tune there movement while in the air
-	player.velocity.x = move_toward(player.velocity.x, player.get_movement_dir().x * player.SPEED, delta*player.SPEED*4)
+	player.velocity.x = move_toward(player.velocity.x, player.get_movement_dir().x * AIR_SPEED, delta * AIR_SPEED * 4)
 	
 	# Add the gravity. 
 	if not player.is_on_floor():

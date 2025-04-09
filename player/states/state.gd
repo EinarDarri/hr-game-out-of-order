@@ -15,5 +15,11 @@ func physics_update(_delta: float) -> void:
 func end_state() -> void:
 	pass
 
+func gui() -> void:
+	pass
+
 func attack_received(attack: Attack) -> void:
 	pass
+
+func can_enter() -> bool:
+	return true

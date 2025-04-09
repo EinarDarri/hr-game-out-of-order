@@ -7,4 +7,3 @@ void fragment() {
 		COLOR.xyz = vec3(1.0);
 	}
 }
-
