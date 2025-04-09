@@ -3,9 +3,10 @@ class_name PlayerAirState extends PlayerState
 @onready var timer: Timer = $Timer
 
 @export_category("States")
-@export var idle_state: PlayerState
-@export var running_state: PlayerState
-@export var attacking_state: PlayerState
+@export var idle_state: PlayerIdleState
+@export var running_state: PlayerRunState
+@export var dash_state: PlayerDashState
+@export var attacking_state: PlayerAttackState
 
 const JUMP_VELOCITY = -350.0
 const EXTRA_JUMP_AMOUNT = 1
@@ -39,6 +40,11 @@ func physics_update(delta):
 			
 	if Input.is_action_just_pressed("attack"):
 		stateman.active_state = attacking_state
+		return
+		
+	if Input.is_action_just_pressed("move_dash"):
+		dash_state.previus_state = self
+		stateman.active_state = dash_state
 		return
 	
 	

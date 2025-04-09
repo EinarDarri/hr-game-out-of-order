@@ -1,6 +1,7 @@
 class_name Player extends CharacterBody2D
 
 const SPEED = 175.0
+const DEAD_ZONE = .2
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var slash: Area2D = $LookDirection/Slash
@@ -42,12 +43,18 @@ func _init() -> void:
 
 func _ready() -> void:
 	animated_sprite_2d.play("Idle")
+	Dialogic.start('game_start')
 
 func _process(_delta: float) -> void:
+	var x:float = Input.get_axis("move_left", "move_right")
+	var y:float = -Input.get_axis("look_down","look_up")
 	_player_movement = Vector2(
-		Input.get_axis("move_left", "move_right"),
-		-Input.get_axis("look_down","look_up")
+		0 if abs(x) <= DEAD_ZONE else x,
+		0 if abs(y) <= DEAD_ZONE else y
 	).normalized()
+	
+	if not can_control():
+		_player_movement = Vector2.ZERO
 
 func take_damage(attack: Attack) -> void:
 	attack_received.emit(attack)
@@ -72,6 +79,9 @@ func get_movement_dir() -> Vector2:
 	
 func can_dash() -> bool:
 	return _enable_dash and _can_dash
+
+func can_control() -> bool:
+	return Dialogic.current_timeline == null
 
 func _physics_process(delta: float) -> void:
 	move_and_slide()

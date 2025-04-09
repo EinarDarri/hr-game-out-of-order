@@ -28,6 +28,7 @@ func start_state() -> void:
 	attack_timer.start()
 	is_attacking = true
 	attack_buffer = false
+	attack_sfx.pitch_scale = randf_range(0.6, 1.3)
 	attack_sfx.play()
 	
 	for enemy: Enemy in player.slash.get_overlapping_bodies():

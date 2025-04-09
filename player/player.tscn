@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://r2kg4a8p4sld"]
+[gd_scene load_steps=45 format=3 uid="uid://r2kg4a8p4sld"]
 
 [ext_resource type="Script" uid="uid://bvwwocn1ycoyr" path="res://player/player.gd" id="1_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://mlpbvaqcpuvt" path="res://player/player.png" id="2_qjkh3"]
@@ -213,6 +213,17 @@ size = Vector2(57.5, 24)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_32hag"]
 size = Vector2(55.5, 10)
 
+[sub_resource type="Gradient" id="Gradient_tqiix"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_e7oew"]
+gradient = SubResource("Gradient_tqiix")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_i3pqv")
@@ -221,6 +232,7 @@ script = ExtResource("1_i3pqv")
 position = Vector2(0, -10)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+light_mask = 0
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_x7c3f")
 animation = &"Slash2"
@@ -299,10 +311,11 @@ dash_state = NodePath("../Dashing")
 running_state = NodePath("../Running")
 attacking_state = NodePath("../Attacking")
 
-[node name="Air" type="Node" parent="StateMan" node_paths=PackedStringArray("idle_state", "running_state", "attacking_state")]
+[node name="Air" type="Node" parent="StateMan" node_paths=PackedStringArray("idle_state", "running_state", "dash_state", "attacking_state")]
 script = ExtResource("10_tqiix")
 idle_state = NodePath("../Idle")
 running_state = NodePath("../Running")
+dash_state = NodePath("../Dashing")
 attacking_state = NodePath("../Attacking")
 
 [node name="Timer" type="Timer" parent="StateMan/Air"]
@@ -317,6 +330,12 @@ attacking_state = NodePath("../Attacking")
 [node name="HitSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_tqiix")
 volume_db = -10.0
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.60403, 0.400233, 1, 1)
+energy = 0.5
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_e7oew")
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="StateMan/Attacking/AttackTimer" to="StateMan/Attacking" method="_on_attack_timer_timeout"]
