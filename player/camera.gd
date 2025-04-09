@@ -10,7 +10,7 @@ const MAX_SPEED = 100
 func _process(delta: float) -> void:
 	var mvdir := player.get_movement_dir()
 		
-	var to := mvdir * extra_speed
+	var to := mvdir * extra_speed + Vector2.UP * 25
 	
 	const LERP_WEIGHT = 30
 	var pos := Vector2(

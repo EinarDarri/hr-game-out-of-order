@@ -41,6 +41,11 @@ func _ready() -> void:
 	animated_sprite_2d.play("Idle")
 	Dialogic.start('game_start')
 
+func _input(event: InputEvent) -> void:
+	# Toggle debug mode
+	if event is InputEventKey and event.pressed and event.keycode == KEY_F1:
+		Debug.enabled = not Debug.enabled
+
 func _process(_delta: float) -> void:
 	var x:float = Input.get_axis("move_left", "move_right")
 	var y:float = -Input.get_axis("look_down","look_up")

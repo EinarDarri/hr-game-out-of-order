@@ -20,6 +20,8 @@ config/icon="res://icon.svg"
 Game="*res://game.gd"
 Shaker="*res://addons/shaker/src/Shaker.gd"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
+ImGuiRoot="*res://addons/imgui-godot/data/ImGuiRoot.tscn"
+Debug="*res://debug.gd"
 
 [dialogic]
 
@@ -68,7 +70,7 @@ window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogic/plugin.cfg", "res://addons/shaker/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogic/plugin.cfg", "res://addons/imgui-godot/plugin.cfg", "res://addons/shaker/plugin.cfg")
 
 [input]
 

@@ -4,6 +4,9 @@ class_name StateManager extends Node
 
 @export var active_state: PlayerState:
 	set(new_state):
+		if not new_state.can_enter():
+			return
+		
 		if active_state != null:
 			active_state.end_state()
 			new_state.start_state()
@@ -14,6 +17,12 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	active_state.update_state(delta)
+	
+	if Debug.enabled:
+		ImGui.Begin("State Manager")
+		ImGui.Text("Active State: %s" % active_state.name)
+		active_state.gui()
+		ImGui.End()
 
 func _physics_process(delta: float) -> void:
 	active_state.physics_update(delta)

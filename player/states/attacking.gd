@@ -11,22 +11,24 @@ class_name PlayerAttackState extends PlayerState
 @export var air_state: PlayerState
 @export var running_state: PlayerState
 
-var player_velocity: Vector2 
-var is_attacking := false
 var attack_buffer := false
 
+var slashes: Array[String] = ["Slash1", "Slash2"]
+var current_slash := 0
+
+@onready var animated_sprite_2d: AnimatedSprite2D = $"../../AnimatedSprite2D"
+
+func _ready() -> void:
+	animated_sprite_2d.animation_finished.connect(_on_animation_finish)
+
 func start_state() -> void:
-	player.animated_sprite_2d.animation_finished.connect(_on_animation_finish)
-	player.animated_sprite_2d.play("Slash1")
-	player_velocity = player.velocity
+	current_slash = 0
+	slash()
+
+func slash() -> void:
+	animated_sprite_2d.play(slashes[current_slash])
+	player.velocity = _get_attack_velocity()
 	
-	if wall_check.has_overlapping_bodies():
-		player.velocity = Vector2(10*player.get_facing(),0)
-	else:
-		player.velocity = Vector2(200*player.get_facing(),0)
-	
-	attack_timer.start()
-	is_attacking = true
 	attack_buffer = false
 	attack_sfx.pitch_scale = randf_range(0.6, 1.3)
 	attack_sfx.play()
@@ -38,42 +40,42 @@ func start_state() -> void:
 		enemy.take_damage(attack)
 		shaker_component_2d.play_shake()
 
-func physics_update(delta: float) -> void:
+func update_state(delta: float) -> void:
 	if Input.is_action_just_pressed("attack"):
 		attack_buffer = true
-	
-	if is_attacking:
-		return
 
+func end_state() -> void:
+	animated_sprite_2d.stop()
+	delay_timer.start()
+
+func gui() -> void:
+	ImGui.Text("Attack: [%d] %s" % [current_slash, slashes[current_slash]])
+	ImGui.Text("Frame: %d" % animated_sprite_2d.frame)
+
+func _on_animation_finish() -> void:
+	if current_slash + 1 < len(slashes) and attack_buffer:
+		current_slash += 1
+		slash()
+		return
+	
+	_exit_state()
+
+func _exit_state() -> void:
 	if not player.is_on_floor() or Input.is_action_just_pressed("move_jump"):
 		stateman.active_state = air_state
 		return
 
-	var movedir := player.get_movement_dir()
-
-	if movedir.x == 0:
+	if player.get_movement_dir().x == 0:
 		stateman.active_state = idle_state
 		return
-	else:
-		stateman.active_state = running_state
-		return
 	
-func end_state() -> void:
-	player.animated_sprite_2d.animation_finished.disconnect(_on_animation_finish)
-	player.velocity = player_velocity
-	player.animated_sprite_2d.stop()
+	stateman.active_state = running_state
 
+func _get_attack_velocity() -> Vector2:
+	if wall_check.has_overlapping_bodies():
+		return Vector2(10 * player.get_facing(), 0)
+	else:
+		return Vector2(200 * player.get_facing(), 0)
 
-func _on_attack_timer_timeout() -> void:
-	is_attacking = false
-	delay_timer.start()
-	end_state()
-
-func _on_animation_finish() -> void:
-	if attack_buffer:
-		player.animated_sprite_2d.play("Slash2")
-		
-
-func _on_delay_timeout() -> void:
-	if attack_buffer:
-		start_state()
+func can_enter() -> bool:
+	return delay_timer.is_stopped()
