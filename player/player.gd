@@ -8,6 +8,8 @@ const DEAD_ZONE = .2
 @onready var state_man: StateManager = $StateMan
 @onready var hit_sfx: AudioStreamPlayer = $HitSFX
 
+var respawn_point := Vector2.ZERO
+
 signal attack_received(attack: Attack)
 
 var _player_movement: Vector2 = Vector2.ZERO:
@@ -59,7 +61,9 @@ func _process(_delta: float) -> void:
 	if Debug.enabled:
 		ImGui.Begin("Player Info")
 		ImGui.Text("Velocity: %.1f, %.1f" % [velocity.x, velocity.y])
+		ImGui.Text("Input: %.1f, %.1f" % [_player_movement.x, _player_movement.y])
 		ImGui.Text("Health: %d / %d" % [_health, _max_health])
+		ImGui.Text("Respawn: %.1f, %.1f" % [respawn_point.x, respawn_point.y])
 		ImGui.Separator()
 		state_man.gui()
 		ImGui.End()
@@ -96,6 +100,11 @@ func _physics_process(delta: float) -> void:
 
 func apply_damage(amount: int) -> void:
 	_health = max(_health - amount, 0)
+	
+	if _health == 0:
+		_health = _max_health
+		global_position = respawn_point
+		velocity = Vector2.ZERO
 
 func _on_dash_timer_timeout() -> void:
 	_can_dash = true

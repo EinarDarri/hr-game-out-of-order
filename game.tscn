@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://ouqwelutt3ob"]
+[gd_scene load_steps=25 format=4 uid="uid://ouqwelutt3ob"]
 
 [ext_resource type="PackedScene" uid="uid://r2kg4a8p4sld" path="res://player/player.tscn" id="2_e2o6t"]
 [ext_resource type="Texture2D" uid="uid://ddrtsvcu03bbj" path="res://map/background/layer1.png" id="2_iotsf"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://cx4kt1teqeebj" path="res://ui/components/health_bar.tscn" id="13_lc2xo"]
 [ext_resource type="PackedScene" uid="uid://colmiolq4dmxc" path="res://map/props/lantern/lantern.tscn" id="15_7sc4i"]
 [ext_resource type="Script" uid="uid://r1dmijulheyr" path="res://dialogue/play_dialog.gd" id="16_80cx4"]
+[ext_resource type="PackedScene" uid="uid://di6qlq0p6axaa" path="res://map/interactables/save_point/save_point.tscn" id="17_e8heu"]
 
 [sub_resource type="Gradient" id="Gradient_80cx4"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -611,6 +612,21 @@ frame_progress = 0.830091
 [node name="Lantern21" parent="Lights" instance=ExtResource("15_7sc4i")]
 position = Vector2(-1429, 104)
 frame_progress = 0.830091
+
+[node name="SavePoints" type="Node2D" parent="."]
+position = Vector2(-302, 16)
+
+[node name="SavePoint" parent="SavePoints" instance=ExtResource("17_e8heu")]
+position = Vector2(-722, 512)
+
+[node name="SavePoint2" parent="SavePoints" instance=ExtResource("17_e8heu")]
+position = Vector2(-1578, 48)
+
+[node name="SavePoint3" parent="SavePoints" instance=ExtResource("17_e8heu")]
+position = Vector2(-3809, 352)
+
+[node name="SavePoint4" parent="SavePoints" instance=ExtResource("17_e8heu")]
+position = Vector2(-4375, -512)
 
 [node name="Player" parent="." instance=ExtResource("2_e2o6t")]
 unique_name_in_owner = true
