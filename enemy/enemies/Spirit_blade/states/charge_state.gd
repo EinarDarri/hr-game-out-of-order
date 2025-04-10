@@ -41,3 +41,6 @@ func physics_update(delta: float) -> void:
 
 func _on_launch_timer_timeout() -> void:
 	state_manager.active_state = launch_state
+
+func attack_received(atk: Attack) -> void:
+	enemy.velocity += (Game.get_player().global_position.direction_to(enemy.global_position) * (atk.knockback / 2))
