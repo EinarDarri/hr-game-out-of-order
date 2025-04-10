@@ -1,18 +1,35 @@
-[gd_scene load_steps=13 format=3 uid="uid://bgnh4af87pgi2"]
+[gd_scene load_steps=15 format=3 uid="uid://bgnh4af87pgi2"]
 
 [ext_resource type="Script" uid="uid://bm7kn8cgsy3br" path="res://enemy/enemy.gd" id="1_jwmku"]
 [ext_resource type="Script" path="res://enemy/enemy_state_manager.gd" id="2_i531w"]
-[ext_resource type="Script" uid="uid://jqadv650vbp1" path="res://enemy/enemies/Spirit_blade/states/wander_state.gd" id="3_kidv1"]
-[ext_resource type="Script" uid="uid://bpe3wg8tiq4cq" path="res://enemy/enemies/Spirit_blade/states/chase_state.gd" id="4_mcgxg"]
-[ext_resource type="Script" uid="uid://dsltu5hqco1ln" path="res://enemy/enemies/Spirit_blade/states/charge_state.gd" id="5_2t328"]
-[ext_resource type="Script" uid="uid://du1oai83nge5w" path="res://enemy/enemies/Spirit_blade/states/launch_state.gd" id="6_hgo3a"]
-[ext_resource type="Texture2D" uid="uid://dxkds0tufkbmy" path="res://enemy/enemies/Spirit_blade/spirit_blade.png" id="7_4e5r2"]
+[ext_resource type="Script" uid="uid://jqadv650vbp1" path="res://enemy/enemies/spirit_blade/states/wander_state.gd" id="3_kidv1"]
+[ext_resource type="Script" uid="uid://bpe3wg8tiq4cq" path="res://enemy/enemies/spirit_blade/states/chase_state.gd" id="4_mcgxg"]
+[ext_resource type="Script" uid="uid://dsltu5hqco1ln" path="res://enemy/enemies/spirit_blade/states/charge_state.gd" id="5_2t328"]
+[ext_resource type="Script" uid="uid://du1oai83nge5w" path="res://enemy/enemies/spirit_blade/states/launch_state.gd" id="6_hgo3a"]
+[ext_resource type="Texture2D" uid="uid://dxkds0tufkbmy" path="res://enemy/enemies/spirit_blade/spirit_blade.png" id="7_4e5r2"]
+[ext_resource type="Texture2D" uid="uid://cxyaixyafk3lo" path="res://enemy/enemies/spirit_blade/danger.png" id="8_d452a"]
+[ext_resource type="Script" uid="uid://c83k571khs3wu" path="res://enemy/enemies/spirit_blade/targeting_crosshair.gd" id="9_qvs6r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wwi1j"]
 size = Vector2(22, 35)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_16am5"]
 radius = 60.0
+
+[sub_resource type="Animation" id="Animation_i531w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_jwmku"]
 resource_name = "wander"
@@ -29,21 +46,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 3), Vector2(0, -3)]
-}
-
-[sub_resource type="Animation" id="Animation_i531w"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../../Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kidv1"]
@@ -80,11 +82,12 @@ enemy = NodePath("../..")
 state_manager = NodePath("..")
 metadata/_custom_type_script = "uid://d3dsllt0af854"
 
-[node name="ChargeState" type="Node" parent="StateManager" node_paths=PackedStringArray("launch_state", "enemy", "state_manager")]
+[node name="ChargeState" type="Node" parent="StateManager" node_paths=PackedStringArray("launch_state", "targeting_crosshair", "enemy", "state_manager")]
 script = ExtResource("5_2t328")
 charge_time = 1.5
 launch_delay = 0.5
 launch_state = NodePath("../LaunchState")
+targeting_crosshair = NodePath("../../TargetingCrosshair")
 enemy = NodePath("../..")
 state_manager = NodePath("..")
 metadata/_custom_type_script = "uid://d3dsllt0af854"
@@ -95,10 +98,11 @@ one_shot = true
 [node name="LaunchTimer" type="Timer" parent="StateManager/ChargeState"]
 one_shot = true
 
-[node name="LaunchState" type="Node" parent="StateManager" node_paths=PackedStringArray("chase_state", "enemy", "state_manager")]
+[node name="LaunchState" type="Node" parent="StateManager" node_paths=PackedStringArray("chase_state", "targeting_crosshair", "enemy", "state_manager")]
 script = ExtResource("6_hgo3a")
 launch_speed = 350.0
 chase_state = NodePath("../ChaseState")
+targeting_crosshair = NodePath("../../TargetingCrosshair")
 enemy = NodePath("../..")
 state_manager = NodePath("..")
 metadata/_custom_type_script = "uid://d3dsllt0af854"
@@ -107,7 +111,12 @@ metadata/_custom_type_script = "uid://d3dsllt0af854"
 scale = Vector2(0.55, 0.55)
 texture = ExtResource("7_4e5r2")
 
-[node name="Marker2D" type="Marker2D" parent="."]
+[node name="TargetingCrosshair" type="Sprite2D" parent="." node_paths=PackedStringArray("enemy")]
+visible = false
+top_level = true
+texture = ExtResource("8_d452a")
+script = ExtResource("9_qvs6r")
+enemy = NodePath("..")
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 0
