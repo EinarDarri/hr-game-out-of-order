@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bgnh4af87pgi2"]
+[gd_scene load_steps=16 format=3 uid="uid://bgnh4af87pgi2"]
 
 [ext_resource type="Script" uid="uid://bm7kn8cgsy3br" path="res://enemy/enemy.gd" id="1_jwmku"]
 [ext_resource type="Script" path="res://enemy/enemy_state_manager.gd" id="2_i531w"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dxkds0tufkbmy" path="res://enemy/enemies/spirit_blade/spirit_blade.png" id="7_4e5r2"]
 [ext_resource type="Texture2D" uid="uid://cxyaixyafk3lo" path="res://enemy/enemies/spirit_blade/danger.png" id="8_d452a"]
 [ext_resource type="Script" uid="uid://c83k571khs3wu" path="res://enemy/enemies/spirit_blade/targeting_crosshair.gd" id="9_qvs6r"]
+[ext_resource type="Script" uid="uid://damw04jyfsqsg" path="res://enemy/enemies/spirit_blade/hitbox.gd" id="10_ar2px"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wwi1j"]
 size = Vector2(22, 35)
@@ -118,13 +119,20 @@ texture = ExtResource("8_d452a")
 script = ExtResource("9_qvs6r")
 enemy = NodePath("..")
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("enemy")]
 collision_layer = 0
 collision_mask = 2
+script = ExtResource("10_ar2px")
+enemy = NodePath("..")
+contact_damage = 25
+knockback_amount = 500.0
+damage_cooldown = 0.8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_wwi1j")
+
+[node name="DamageTimer" type="Timer" parent="Hitbox"]
 
 [node name="Hurtbox" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(0, -20, -7, -17, -10, 12, 0, 21, 10, 12, 7, -17)
@@ -147,4 +155,5 @@ libraries = {
 
 [connection signal="attack_received" from="." to="." method="take_damage"]
 [connection signal="timeout" from="StateManager/ChargeState/LaunchTimer" to="StateManager/ChargeState" method="_on_launch_timer_timeout"]
+[connection signal="body_entered" from="Hitbox" to="Hitbox" method="_on_body_entered"]
 [connection signal="body_entered" from="AggroRadius" to="StateManager/WanderState" method="_on_aggro_radius_body_entered"]
