@@ -1,12 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://dvum5k052ihe6"]
+[gd_scene load_steps=15 format=3 uid="uid://dvum5k052ihe6"]
 
-[ext_resource type="Texture2D" uid="uid://b0v4v2u847xfk" path="res://enemy/enemies/Ground_enemy/enemy.png" id="1_2mvqj"]
+[ext_resource type="Texture2D" uid="uid://b0v4v2u847xfk" path="res://enemy/enemies/ground_enemy/enemy.png" id="1_2mvqj"]
 [ext_resource type="Shader" uid="uid://cnctf4usjpyop" path="res://enemy/enemy.gdshader" id="1_pmsee"]
 [ext_resource type="Script" uid="uid://bm7kn8cgsy3br" path="res://enemy/enemy.gd" id="1_y5vj3"]
-[ext_resource type="Script" path="res://enemy/enemy_state_manager.gd" id="2_y5vj3"]
-[ext_resource type="Script" uid="uid://jqadv650vbp1" path="res://enemy/enemies/spirit_blade/states/wander_state.gd" id="3_5ffra"]
+[ext_resource type="Script" uid="uid://dxj8qrg4j1hio" path="res://enemy/enemy_state_manager.gd" id="2_y5vj3"]
+[ext_resource type="Script" uid="uid://dpr65lsms5xdf" path="res://enemy/enemies/ground_enemy/states/wander.gd" id="3_1amkc"]
 [ext_resource type="PackedScene" uid="uid://cx4kt1teqeebj" path="res://ui/components/health_bar.tscn" id="4_p200p"]
+[ext_resource type="Script" uid="uid://cvil6v2pec58h" path="res://enemy/enemies/ground_enemy/states/chase.gd" id="4_thq3w"]
+[ext_resource type="Script" uid="uid://dyomlg2agvvva" path="res://enemy/enemies/ground_enemy/states/attacking.gd" id="5_0sx5v"]
 [ext_resource type="AudioStream" uid="uid://dceyvduije81h" path="res://enemy/hit.wav" id="6_1wwld"]
+[ext_resource type="Script" uid="uid://dqhd8o12dgg8b" path="res://enemy/enemies/ground_enemy/states/air.gd" id="6_hqhio"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fc0e3"]
 radius = 4.0
@@ -21,19 +24,52 @@ shader_parameter/flash = false
 radius = 7.0
 height = 28.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_mh5ve"]
+radius = 120.0
+
 [node name="Enemy" type="CharacterBody2D"]
 light_mask = 0
 collision_layer = 0
 collision_mask = 5
 script = ExtResource("1_y5vj3")
 
-[node name="StateManager" type="Node" parent="." node_paths=PackedStringArray("active_state")]
+[node name="StateManager" type="Node" parent="." node_paths=PackedStringArray("enemy", "active_state")]
 script = ExtResource("2_y5vj3")
+enemy = NodePath("..")
 active_state = NodePath("WanderState")
 
-[node name="WanderState" type="Node" parent="StateManager" node_paths=PackedStringArray("state_manager")]
-script = ExtResource("3_5ffra")
+[node name="WanderState" type="Node" parent="StateManager" node_paths=PackedStringArray("Air_state", "Chase_state", "WallRay", "LeftGroundRay", "RightGroundRay", "enemy", "state_manager")]
+script = ExtResource("3_1amkc")
+speed = 50.0
+Air_state = NodePath("../Air State")
+Chase_state = NodePath("../ChaseState")
+WallRay = NodePath("../../WallRay")
+LeftGroundRay = NodePath("../../LeftFloorRay")
+RightGroundRay = NodePath("../../RightFloorRay")
+enemy = NodePath("../..")
 state_manager = NodePath("..")
+
+[node name="ChaseState" type="Node" parent="StateManager" node_paths=PackedStringArray("air_state", "attack_state", "LeftGroundRay", "RightGroundRay", "enemy", "state_manager")]
+script = ExtResource("4_thq3w")
+speed = 75.0
+air_state = NodePath("../Air State")
+attack_state = NodePath("../AttackState")
+LeftGroundRay = NodePath("../../LeftFloorRay")
+RightGroundRay = NodePath("../../RightFloorRay")
+enemy = NodePath("../..")
+state_manager = NodePath("..")
+metadata/_custom_type_script = "uid://d3dsllt0af854"
+
+[node name="AttackState" type="Node" parent="StateManager"]
+script = ExtResource("5_0sx5v")
+metadata/_custom_type_script = "uid://d3dsllt0af854"
+
+[node name="Air State" type="Node" parent="StateManager" node_paths=PackedStringArray("wander_state", "enemy", "state_manager")]
+script = ExtResource("6_hqhio")
+wander_state = NodePath("../WanderState")
+enemy = NodePath("../..")
+state_manager = NodePath("..")
+metadata/_custom_type_script = "uid://d3dsllt0af854"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 6)
@@ -68,4 +104,24 @@ shape = SubResource("CapsuleShape2D_y5vj3")
 [node name="AttackCooldown" type="Timer" parent="."]
 wait_time = 0.25
 
+[node name="AggroRadius" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="AggroRadius" type="CollisionShape2D" parent="AggroRadius"]
+shape = SubResource("CircleShape2D_mh5ve")
+
+[node name="RightFloorRay" type="RayCast2D" parent="."]
+position = Vector2(30, 0)
+target_position = Vector2(0, 20)
+
+[node name="LeftFloorRay" type="RayCast2D" parent="."]
+position = Vector2(-30, 0)
+target_position = Vector2(0, 20)
+
+[node name="WallRay" type="RayCast2D" parent="."]
+position = Vector2(0, 11)
+target_position = Vector2(45, 0)
+
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="body_entered" from="AggroRadius" to="StateManager/WanderState" method="_on_aggro_radius_body_entered"]
