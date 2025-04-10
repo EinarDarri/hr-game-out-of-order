@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=13 format=3 uid="uid://cqvi740oor33h"]
+[gd_resource type="TileSet" load_steps=10 format=3 uid="uid://cqvi740oor33h"]
 
 [ext_resource type="Texture2D" uid="uid://bvd3jtmqj1ooj" path="res://map/tilesets/tileset.png" id="1_xbyvd"]
 
@@ -13,15 +13,6 @@ polygon = PackedVector2Array(-8, -4, 8, -4, 8, 8, -8, 8)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_8j1xa"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_81hg0"]
-polygon = PackedVector2Array(-8, -4, 8, -4, 8, 0, -8, 0)
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_mvji0"]
-polygon = PackedVector2Array(-8, -4, 8, -4, 8, 0, -8, 0)
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_0xvyc"]
-polygon = PackedVector2Array(-8, -4, 8, -4, 8, 0, -8, 0)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_7cisg"]
 polygon = PackedVector2Array(-8, -4, 8, -4, 8, 8, -8, 8)
@@ -463,14 +454,12 @@ texture = ExtResource("1_xbyvd")
 0:7/0 = 0
 0:7/0/terrain_set = 0
 0:7/0/terrain = 1
-0:7/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_81hg0")
 0:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 0, -8, 0)
 0:7/0/physics_layer_0/polygon_0/one_way = true
 0:7/0/terrains_peering_bit/right_side = 1
 1:7/0 = 0
 1:7/0/terrain_set = 0
 1:7/0/terrain = 1
-1:7/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_mvji0")
 1:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 0, -8, 0)
 1:7/0/physics_layer_0/polygon_0/one_way = true
 1:7/0/terrains_peering_bit/right_side = 1
@@ -478,7 +467,6 @@ texture = ExtResource("1_xbyvd")
 2:7/0 = 0
 2:7/0/terrain_set = 0
 2:7/0/terrain = 1
-2:7/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_0xvyc")
 2:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 0, -8, 0)
 2:7/0/physics_layer_0/polygon_0/one_way = true
 2:7/0/terrains_peering_bit/left_side = 1

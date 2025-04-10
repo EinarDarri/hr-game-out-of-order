@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://r2kg4a8p4sld"]
+[gd_scene load_steps=62 format=3 uid="uid://r2kg4a8p4sld"]
 
 [ext_resource type="Script" uid="uid://bvwwocn1ycoyr" path="res://player/player.gd" id="1_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://mlpbvaqcpuvt" path="res://player/player.png" id="2_qjkh3"]
@@ -16,7 +16,25 @@
 [ext_resource type="Script" uid="uid://bggcpd5cuyypk" path="res://player/states/air.gd" id="10_tqiix"]
 [ext_resource type="AudioStream" uid="uid://bnud66whgw0p4" path="res://player/attack.wav" id="12_32hag"]
 [ext_resource type="Script" uid="uid://dmlukrut636ub" path="res://player/states/running.gd" id="13_65viv"]
+[ext_resource type="AudioStream" uid="uid://xgsdvsdwg4lh" path="res://player/land.ogg" id="16_jd2rm"]
+[ext_resource type="AudioStream" uid="uid://cfnv5fvxu13qg" path="res://player/jump.wav" id="16_q28gw"]
+[ext_resource type="AudioStream" uid="uid://c478ru7hxm0pa" path="res://player/footsteps/Parquet_  (1).wav" id="17_5ejfk"]
 [ext_resource type="AudioStream" uid="uid://dceyvduije81h" path="res://enemy/hit.wav" id="17_tqiix"]
+[ext_resource type="AudioStream" uid="uid://duq8bd8ykfjq6" path="res://player/footsteps/Parquet_  (2).wav" id="18_jd2rm"]
+[ext_resource type="AudioStream" uid="uid://csga5hmb1fs1h" path="res://player/footsteps/Parquet_  (3).wav" id="19_q28gw"]
+[ext_resource type="AudioStream" uid="uid://dor7sp8w0psej" path="res://player/footsteps/Parquet_  (4).wav" id="20_ge24q"]
+[ext_resource type="AudioStream" uid="uid://hmu818q0ki26" path="res://player/footsteps/Parquet_  (5).wav" id="21_pnw6m"]
+[ext_resource type="AudioStream" uid="uid://mupju86galks" path="res://player/footsteps/Parquet_  (6).wav" id="22_1so5t"]
+[ext_resource type="AudioStream" uid="uid://dixmx0n0hjpv" path="res://player/footsteps/Parquet_  (7).wav" id="23_55jnj"]
+[ext_resource type="AudioStream" uid="uid://c4bbv40sxw84e" path="res://player/footsteps/Parquet_  (8).wav" id="24_dx5ib"]
+[ext_resource type="AudioStream" uid="uid://ddcniv41ugokh" path="res://player/footsteps/Parquet_  (9).wav" id="25_a2xo5"]
+[ext_resource type="AudioStream" uid="uid://cqtbuebv6fyde" path="res://player/footsteps/Parquet_  (10).wav" id="26_art4l"]
+[ext_resource type="AudioStream" uid="uid://dkqmbt3d6qea6" path="res://player/footsteps/Parquet_  (11).wav" id="27_fjxoa"]
+[ext_resource type="AudioStream" uid="uid://nd01ux87bedo" path="res://player/footsteps/Parquet_  (12).wav" id="28_gswnw"]
+[ext_resource type="AudioStream" uid="uid://bwyi68rlb1e7q" path="res://player/footsteps/Parquet_  (13).wav" id="29_xcnuv"]
+[ext_resource type="AudioStream" uid="uid://ddk61atsvknw4" path="res://player/footsteps/Parquet_  (14).wav" id="30_j55il"]
+[ext_resource type="AudioStream" uid="uid://bex3vmqaftysp" path="res://player/footsteps/Parquet_  (15).wav" id="31_hjies"]
+[ext_resource type="AudioStream" uid="uid://4uynml7770d6" path="res://player/footsteps/Parquet_  (16).wav" id="32_mmwog"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g6k8r"]
 atlas = ExtResource("2_qjkh3")
@@ -232,7 +250,9 @@ position = Vector2(0, -10)
 light_mask = 0
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_x7c3f")
-animation = &"Slash2"
+animation = &"Running"
+frame = 2
+frame_progress = 0.26265
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -10)
@@ -306,12 +326,24 @@ attacking_state = NodePath("../Attacking")
 
 [node name="Timer" type="Timer" parent="StateMan/Air"]
 
+[node name="JumpSFX" type="AudioStreamPlayer" parent="StateMan/Air"]
+stream = ExtResource("16_q28gw")
+volume_db = -20.0
+
+[node name="LandSFX" type="AudioStreamPlayer" parent="StateMan/Air"]
+stream = ExtResource("16_jd2rm")
+volume_db = -20.0
+
 [node name="Running" type="Node" parent="StateMan" node_paths=PackedStringArray("idle_state", "air_state", "dash_state", "attacking_state")]
 script = ExtResource("13_65viv")
 idle_state = NodePath("../Idle")
 air_state = NodePath("../Air")
 dash_state = NodePath("../Dashing")
 attacking_state = NodePath("../Attacking")
+footstep_sfx = Array[AudioStream]([ExtResource("17_5ejfk"), ExtResource("18_jd2rm"), ExtResource("19_q28gw"), ExtResource("20_ge24q"), ExtResource("21_pnw6m"), ExtResource("22_1so5t"), ExtResource("23_55jnj"), ExtResource("24_dx5ib"), ExtResource("25_a2xo5"), ExtResource("26_art4l"), ExtResource("27_fjxoa"), ExtResource("28_gswnw"), ExtResource("29_xcnuv"), ExtResource("30_j55il"), ExtResource("31_hjies"), ExtResource("32_mmwog")])
+
+[node name="Footsteps" type="AudioStreamPlayer" parent="StateMan/Running"]
+volume_db = -35.0
 
 [node name="HitSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_tqiix")
@@ -322,6 +354,8 @@ color = Color(0.60403, 0.400233, 1, 1)
 energy = 0.5
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_e7oew")
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="StateMan/Air/Timer" to="StateMan/Air" method="_on_timer_timeout"]

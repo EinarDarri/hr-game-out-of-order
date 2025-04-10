@@ -6,10 +6,29 @@ class_name PlayerRunState extends PlayerState
 @export var dash_state: PlayerDashState
 @export var attacking_state: PlayerAttackState
 
+@export var footstep_sfx: Array[AudioStream]
+
+@onready var animated_sprite_2d: AnimatedSprite2D = $"../../AnimatedSprite2D"
+@onready var footsteps: AudioStreamPlayer = $Footsteps
+
 const RUNNING_SPEED = 250.0
+
+var _footstep_played := false
+var _current_footstep := 0
 
 func start_state() -> void:
 	player.animated_sprite_2d.play("Running")
+
+func update_state(delta):
+	if animated_sprite_2d.frame == 0:
+		if _footstep_played:
+			return
+		
+		footsteps.stream = footstep_sfx[_current_footstep]
+		footsteps.play()
+		_current_footstep = (_current_footstep + 1) % len(footstep_sfx)
+	else:
+		_footstep_played = false
 
 func physics_update(delta):
 	

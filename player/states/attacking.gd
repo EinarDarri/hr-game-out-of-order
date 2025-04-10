@@ -44,11 +44,11 @@ func slash() -> void:
 
 func update_state(delta: float) -> void:
 	player.velocity = player.velocity.lerp(Vector2.ZERO, delta * 5)
-	
-	if Input.is_action_just_pressed("attack") and not attack_just_started:
-		attack_buffer = true
-	
 	attack_just_started = false
+
+func input(event: InputEvent):
+	if event.is_action_pressed("attack") and not attack_just_started:
+		attack_buffer = true
 
 func end_state() -> void:
 	animated_sprite_2d.stop()
