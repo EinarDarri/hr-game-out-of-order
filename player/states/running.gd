@@ -35,9 +35,6 @@ func physics_update(delta):
 func end_state() -> void:
 	player.animated_sprite_2d.stop()
 
-func gui() -> void:
-	ImGui.Text("Velocity: %d" % player.velocity.x)
-
 func attack_received(attack: Attack) -> void:
 	player.hit_sfx.pitch_scale = randf_range(0.9, 1.1)
 	player.hit_sfx.play()

@@ -613,6 +613,21 @@ frame_progress = 0.830091
 position = Vector2(-1429, 104)
 frame_progress = 0.830091
 
+[node name="SavePoints" type="Node2D" parent="."]
+position = Vector2(-302, 16)
+
+[node name="SavePoint" parent="SavePoints" instance=ExtResource("17_e8heu")]
+position = Vector2(-722, 512)
+
+[node name="SavePoint2" parent="SavePoints" instance=ExtResource("17_e8heu")]
+position = Vector2(-1578, 48)
+
+[node name="SavePoint3" parent="SavePoints" instance=ExtResource("17_e8heu")]
+position = Vector2(-3809, 352)
+
+[node name="SavePoint4" parent="SavePoints" instance=ExtResource("17_e8heu")]
+position = Vector2(-4375, -512)
+
 [node name="Player" parent="." instance=ExtResource("2_e2o6t")]
 unique_name_in_owner = true
 
