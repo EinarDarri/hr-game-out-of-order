@@ -1,0 +1,134 @@
+[gd_scene load_steps=18 format=3 uid="uid://bh7ghs5botpue"]
+
+[ext_resource type="Texture2D" uid="uid://dcbjaphb716gs" path="res://map/interactables/sword_pedistal/sword_pedistal.png" id="1_udby7"]
+[ext_resource type="Script" uid="uid://be54j7tdbqkou" path="res://map/interactables/sword_pedistal/sword_pedistal.gd" id="2_3uviv"]
+[ext_resource type="FontFile" uid="uid://b115b4v6om1y7" path="res://fonts/BigBlueTermPlusNerdFontMono-Regular.ttf" id="3_hoh3l"]
+[ext_resource type="AudioStream" uid="uid://dqsi41qw0igni" path="res://map/interactables/save_point/activate.wav" id="4_bt038"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3uviv"]
+atlas = ExtResource("1_udby7")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7xj5"]
+atlas = ExtResource("1_udby7")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ct4yt"]
+atlas = ExtResource("1_udby7")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yv7xn"]
+atlas = ExtResource("1_udby7")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_110no"]
+atlas = ExtResource("1_udby7")
+region = Rect2(0, 64, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6ral7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3uviv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7xj5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ct4yt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yv7xn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_110no")
+}],
+"loop": true,
+"name": &"inactive",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_3uviv"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_n7xj5"]
+gradient = SubResource("Gradient_3uviv")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bcjba"]
+radius = 28.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_bt038"]
+font = ExtResource("3_hoh3l")
+font_size = 12
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Curve" id="Curve_bt038"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_wwmuj"]
+curve = SubResource("Curve_bt038")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vg0ce"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_max = 187.1
+gravity = Vector3(0, -200, 0)
+damping_max = 30.073
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_wwmuj")
+color = Color(1, 0.415686, 1, 1)
+hue_variation_min = -0.05
+hue_variation_max = 0.05
+turbulence_enabled = true
+
+[node name="SwordPedistal" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_6ral7")
+script = ExtResource("2_3uviv")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 0.290196, 1, 1)
+energy = 1.75
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_n7xj5")
+
+[node name="InteractArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
+position = Vector2(0, 12)
+shape = SubResource("CircleShape2D_bcjba")
+
+[node name="InteractPrompt" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -47.0
+offset_right = 20.0
+offset_bottom = -24.0
+text = "[E]"
+label_settings = SubResource("LabelSettings_bt038")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(0, 4)
+emitting = false
+amount = 200
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_vg0ce")
+
+[node name="PickupSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_bt038")
+volume_db = -15.0

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dkqmbt3d6qea6"
+path="res://.godot/imported/Parquet_  (11).wav-4d9c6da32ad14c8e72f0e3c9d0262a03.sample"
+
+[deps]
+
+source_file="res://player/footsteps/Parquet_  (11).wav"
+dest_files=["res://.godot/imported/Parquet_  (11).wav-4d9c6da32ad14c8e72f0e3c9d0262a03.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

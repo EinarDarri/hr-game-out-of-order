@@ -1,0 +1,149 @@
+[gd_scene load_steps=19 format=3 uid="uid://di6qlq0p6axaa"]
+
+[ext_resource type="Texture2D" uid="uid://bdm0wwis5t3vu" path="res://map/interactables/save_point/save_point.png" id="1_i1gpb"]
+[ext_resource type="Script" uid="uid://7rflvtsvqaqj" path="res://map/interactables/save_point/save_point.gd" id="1_rmrh2"]
+[ext_resource type="FontFile" uid="uid://b115b4v6om1y7" path="res://fonts/BigBlueTermPlusNerdFontMono-Regular.ttf" id="3_8hd83"]
+[ext_resource type="AudioStream" uid="uid://dqsi41qw0igni" path="res://map/interactables/save_point/activate.wav" id="4_jukjh"]
+
+[sub_resource type="Curve" id="Curve_8hd83"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_jukjh"]
+curve = SubResource("Curve_8hd83")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8hd83"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_max = 187.1
+gravity = Vector3(0, -200, 0)
+damping_max = 30.073
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_jukjh")
+color = Color(1, 0.992157, 0.521569, 1)
+hue_variation_min = -0.05
+hue_variation_max = 0.05
+turbulence_enabled = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmrh2"]
+atlas = ExtResource("1_i1gpb")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hd83"]
+atlas = ExtResource("1_i1gpb")
+region = Rect2(48, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jukjh"]
+atlas = ExtResource("1_i1gpb")
+region = Rect2(96, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_amda5"]
+atlas = ExtResource("1_i1gpb")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hea2r"]
+atlas = ExtResource("1_i1gpb")
+region = Rect2(48, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_my5rw"]
+atlas = ExtResource("1_i1gpb")
+region = Rect2(96, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lp2ea"]
+atlas = ExtResource("1_i1gpb")
+region = Rect2(144, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qb0lh"]
+atlas = ExtResource("1_i1gpb")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fkfsy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rmrh2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8hd83")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jukjh")
+}],
+"loop": false,
+"name": &"activate",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_amda5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hea2r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_my5rw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lp2ea")
+}],
+"loop": true,
+"name": &"active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qb0lh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rmrh2"]
+radius = 28.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_jukjh"]
+font = ExtResource("3_8hd83")
+font_size = 12
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="SavePoint" type="Node2D"]
+script = ExtResource("1_rmrh2")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(0, -20)
+emitting = false
+amount = 100
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_8hd83")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+light_mask = 0
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_fkfsy")
+
+[node name="InteractArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
+position = Vector2(0, -16)
+shape = SubResource("CircleShape2D_rmrh2")
+
+[node name="InteractPrompt" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -47.0
+offset_right = 20.0
+offset_bottom = -24.0
+text = "[E]"
+label_settings = SubResource("LabelSettings_jukjh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ActivateSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_jukjh")
+volume_db = -15.0
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

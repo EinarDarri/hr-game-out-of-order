@@ -18,6 +18,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	active_state.update_state(delta)
 
+func _unhandled_input(event: InputEvent) -> void:
+	active_state.input(event)
+
 func gui() -> void:
 	ImGui.Text("Active State: %s" % active_state.name)
 	ImGui.Separator()

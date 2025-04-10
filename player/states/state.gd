@@ -23,3 +23,6 @@ func attack_received(_attack: Attack) -> void:
 
 func can_enter() -> bool:
 	return true
+
+func input(_event: InputEvent) -> void:
+	pass

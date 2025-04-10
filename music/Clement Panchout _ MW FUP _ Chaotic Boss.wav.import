@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://corakuuqnyft6"
+path="res://.godot/imported/Clement Panchout _ MW FUP _ Chaotic Boss.wav-e41701e88cba6e5841efebfa93ce75a8.sample"
+
+[deps]
+
+source_file="res://music/Clement Panchout _ MW FUP _ Chaotic Boss.wav"
+dest_files=["res://.godot/imported/Clement Panchout _ MW FUP _ Chaotic Boss.wav-e41701e88cba6e5841efebfa93ce75a8.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
