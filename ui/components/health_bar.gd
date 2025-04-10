@@ -19,7 +19,7 @@ func _ready() -> void:
 	if not Engine.is_editor_hint() and target != null and target.has_method("get_max_health"):
 		max_value = target.get_max_health()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Engine.is_editor_hint() || target == null || not target.has_method("get_health"):
 		return
 	

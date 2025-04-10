@@ -76,6 +76,7 @@ position = Vector2(0, 6)
 shape = SubResource("CapsuleShape2D_fc0e3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+light_mask = 0
 material = SubResource("ShaderMaterial_pmsee")
 texture = ExtResource("1_2mvqj")
 

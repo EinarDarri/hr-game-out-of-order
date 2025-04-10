@@ -1,6 +1,5 @@
 class_name Player extends CharacterBody2D
 
-const SPEED = 175.0
 const DEAD_ZONE = .2
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
@@ -45,16 +44,29 @@ func _ready() -> void:
 	animated_sprite_2d.play("Idle")
 	Dialogic.start('game_start')
 
+func _input(event: InputEvent) -> void:
+	# Toggle debug mode
+	if event is InputEventKey and event.pressed and event.keycode == KEY_F1:
+		Debug.enabled = not Debug.enabled
+
 func _process(_delta: float) -> void:
-	var x:float = Input.get_axis("move_left", "move_right")
-	var y:float = -Input.get_axis("look_down","look_up")
+	var x: float = Input.get_axis("move_left", "move_right")
+	var y: float = -Input.get_axis("look_down","look_up")
 	_player_movement = Vector2(
-		0 if abs(x) <= DEAD_ZONE else x,
-		0 if abs(y) <= DEAD_ZONE else y
+		0.0 if abs(x) <= DEAD_ZONE else x,
+		0.0 if abs(y) <= DEAD_ZONE else y
 	).normalized()
 	
 	if not can_control():
 		_player_movement = Vector2.ZERO
+	
+	if Debug.enabled:
+		ImGui.Begin("Player Info")
+		ImGui.Text("Velocity: %.1f, %.1f" % [velocity.x, velocity.y])
+		ImGui.Text("Health: %d / %d" % [_health, _max_health])
+		ImGui.Separator()
+		state_man.gui()
+		ImGui.End()
 
 func take_damage(attack: Attack) -> void:
 	attack_received.emit(attack)
@@ -83,7 +95,7 @@ func can_dash() -> bool:
 func can_control() -> bool:
 	return Dialogic.current_timeline == null
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func apply_damage(amount: int) -> void:

@@ -7,7 +7,6 @@ class_name Enemy extends CharacterBody2D
 @onready var hit_sfx: AudioStreamPlayer = $HitSFX
 
 var _health: int
-var _max_health:int
 var _target_velocity: Vector2
 var _can_attack: bool = true
 
@@ -20,10 +19,12 @@ func get_health() -> int:
 	return _health
 
 func get_max_health() -> int:
-	return _max_health
+	return max_health
 	
 func take_damage(attack: Attack) -> void:
-	pass
+	_health = clamp(_health - attack.damage, 0, max_health)
+	if _health == 0:
+		queue_free()
 	
 func _physics_process(delta: float) -> void:
 	move_and_slide()
