@@ -12,7 +12,7 @@ extends EnemyState
 @export var LeftGroundRay: RayCast2D
 @export var RightGroundRay: RayCast2D
 
-
+var _active = true
 var _dir := Vector2.RIGHT
 var _currentRAY: RayCast2D
 
