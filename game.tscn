@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://r2kg4a8p4sld" path="res://player/player.tscn" id="2_e2o6t"]
 [ext_resource type="Texture2D" uid="uid://ddrtsvcu03bbj" path="res://map/background/layer1.png" id="2_iotsf"]
-[ext_resource type="PackedScene" uid="uid://dvum5k052ihe6" path="res://enemy/enemy.tscn" id="3_feb5d"]
+[ext_resource type="PackedScene" uid="uid://dvum5k052ihe6" path="res://enemy/enemies/Ground_enemy/enemy.tscn" id="3_feb5d"]
 [ext_resource type="Texture2D" uid="uid://yqnf44hiopp" path="res://map/background/layer2.png" id="3_lc2xo"]
 [ext_resource type="Texture2D" uid="uid://cstnpx2g78ffw" path="res://map/background/layer3.png" id="4_215e1"]
 [ext_resource type="PackedScene" uid="uid://1qfwhnvx40bb" path="res://spawner/spawner.tscn" id="4_fc0e3"]
@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://cx4kt1teqeebj" path="res://ui/components/health_bar.tscn" id="13_lc2xo"]
 [ext_resource type="PackedScene" uid="uid://colmiolq4dmxc" path="res://map/props/lantern/lantern.tscn" id="15_7sc4i"]
 [ext_resource type="Script" uid="uid://r1dmijulheyr" path="res://dialogue/play_dialog.gd" id="16_80cx4"]
-[ext_resource type="PackedScene" uid="uid://di6qlq0p6axaa" path="res://map/interactables/save_point/save_point.tscn" id="17_e8heu"]
+[ext_resource type="PackedScene" uid="uid://bgnh4af87pgi2" path="res://enemy/enemies/spirit_blade/spirit_blade.tscn" id="17_e8heu"]
 
 [sub_resource type="Gradient" id="Gradient_80cx4"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -647,6 +647,7 @@ target = NodePath("../../Player")
 
 [node name="Spawner8" parent="Spawners" instance=ExtResource("4_fc0e3")]
 position = Vector2(-1352.59, 585.665)
+enable = false
 spawing = ExtResource("3_feb5d")
 time_between_spawns = 0.5
 total_spawns = 4
@@ -657,6 +658,7 @@ LIMIT_BOTTOM = 0
 
 [node name="Spawner" parent="Spawners" instance=ExtResource("4_fc0e3")]
 position = Vector2(-300, 200)
+enable = false
 spawing = ExtResource("3_feb5d")
 time_between_spawns = 0.5
 total_spawns = 2
@@ -667,6 +669,7 @@ LIMIT_BOTTOM = 0
 
 [node name="Spawner2" parent="Spawners" instance=ExtResource("4_fc0e3")]
 position = Vector2(-500, 370)
+enable = false
 spawing = ExtResource("3_feb5d")
 time_between_spawns = 2.0
 LIMIT_LEFT = -170
@@ -676,6 +679,7 @@ LIMIT_BOTTOM = 13
 
 [node name="Spawner3" parent="Spawners" instance=ExtResource("4_fc0e3")]
 position = Vector2(-400, 560)
+enable = false
 spawing = ExtResource("3_feb5d")
 time_between_spawns = 2.0
 total_spawns = 5
@@ -686,6 +690,7 @@ LIMIT_BOTTOM = 13
 
 [node name="Spawner4" parent="Spawners" instance=ExtResource("4_fc0e3")]
 position = Vector2(-1380, 50)
+enable = false
 spawing = ExtResource("3_feb5d")
 time_between_spawns = 2.0
 total_spawns = 4
@@ -696,6 +701,7 @@ LIMIT_BOTTOM = 13
 
 [node name="Spawner5" parent="Spawners" instance=ExtResource("4_fc0e3")]
 position = Vector2(-2300, 70)
+enable = false
 spawing = ExtResource("3_feb5d")
 time_between_spawns = 2.0
 LIMIT_LEFT = -220
@@ -705,6 +711,7 @@ LIMIT_BOTTOM = 13
 
 [node name="Spawner6" parent="Spawners" instance=ExtResource("4_fc0e3")]
 position = Vector2(-2400, 423)
+enable = false
 spawing = ExtResource("3_feb5d")
 time_between_spawns = 2.0
 total_spawns = 5
@@ -726,3 +733,6 @@ dialog_name = "stole_the_sword"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dialog/StoleSword"]
 position = Vector2(2, 7.5)
 shape = SubResource("RectangleShape2D_e8heu")
+
+[node name="SpiritBlade" parent="." instance=ExtResource("17_e8heu")]
+position = Vector2(-32, -89)

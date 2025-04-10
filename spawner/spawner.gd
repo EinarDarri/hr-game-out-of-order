@@ -49,6 +49,8 @@ func get_random_cords() -> Vector2:
 	return Vector2(x,y)
 	
 func _spawn() -> void: # need to use global position as offset otherwise all spawners spawn around
+	if !enable:
+		return
 	if count_spawns >= total_spawns:
 		timer.stop()
 	else:
