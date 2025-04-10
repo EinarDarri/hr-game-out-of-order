@@ -17,9 +17,17 @@ var _footstep_played := false
 var _current_footstep := 0
 
 func start_state() -> void:
-	player.animated_sprite_2d.play("Running")
+	if player.has_sword:
+		player.animated_sprite_2d.play("Running")
+	else:
+		player.animated_sprite_2d.play("RunningNoSword")
 
 func update_state(delta):
+	animated_sprite_2d.speed_scale = 1.0 if player.has_sword else 0.8
+	
+	if player.animated_sprite_2d.animation == &"RunningNoSword" and player.has_sword:
+		player.animated_sprite_2d.play("Running")
+	
 	if animated_sprite_2d.frame == 0:
 		if _footstep_played:
 			return
@@ -32,23 +40,24 @@ func update_state(delta):
 
 func physics_update(delta):
 	
-	if Input.is_action_just_pressed("attack"):
+	if player.has_sword and Input.is_action_just_pressed("attack"):
 		stateman.active_state = attacking_state
 		return
 	
 	if player.get_movement_dir().x == 0:
 		stateman.active_state = idle_state
 		return
+	
+	var speed = RUNNING_SPEED * (1.0 if player.has_sword else 0.5)
+	player.velocity.x = move_toward(player.velocity.x, player.get_movement_dir().x * speed, delta * speed * 7)
 		
-	player.velocity.x = move_toward(player.velocity.x, player.get_movement_dir().x * RUNNING_SPEED, delta * RUNNING_SPEED * 7)
-		
-	if Input.is_action_just_pressed("move_jump") or not player.is_on_floor():
+	if player.has_sword and Input.is_action_just_pressed("move_jump") or not player.is_on_floor():
 		stateman.active_state = air_state
 		return
 	
-	if Input.is_action_just_pressed("move_dash"):
+	if player.has_sword and Input.is_action_just_pressed("move_dash"):
 		dash_state.previus_state = self
-		stateman.active_state = dash_state
+		stateman.actiave_state = dash_state
 		return
 
 func end_state() -> void:

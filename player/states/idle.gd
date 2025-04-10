@@ -9,7 +9,15 @@ class_name PlayerIdleState extends PlayerState
 const DRAG_SPEED := 1500
 
 func start_state() -> void:
-	player.animated_sprite_2d.play("Idle")
+	if player.has_sword:
+		player.animated_sprite_2d.play("Idle")
+	else:
+		player.animated_sprite_2d.play("IdleNoSword")
+
+func update_state(_delta):
+	if player.animated_sprite_2d.animation == &"IdleNoSword" and player.has_sword:
+		player.animated_sprite_2d.play("Idle")
+
 func physics_update(delta):
 	
 	player.velocity.x = move_toward(player.velocity.x, 0, DRAG_SPEED * delta)
@@ -17,11 +25,11 @@ func physics_update(delta):
 	if not player.can_control():
 		return
 	
-	if Input.is_action_just_pressed("attack"):
+	if player.has_sword and Input.is_action_just_pressed("attack"):
 		stateman.active_state = attacking_state
 		return
 	
-	if not player.is_on_floor() or Input.is_action_just_pressed("move_jump"):
+	if player.has_sword and (not player.is_on_floor() or Input.is_action_just_pressed("move_jump")):
 		stateman.active_state = air_state
 		return
 
@@ -29,7 +37,7 @@ func physics_update(delta):
 		player.position.y += 1
 		return
 
-	if Input.is_action_just_pressed("move_dash") and player.can_dash():
+	if player.has_sword and Input.is_action_just_pressed("move_dash") and player.can_dash():
 		dash_state.previus_state = self
 		stateman.active_state = dash_state
 		return

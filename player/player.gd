@@ -10,6 +10,7 @@ const DEAD_ZONE = .2
 @onready var center: Marker2D = $Center
 
 var respawn_point := Vector2.ZERO
+var has_sword := false
 
 signal attack_received(attack: Attack)
 

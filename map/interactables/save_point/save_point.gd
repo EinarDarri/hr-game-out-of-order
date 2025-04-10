@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var interact_area: Area2D = $InteractArea
-@onready var interact_promt: Label = $InteractPromt
+@onready var interact_prompt: Label = $InteractPrompt
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
 @onready var activate_sfx: AudioStreamPlayer = $ActivateSFX
@@ -16,7 +16,7 @@ func _process(delta: float) -> void:
 	
 	var interactable = interact_area.has_overlapping_bodies() and not _active
 	
-	interact_promt.visible = interactable
+	interact_prompt.visible = interactable
 	if interactable and Input.is_action_just_pressed("interact"):
 		activate()
 
