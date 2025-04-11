@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0v4v2u847xfk"
-path="res://.godot/imported/enemy.png-1891d9038eeed672a2459bc4e7db5910.ctex"
+uid="uid://cxyaixyafk3lo"
+path="res://.godot/imported/danger.png-00063f4209f6a8a8dc7e56ace35eb32d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemy/enemy.png"
-dest_files=["res://.godot/imported/enemy.png-1891d9038eeed672a2459bc4e7db5910.ctex"]
+source_file="res://enemy/enemies/Spirit_blade/danger.png"
+dest_files=["res://.godot/imported/danger.png-00063f4209f6a8a8dc7e56ace35eb32d.ctex"]
 
 [params]
 

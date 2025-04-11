@@ -7,6 +7,7 @@ const DEAD_ZONE = .2
 @onready var _dash_timer: Timer = $DashTimer
 @onready var state_man: StateManager = $StateMan
 @onready var hit_sfx: AudioStreamPlayer = $HitSFX
+@onready var center: Marker2D = $Center
 
 var respawn_point := Vector2.ZERO
 
@@ -26,6 +27,9 @@ var _can_dash := true
 
 var _health := 100
 var _max_health := 100
+
+func get_center() -> Vector2:
+	return center.get_global_position()
 
 func get_health() -> int:
 	return _health
@@ -48,11 +52,11 @@ func _input(event: InputEvent) -> void:
 		Debug.enabled = not Debug.enabled
 
 func _process(_delta: float) -> void:
-	var x:float = Input.get_axis("move_left", "move_right")
-	var y:float = -Input.get_axis("look_down","look_up")
+	var x: float = Input.get_axis("move_left", "move_right")
+	var y: float = -Input.get_axis("look_down","look_up")
 	_player_movement = Vector2(
-		0 if abs(x) <= DEAD_ZONE else x,
-		0 if abs(y) <= DEAD_ZONE else y
+		0.0 if abs(x) <= DEAD_ZONE else x,
+		0.0 if abs(y) <= DEAD_ZONE else y
 	).normalized()
 	
 	if not can_control():
@@ -95,7 +99,7 @@ func can_dash() -> bool:
 func can_control() -> bool:
 	return Dialogic.current_timeline == null
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func apply_damage(amount: int) -> void:

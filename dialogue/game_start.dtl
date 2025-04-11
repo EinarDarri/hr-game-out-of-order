@@ -1,3 +1,5 @@
+if {enable} == false:
+	return
 You just stole the orders holy sword of legandary greatness
 Now you must make it outside alive by any means nessisary
 [wait time="1.0"]

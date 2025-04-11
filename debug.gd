@@ -4,7 +4,7 @@ var enabled := false:
 	set(value):
 		enabled = value
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if not enabled:
 		return
 	

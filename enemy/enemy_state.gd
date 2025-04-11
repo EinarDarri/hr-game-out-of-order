@@ -1,7 +1,8 @@
-class_name PlayerState extends Node
+class_name EnemyState extends Node
 
-@onready var player: Player = $"../.."
-@onready var stateman: StateManager = $"../"
+@export_group("All States Require")
+@export var enemy: Enemy
+@export var state_manager: EnemyStateManager
 
 func start_state() -> void:
 	pass
@@ -15,11 +16,5 @@ func physics_update(_delta: float) -> void:
 func end_state() -> void:
 	pass
 
-func gui() -> void:
-	pass
-
 func attack_received(_attack: Attack) -> void:
 	pass
-
-func can_enter() -> bool:
-	return true
