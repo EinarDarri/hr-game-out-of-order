@@ -25,6 +25,9 @@ func _process(_delta: float) -> void:
 	ImGui.Checkbox("Enable music", music_muted)
 	AudioServer.set_bus_mute(bus, not music_muted[0])
 	
+	if ImGui.Button("Respawn"):
+		Game.get_player().global_position = Game.get_player().respawn_point
+	
 	if show_collision_shapes[0] != show_debug_collisions_hint:
 		show_debug_collisions_hint = show_collision_shapes[0]
 	
