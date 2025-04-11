@@ -26,7 +26,9 @@ func start_state() -> void:
 	player.animated_sprite_2d.play("Jump")
 	if player.is_on_floor() and player.is_extra_jump_enabled():
 		extra_jump_counter = EXTRA_JUMP_AMOUNT
-		
+	if Input.is_action_pressed("look_down"): # jump while looking down moves you downwards
+		player.position.y += 2
+		return
 	if Input.is_action_just_pressed("move_jump"):
 		player.velocity.y = JUMP_VELOCITY
 		jump_sfx.play()
