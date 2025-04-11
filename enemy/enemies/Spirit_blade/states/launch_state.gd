@@ -5,6 +5,7 @@ extends EnemyState
 
 @export_group("Other States")
 @export var chase_state: EnemyState
+@export var deflect_state: EnemyState
 
 @export var targeting_crosshair: Sprite2D
 
@@ -20,11 +21,14 @@ func start_state() -> void:
 
 func physics_update(delta: float) -> void:
 	enemy.velocity = Vector2(
-		move_toward(enemy.velocity.x, 0, ( absf(_dir.x) *launch_speed * delta) / 2),
-		move_toward(enemy.velocity.y, 0, ( absf(_dir.y) *launch_speed * delta) / 2)
+		move_toward(enemy.velocity.x, 0, ( absf(_dir.x) * launch_speed * delta) / 2),
+		move_toward(enemy.velocity.y, 0, ( absf(_dir.y) * launch_speed * delta) / 2)
 	)
 	if enemy.global_position.distance_to(_start_pos) >= launch_speed:
 		state_manager.active_state = chase_state
 
 func end_state() -> void:
 	enemy.velocity = Vector2.ZERO
+
+func attack_received(attack: Attack) -> void:
+	state_manager.active_state = deflect_state

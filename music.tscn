@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://btcwedpg65upo"]
+
+[ext_resource type="AudioStream" uid="uid://bnoh6ng7iravj" path="res://music/clement_panchout_chaotic_boss.ogg" id="1_3h6ak"]
+[ext_resource type="Script" uid="uid://cvwxmbvlmwedf" path="res://music.gd" id="2_5vxup"]
+
+[node name="Music" type="AudioStreamPlayer"]
+stream = ExtResource("1_3h6ak")
+volume_db = -30.0
+bus = &"Music"
+script = ExtResource("2_5vxup")

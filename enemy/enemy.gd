@@ -9,6 +9,7 @@ class_name Enemy extends CharacterBody2D
 var _health: int
 var _target_velocity: Vector2
 var _can_attack: bool = true
+var _last_attack_received: Attack
 
 signal attack_received(attack: Attack)
 
@@ -22,10 +23,15 @@ func get_max_health() -> int:
 	return max_health
 	
 func take_damage(attack: Attack) -> void:
+	print_debug("Damage taken: ", attack.damage)
+	_last_attack_received = attack
+	attack_received.emit(attack)
 	_health = clamp(_health - attack.damage, 0, max_health)
 	if _health == 0:
 		queue_free()
 	
 func _physics_process(delta: float) -> void:
 	move_and_slide()
-	
+
+func get_last_attack_received() -> Attack:
+	return _last_attack_received

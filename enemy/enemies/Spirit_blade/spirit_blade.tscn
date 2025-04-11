@@ -1,12 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://bgnh4af87pgi2"]
+[gd_scene load_steps=17 format=3 uid="uid://bgnh4af87pgi2"]
 
 [ext_resource type="Script" uid="uid://bm7kn8cgsy3br" path="res://enemy/enemy.gd" id="1_jwmku"]
-[ext_resource type="Script" path="res://enemy/enemy_state_manager.gd" id="2_i531w"]
+[ext_resource type="Script" uid="uid://dxj8qrg4j1hio" path="res://enemy/enemy_state_manager.gd" id="2_i531w"]
 [ext_resource type="Script" uid="uid://jqadv650vbp1" path="res://enemy/enemies/spirit_blade/states/wander_state.gd" id="3_kidv1"]
 [ext_resource type="Script" uid="uid://bpe3wg8tiq4cq" path="res://enemy/enemies/spirit_blade/states/chase_state.gd" id="4_mcgxg"]
 [ext_resource type="Script" uid="uid://dsltu5hqco1ln" path="res://enemy/enemies/spirit_blade/states/charge_state.gd" id="5_2t328"]
 [ext_resource type="Script" uid="uid://du1oai83nge5w" path="res://enemy/enemies/spirit_blade/states/launch_state.gd" id="6_hgo3a"]
 [ext_resource type="Texture2D" uid="uid://dxkds0tufkbmy" path="res://enemy/enemies/spirit_blade/spirit_blade.png" id="7_4e5r2"]
+[ext_resource type="Script" uid="uid://cwktjir0kgvrd" path="res://enemy/enemies/spirit_blade/deflect_state.gd" id="7_5up54"]
 [ext_resource type="Texture2D" uid="uid://cxyaixyafk3lo" path="res://enemy/enemies/spirit_blade/danger.png" id="8_d452a"]
 [ext_resource type="Script" uid="uid://c83k571khs3wu" path="res://enemy/enemies/spirit_blade/targeting_crosshair.gd" id="9_qvs6r"]
 [ext_resource type="Script" uid="uid://damw04jyfsqsg" path="res://enemy/enemies/spirit_blade/hitbox.gd" id="10_ar2px"]
@@ -99,14 +100,29 @@ one_shot = true
 [node name="LaunchTimer" type="Timer" parent="StateManager/ChargeState"]
 one_shot = true
 
-[node name="LaunchState" type="Node" parent="StateManager" node_paths=PackedStringArray("chase_state", "targeting_crosshair", "enemy", "state_manager")]
+[node name="LaunchState" type="Node" parent="StateManager" node_paths=PackedStringArray("chase_state", "deflect_state", "targeting_crosshair", "enemy", "state_manager")]
 script = ExtResource("6_hgo3a")
 launch_speed = 350.0
 chase_state = NodePath("../ChaseState")
+deflect_state = NodePath("../DeflectState")
 targeting_crosshair = NodePath("../../TargetingCrosshair")
 enemy = NodePath("../..")
 state_manager = NodePath("..")
 metadata/_custom_type_script = "uid://d3dsllt0af854"
+
+[node name="DeflectState" type="Node" parent="StateManager" node_paths=PackedStringArray("chase_state", "enemy", "state_manager")]
+script = ExtResource("7_5up54")
+deflect_speed = 350.0
+chase_state = NodePath("../ChaseState")
+world_collision_layer = 1
+reaggro_delay = 0.8
+damage_on_collision = 20
+enemy = NodePath("../..")
+state_manager = NodePath("..")
+metadata/_custom_type_script = "uid://d3dsllt0af854"
+
+[node name="ReaggroDelayTimer" type="Timer" parent="StateManager/DeflectState"]
+one_shot = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.55, 0.55)
@@ -135,6 +151,8 @@ shape = SubResource("RectangleShape2D_wwi1j")
 [node name="DamageTimer" type="Timer" parent="Hitbox"]
 
 [node name="Hurtbox" type="CollisionPolygon2D" parent="."]
+position = Vector2(5.96046e-08, 0.537959)
+scale = Vector2(1.4375, 1.22409)
 polygon = PackedVector2Array(0, -20, -7, -17, -10, 12, 0, 21, 10, 12, 7, -17)
 
 [node name="AggroRadius" type="Area2D" parent="."]
@@ -153,7 +171,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_kidv1")
 }
 
-[connection signal="attack_received" from="." to="." method="take_damage"]
 [connection signal="timeout" from="StateManager/ChargeState/LaunchTimer" to="StateManager/ChargeState" method="_on_launch_timer_timeout"]
 [connection signal="body_entered" from="Hitbox" to="Hitbox" method="_on_body_entered"]
 [connection signal="body_entered" from="AggroRadius" to="StateManager/WanderState" method="_on_aggro_radius_body_entered"]

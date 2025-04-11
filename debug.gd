@@ -4,6 +4,11 @@ var enabled := false:
 	set(value):
 		enabled = value
 
+var bus: int
+
+func _ready() -> void:
+	bus = AudioServer.get_bus_index("Music")
+
 func _process(_delta: float) -> void:
 	if not enabled:
 		return
@@ -12,8 +17,6 @@ func _process(_delta: float) -> void:
 	var show_collision_shapes = [show_debug_collisions_hint]
 	ImGui.Checkbox("Show collision shapes", show_collision_shapes)
 	
-<<<<<<< Updated upstream
-=======
 	var music_volume = [db_to_linear(AudioServer.get_bus_volume_db(bus))]
 	ImGui.SliderFloat("Music Volume", music_volume, 0.0, 2.0)
 	AudioServer.set_bus_volume_db(bus, linear_to_db(music_volume[0]))
@@ -25,7 +28,6 @@ func _process(_delta: float) -> void:
 	if ImGui.Button("Respawn"):
 		Game.get_player().global_position = Game.get_player().respawn_point
 	
->>>>>>> Stashed changes
 	if show_collision_shapes[0] != show_debug_collisions_hint:
 		show_debug_collisions_hint = show_collision_shapes[0]
 	

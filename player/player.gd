@@ -10,6 +10,7 @@ const DEAD_ZONE = .2
 @onready var center: Marker2D = $Center
 
 var respawn_point := Vector2.ZERO
+var has_sword := false
 
 signal attack_received(attack: Attack)
 
@@ -64,6 +65,7 @@ func _process(_delta: float) -> void:
 	
 	if Debug.enabled:
 		ImGui.Begin("Player Info")
+		ImGui.Text("Position: %.1f, %.1f" % [global_position.x, global_position.y])
 		ImGui.Text("Velocity: %.1f, %.1f" % [velocity.x, velocity.y])
 		ImGui.Text("Input: %.1f, %.1f" % [_player_movement.x, _player_movement.y])
 		ImGui.Text("Health: %d / %d" % [_health, _max_health])
