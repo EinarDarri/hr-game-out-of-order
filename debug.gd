@@ -12,6 +12,20 @@ func _process(delta: float) -> void:
 	var show_collision_shapes = [show_debug_collisions_hint]
 	ImGui.Checkbox("Show collision shapes", show_collision_shapes)
 	
+<<<<<<< Updated upstream
+=======
+	var music_volume = [db_to_linear(AudioServer.get_bus_volume_db(bus))]
+	ImGui.SliderFloat("Music Volume", music_volume, 0.0, 2.0)
+	AudioServer.set_bus_volume_db(bus, linear_to_db(music_volume[0]))
+	
+	var music_muted = [not AudioServer.is_bus_mute(bus)]
+	ImGui.Checkbox("Enable music", music_muted)
+	AudioServer.set_bus_mute(bus, not music_muted[0])
+	
+	if ImGui.Button("Respawn"):
+		Game.get_player().global_position = Game.get_player().respawn_point
+	
+>>>>>>> Stashed changes
 	if show_collision_shapes[0] != show_debug_collisions_hint:
 		show_debug_collisions_hint = show_collision_shapes[0]
 	
