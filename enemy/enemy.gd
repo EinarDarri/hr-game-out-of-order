@@ -25,8 +25,8 @@ func get_max_health() -> int:
 func take_damage(attack: Attack) -> void:
 	print_debug("Damage taken: ", attack.damage)
 	_last_attack_received = attack
-	attack_received.emit(attack)
 	_health = clamp(_health - attack.damage, 0, max_health)
+	attack_received.emit(attack)
 	if _health == 0:
 		queue_free()
 	
