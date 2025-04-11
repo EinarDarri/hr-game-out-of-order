@@ -655,77 +655,54 @@ target = NodePath("../../Player")
 [node name="Spawner8" parent="Spawners" instance=ExtResource("4_fc0e3")]
 position = Vector2(-1352.59, 585.665)
 enable = false
-spawing = ExtResource("3_feb5d")
-time_between_spawns = 0.5
+respawn = false
 total_spawns = 4
-LIMIT_LEFT = -70
-LIMIT_TOP = -90
-LIMIT_RIGHT = 70
-LIMIT_BOTTOM = 0
+time_between_spawns = 0.5
+spawing = ExtResource("3_feb5d")
 
 [node name="Spawner" parent="Spawners" instance=ExtResource("4_fc0e3")]
 position = Vector2(-300, 200)
 enable = false
-spawing = ExtResource("3_feb5d")
-time_between_spawns = 0.5
+respawn = false
 total_spawns = 2
-LIMIT_LEFT = -180
-LIMIT_TOP = -100
-LIMIT_RIGHT = 100
-LIMIT_BOTTOM = 0
+time_between_spawns = 0.5
+spawing = ExtResource("3_feb5d")
 
 [node name="Spawner2" parent="Spawners" instance=ExtResource("4_fc0e3")]
-position = Vector2(-500, 370)
-enable = false
+position = Vector2(-483, 362)
+respawn = false
 spawing = ExtResource("3_feb5d")
-time_between_spawns = 2.0
-LIMIT_LEFT = -170
-LIMIT_TOP = -130
-LIMIT_RIGHT = 300
-LIMIT_BOTTOM = 13
 
 [node name="Spawner3" parent="Spawners" instance=ExtResource("4_fc0e3")]
 position = Vector2(-400, 560)
 enable = false
-spawing = ExtResource("3_feb5d")
-time_between_spawns = 2.0
+respawn = false
 total_spawns = 5
-LIMIT_LEFT = -220
-LIMIT_TOP = -140
-LIMIT_RIGHT = 300
-LIMIT_BOTTOM = 13
+time_between_spawns = 2.0
+spawing = ExtResource("3_feb5d")
 
 [node name="Spawner4" parent="Spawners" instance=ExtResource("4_fc0e3")]
 position = Vector2(-1380, 50)
 enable = false
-spawing = ExtResource("3_feb5d")
-time_between_spawns = 2.0
+respawn = false
 total_spawns = 4
-LIMIT_LEFT = -220
-LIMIT_TOP = -100
-LIMIT_RIGHT = 260
-LIMIT_BOTTOM = 13
+time_between_spawns = 2.0
+spawing = ExtResource("3_feb5d")
 
 [node name="Spawner5" parent="Spawners" instance=ExtResource("4_fc0e3")]
 position = Vector2(-2300, 70)
 enable = false
-spawing = ExtResource("3_feb5d")
+respawn = false
 time_between_spawns = 2.0
-LIMIT_LEFT = -220
-LIMIT_TOP = -160
-LIMIT_RIGHT = 130
-LIMIT_BOTTOM = 13
+spawing = ExtResource("3_feb5d")
 
 [node name="Spawner6" parent="Spawners" instance=ExtResource("4_fc0e3")]
 position = Vector2(-2400, 423)
 enable = false
-spawing = ExtResource("3_feb5d")
-time_between_spawns = 2.0
+respawn = false
 total_spawns = 5
-LIMIT_LEFT = -130
-LIMIT_TOP = -70
-LIMIT_RIGHT = 230
-LIMIT_BOTTOM = 13
+time_between_spawns = 2.0
+spawing = ExtResource("3_feb5d")
 
 [node name="Dialog" type="Node2D" parent="."]
 position = Vector2(-2400, 423)
@@ -742,7 +719,9 @@ position = Vector2(2, 7.5)
 shape = SubResource("RectangleShape2D_e8heu")
 
 [node name="SpiritBlade" parent="." instance=ExtResource("17_e8heu")]
-position = Vector2(-342, 161)
+position = Vector2(-372, 155)
+movement_speed = 2.0
+max_health = 500
 
 [node name="SFX" type="Node2D" parent="."]
 

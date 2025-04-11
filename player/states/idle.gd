@@ -33,9 +33,6 @@ func physics_update(delta):
 		stateman.active_state = air_state
 		return
 
-	if Input.is_action_pressed("look_down"): # needs fixing
-		player.position.y += 1
-		return
 
 	if player.has_sword and Input.is_action_just_pressed("move_dash") and player.can_dash():
 		dash_state.previus_state = self

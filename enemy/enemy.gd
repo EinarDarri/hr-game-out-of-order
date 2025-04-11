@@ -12,6 +12,8 @@ var _can_attack: bool = true
 var _last_attack_received: Attack
 
 signal attack_received(attack: Attack)
+## Signal to tell the spawner that one of the enemies that it spawned in was killed
+signal Died
 
 func _ready() -> void:
 	_health = max_health
@@ -28,6 +30,7 @@ func take_damage(attack: Attack) -> void:
 	_health = clamp(_health - attack.damage, 0, max_health)
 	attack_received.emit(attack)
 	if _health == 0:
+		Died.emit()
 		queue_free()
 	
 func _physics_process(delta: float) -> void:
