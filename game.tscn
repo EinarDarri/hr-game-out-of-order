@@ -743,6 +743,8 @@ shape = SubResource("RectangleShape2D_e8heu")
 
 [node name="SpiritBlade" parent="." instance=ExtResource("17_e8heu")]
 position = Vector2(-342, 161)
+movement_speed = 2.0
+max_health = 500
 
 [node name="SFX" type="Node2D" parent="."]
 
