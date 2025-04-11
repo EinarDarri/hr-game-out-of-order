@@ -1,5 +1,8 @@
 extends Node
 
+## Resets the level and enemies / spawners
+signal Reset
+
 var _player: Player
 
 func set_player(player: Player) -> void:

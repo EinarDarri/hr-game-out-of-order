@@ -47,6 +47,9 @@ func _ready() -> void:
 	animated_sprite_2d.play("Idle")
 	Dialogic.start('game_start')
 	state_man.active_state.start_state()
+	
+func respawn() -> void:
+	Game.Reset.emit()
 
 func _input(event: InputEvent) -> void:
 	# Toggle debug mode
