@@ -655,7 +655,7 @@ target = NodePath("../../Player")
 [node name="Spawner8" parent="Spawners" instance=ExtResource("4_fc0e3")]
 position = Vector2(-1352.59, 585.665)
 enable = false
-respawn = false
+respawn = null
 total_spawns = 4
 time_between_spawns = 0.5
 spawing = ExtResource("3_feb5d")
@@ -663,20 +663,23 @@ spawing = ExtResource("3_feb5d")
 [node name="Spawner" parent="Spawners" instance=ExtResource("4_fc0e3")]
 position = Vector2(-300, 200)
 enable = false
-respawn = false
+respawn = null
 total_spawns = 2
 time_between_spawns = 0.5
 spawing = ExtResource("3_feb5d")
 
 [node name="Spawner2" parent="Spawners" instance=ExtResource("4_fc0e3")]
-position = Vector2(-483, 362)
-respawn = false
+position = Vector2(-500, 370)
+enable = false
+respawn = null
+total_spawns = 3
+time_between_spawns = 2.0
 spawing = ExtResource("3_feb5d")
 
 [node name="Spawner3" parent="Spawners" instance=ExtResource("4_fc0e3")]
 position = Vector2(-400, 560)
 enable = false
-respawn = false
+respawn = null
 total_spawns = 5
 time_between_spawns = 2.0
 spawing = ExtResource("3_feb5d")
@@ -684,7 +687,7 @@ spawing = ExtResource("3_feb5d")
 [node name="Spawner4" parent="Spawners" instance=ExtResource("4_fc0e3")]
 position = Vector2(-1380, 50)
 enable = false
-respawn = false
+respawn = null
 total_spawns = 4
 time_between_spawns = 2.0
 spawing = ExtResource("3_feb5d")
@@ -692,14 +695,15 @@ spawing = ExtResource("3_feb5d")
 [node name="Spawner5" parent="Spawners" instance=ExtResource("4_fc0e3")]
 position = Vector2(-2300, 70)
 enable = false
-respawn = false
+respawn = null
+total_spawns = 3
 time_between_spawns = 2.0
 spawing = ExtResource("3_feb5d")
 
 [node name="Spawner6" parent="Spawners" instance=ExtResource("4_fc0e3")]
 position = Vector2(-2400, 423)
 enable = false
-respawn = false
+respawn = null
 total_spawns = 5
 time_between_spawns = 2.0
 spawing = ExtResource("3_feb5d")
@@ -719,7 +723,7 @@ position = Vector2(2, 7.5)
 shape = SubResource("RectangleShape2D_e8heu")
 
 [node name="SpiritBlade" parent="." instance=ExtResource("17_e8heu")]
-position = Vector2(-372, 155)
+position = Vector2(-342, 161)
 movement_speed = 2.0
 max_health = 500
 

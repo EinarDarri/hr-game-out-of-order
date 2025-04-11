@@ -330,7 +330,7 @@ position = Vector2(0, -10)
 light_mask = 0
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_x7c3f")
-animation = &"IdleNoSword"
+animation = &"Jump"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -10)
