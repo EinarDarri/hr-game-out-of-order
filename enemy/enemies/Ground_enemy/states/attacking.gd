@@ -10,6 +10,7 @@ extends EnemyState
 
 @onready var attack_delay_timer: Timer = $AttackDelayTimer
 @onready var reaggro_delay_timer: Timer = $ReaggroDelayTimer
+@onready var slam_sfx: AudioStreamPlayer2D = $"../../SlamSFX"
 
 var _can_damage: bool
 
@@ -27,6 +28,8 @@ func _attack() -> void:
 	if not _can_damage:
 		return
 	_can_damage = false
+	slam_sfx.play()
+	
 	for body: Player in attack_area.get_overlapping_bodies():
 		var atk := Attack.new()
 		atk.damage = damage

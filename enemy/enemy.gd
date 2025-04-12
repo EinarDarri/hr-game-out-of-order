@@ -7,6 +7,8 @@ class_name Enemy extends CharacterBody2D
 @export var sprite: CanvasItem
 @onready var hit_sfx: AudioStreamPlayer = $HitSFX
 
+const DEATH_EFFECT = preload("res://enemy/effects/death_effect.tscn")
+
 var _health: int
 var _target_velocity: Vector2
 var _can_attack: bool = true
@@ -33,8 +35,14 @@ func take_damage(attack: Attack) -> void:
 	sprite.material.set_shader_parameter("flash", true)
 	if _health == 0:
 		Died.emit()
+		
+		var death_effect = DEATH_EFFECT.instantiate()
+		get_tree().root.add_child(death_effect)
+		death_effect.global_position = global_position
+		
 		queue_free()
 	else:
+		hit_sfx.play()
 		await get_tree().create_timer(0.1).timeout
 		sprite.material.set_shader_parameter("flash", false)
 	

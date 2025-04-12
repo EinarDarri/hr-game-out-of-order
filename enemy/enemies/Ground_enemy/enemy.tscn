@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dvum5k052ihe6"]
+[gd_scene load_steps=30 format=3 uid="uid://dvum5k052ihe6"]
 
 [ext_resource type="Texture2D" uid="uid://b0v4v2u847xfk" path="res://enemy/enemies/Ground_enemy/enemy.png" id="1_2mvqj"]
 [ext_resource type="Shader" uid="uid://cnctf4usjpyop" path="res://enemy/enemy.gdshader" id="1_pmsee"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://dyomlg2agvvva" path="res://enemy/enemies/Ground_enemy/states/attacking.gd" id="5_0sx5v"]
 [ext_resource type="AudioStream" uid="uid://dceyvduije81h" path="res://enemy/hit.wav" id="6_1wwld"]
 [ext_resource type="Script" uid="uid://dqhd8o12dgg8b" path="res://enemy/enemies/Ground_enemy/states/air.gd" id="6_hqhio"]
+[ext_resource type="AudioStream" uid="uid://5aqcd02haw53" path="res://enemy/enemies/Ground_enemy/hammer_slam.wav" id="11_thq3w"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fc0e3"]
 radius = 4.0
@@ -250,7 +251,11 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AttackArea"]
-polygon = PackedVector2Array(-16, -18, 2, -30, 15, -29, 31, -27, 47, -17, 55, -1, 56, 14, 4, 13, -6, -13)
+polygon = PackedVector2Array(-16, -18, 2, -30, 14, -32, 32, -32, 56, -25, 68, -3, 71, 14, -4, 14, -9, -9)
+
+[node name="SlamSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_thq3w")
+volume_db = -10.0
 
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="body_entered" from="AggroRadius" to="StateManager/WanderState" method="_on_aggro_radius_body_entered"]
