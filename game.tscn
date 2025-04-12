@@ -260,42 +260,42 @@ metadata/_edit_lock_ = true
 [node name="FinalArea" type="Node2D" parent="Lights"]
 
 [node name="Lantern26" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-3038, 422)
+position = Vector2(-2968, 396)
 frame_progress = 0.830091
 light_color = Color(0.827451, 0, 0.0862745, 1)
 
 [node name="Lantern27" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-3038, 318)
+position = Vector2(-3036, 303)
 frame_progress = 0.830091
 light_color = Color(0.827451, 0, 0.0862745, 1)
 
 [node name="Lantern28" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-3280, 318)
+position = Vector2(-3282, 266)
 frame_progress = 0.830091
 light_color = Color(0.827451, 0, 0.0862745, 1)
 
 [node name="Lantern29" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-3499, 284)
+position = Vector2(-3508, 266)
 frame_progress = 0.830091
 light_color = Color(0.827451, 0, 0.0862745, 1)
 
 [node name="Lantern30" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-3636, 284)
+position = Vector2(-3390, 266)
 frame_progress = 0.830091
 light_color = Color(0.827451, 0, 0.0862745, 1)
 
 [node name="Lantern31" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-3853, 324)
+position = Vector2(-3763, 268)
 frame_progress = 0.830091
 light_color = Color(0.827451, 0, 0.0862745, 1)
 
 [node name="Lantern32" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-4008, 324)
+position = Vector2(-4016, 255)
 frame_progress = 0.830091
 light_color = Color(0.827451, 0, 0.0862745, 1)
 
 [node name="Lantern33" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-4218, 324)
+position = Vector2(-4210, 255)
 frame_progress = 0.830091
 light_color = Color(0.827451, 0, 0.0862745, 1)
 
@@ -305,167 +305,87 @@ frame_progress = 0.830091
 light_color = Color(0.827451, 0, 0.0862745, 1)
 
 [node name="Lantern90" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-3827, 132)
-frame_progress = 0.830091
-light_color = Color(0.827451, 0, 0.0862745, 1)
-
-[node name="Lantern91" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-3635, 132)
-frame_progress = 0.830091
-light_color = Color(0.827451, 0, 0.0862745, 1)
-
-[node name="Lantern92" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-3494, 132)
-frame_progress = 0.830091
-light_color = Color(0.827451, 0, 0.0862745, 1)
-
-[node name="Lantern93" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-3290, 132)
+position = Vector2(-3771, 110)
 frame_progress = 0.830091
 light_color = Color(0.827451, 0, 0.0862745, 1)
 
 [node name="Lantern35" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-4218, 132)
+position = Vector2(-4219, 133)
 frame_progress = 0.830091
 light_color = Color(0.827451, 0, 0.0862745, 1)
 
 [node name="Lantern36" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-4008, -64)
+position = Vector2(-4008, -125)
 frame_progress = 0.830091
 light_color = Color(0.827451, 0, 0.0862745, 1)
 
 [node name="Lantern37" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-4218, -64)
-frame_progress = 0.830091
-light_color = Color(0.827451, 0, 0.0862745, 1)
-
-[node name="Lantern38" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-4008, -265)
-frame_progress = 0.830091
-light_color = Color(0.827451, 0, 0.0862745, 1)
-
-[node name="Lantern75" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-3790, -265)
-frame_progress = 0.830091
-light_color = Color(0.827451, 0, 0.0862745, 1)
-
-[node name="Lantern76" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-3563, -238)
-frame_progress = 0.830091
-light_color = Color(0.827451, 0, 0.0862745, 1)
-
-[node name="Lantern77" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-3421, -238)
-frame_progress = 0.830091
-light_color = Color(0.827451, 0, 0.0862745, 1)
-
-[node name="Lantern78" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-3421, -337)
-frame_progress = 0.830091
-light_color = Color(0.827451, 0, 0.0862745, 1)
-
-[node name="Lantern79" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-3283, -41)
-frame_progress = 0.830091
-light_color = Color(0.827451, 0, 0.0862745, 1)
-
-[node name="Lantern80" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-3421, -156)
-frame_progress = 0.830091
-light_color = Color(0.827451, 0, 0.0862745, 1)
-
-[node name="Lantern81" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-3563, -156)
-frame_progress = 0.830091
-light_color = Color(0.827451, 0, 0.0862745, 1)
-
-[node name="Lantern82" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-3563, -49)
+position = Vector2(-4218, -127)
 frame_progress = 0.830091
 light_color = Color(0.827451, 0, 0.0862745, 1)
 
 [node name="Lantern83" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-3703, -49)
+position = Vector2(-3671, -43)
 frame_progress = 0.830091
 light_color = Color(0.827451, 0, 0.0862745, 1)
 
 [node name="Lantern84" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-3703, -155)
+position = Vector2(-3672, -155)
 frame_progress = 0.830091
 light_color = Color(0.827451, 0, 0.0862745, 1)
 
 [node name="Lantern85" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-3855, -155)
+position = Vector2(-3800, -155)
 frame_progress = 0.830091
 light_color = Color(0.827451, 0, 0.0862745, 1)
 
 [node name="Lantern86" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-3855, -49)
+position = Vector2(-3800, -46)
 frame_progress = 0.830091
 light_color = Color(0.827451, 0, 0.0862745, 1)
 
 [node name="Lantern87" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-4481, -49)
+position = Vector2(-4369, -97)
 frame_progress = 0.830091
 light_color = Color(0.827451, 0, 0.0862745, 1)
 
 [node name="Lantern88" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-4642, -49)
-frame_progress = 0.830091
-light_color = Color(0.827451, 0, 0.0862745, 1)
-
-[node name="Lantern89" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-4558, 31)
+position = Vector2(-4591, -96)
 frame_progress = 0.830091
 light_color = Color(0.827451, 0, 0.0862745, 1)
 
 [node name="Lantern39" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-4218, -265)
+position = Vector2(-4091, -270)
 frame_progress = 0.830091
 light_color = Color(0.827451, 0, 0.0862745, 1)
 
 [node name="Lantern71" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-4431, -265)
+position = Vector2(-4338, -264)
 frame_progress = 0.830091
 light_color = Color(0.827451, 0, 0.0862745, 1)
 
 [node name="Lantern72" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-4673, -265)
-frame_progress = 0.830091
-light_color = Color(0.827451, 0, 0.0862745, 1)
-
-[node name="Lantern73" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-4924, -265)
-frame_progress = 0.830091
-light_color = Color(0.827451, 0, 0.0862745, 1)
-
-[node name="Lantern74" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-5161, -265)
-frame_progress = 0.830091
-light_color = Color(0.827451, 0, 0.0862745, 1)
-
-[node name="Lantern40" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-4008, -447)
+position = Vector2(-4589, -262)
 frame_progress = 0.830091
 light_color = Color(0.827451, 0, 0.0862745, 1)
 
 [node name="Lantern41" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-4218, -447)
+position = Vector2(-4250, -447)
 frame_progress = 0.830091
 light_color = Color(0.827451, 0, 0.0862745, 1)
 
 [node name="Lantern42" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-4404, -447)
+position = Vector2(-4420, -447)
 frame_progress = 0.830091
 light_color = Color(0.827451, 0, 0.0862745, 1)
 
 [node name="Lantern43" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-4404, -542)
+position = Vector2(-4428, -542)
 frame_progress = 0.830091
 light_color = Color(0.827451, 0, 0.0862745, 1)
 
 [node name="Lantern44" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-4581, -542)
+position = Vector2(-4669, -542)
 frame_progress = 0.830091
 light_color = Color(0.827451, 0, 0.0862745, 1)
 
@@ -479,123 +399,43 @@ position = Vector2(-4969, -542)
 frame_progress = 0.830091
 light_color = Color(0.827451, 0, 0.0862745, 1)
 
-[node name="Lantern47" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-4969, -430)
-frame_progress = 0.830091
-light_color = Color(0.827451, 0, 0.0862745, 1)
-
 [node name="Lantern48" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-5153, -430)
+position = Vector2(-5185, -430)
 frame_progress = 0.830091
 light_color = Color(0.827451, 0, 0.0862745, 1)
 
 [node name="Lantern49" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-5349, -430)
+position = Vector2(-5581, -430)
 frame_progress = 0.830091
 light_color = Color(0.827451, 0, 0.0862745, 1)
 
 [node name="Lantern50" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-5503, -468)
+position = Vector2(-5071, -596)
 frame_progress = 0.830091
 light_color = Color(0.827451, 0, 0.0862745, 1)
 
 [node name="Lantern51" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-5641, -560)
+position = Vector2(-5284, -595)
 frame_progress = 0.830091
 light_color = Color(0.827451, 0, 0.0862745, 1)
 
 [node name="Lantern52" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-5778, -560)
-frame_progress = 0.830091
-light_color = Color(0.827451, 0, 0.0862745, 1)
-
-[node name="Lantern53" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-5910, -560)
+position = Vector2(-5698, -592)
 frame_progress = 0.830091
 light_color = Color(0.827451, 0, 0.0862745, 1)
 
 [node name="Lantern54" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-6107, -560)
+position = Vector2(-5955, -568)
 frame_progress = 0.830091
 light_color = Color(0.827451, 0, 0.0862745, 1)
 
 [node name="Lantern55" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-6250, -560)
-frame_progress = 0.830091
-light_color = Color(0.827451, 0, 0.0862745, 1)
-
-[node name="Lantern56" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-6447, -560)
-frame_progress = 0.830091
-light_color = Color(0.827451, 0, 0.0862745, 1)
-
-[node name="Lantern62" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-6447, -500)
-frame_progress = 0.830091
-light_color = Color(0.827451, 0, 0.0862745, 1)
-
-[node name="Lantern67" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-6594, -558)
-frame_progress = 0.830091
-light_color = Color(0.827451, 0, 0.0862745, 1)
-
-[node name="Lantern68" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-6749, -558)
-frame_progress = 0.830091
-light_color = Color(0.827451, 0, 0.0862745, 1)
-
-[node name="Lantern69" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-6904, -558)
-frame_progress = 0.830091
-light_color = Color(0.827451, 0, 0.0862745, 1)
-
-[node name="Lantern70" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-7033, -558)
-frame_progress = 0.830091
-light_color = Color(0.827451, 0, 0.0862745, 1)
-
-[node name="Lantern63" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-6305, -434)
-frame_progress = 0.830091
-light_color = Color(0.827451, 0, 0.0862745, 1)
-
-[node name="Lantern64" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-6100, -480)
-frame_progress = 0.830091
-light_color = Color(0.827451, 0, 0.0862745, 1)
-
-[node name="Lantern65" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-5911, -433)
+position = Vector2(-6378, -536)
 frame_progress = 0.830091
 light_color = Color(0.827451, 0, 0.0862745, 1)
 
 [node name="Lantern66" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-5777, -500)
-frame_progress = 0.830091
-light_color = Color(0.827451, 0, 0.0862745, 1)
-
-[node name="Lantern57" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-6447, -697)
-frame_progress = 0.830091
-light_color = Color(0.827451, 0, 0.0862745, 1)
-
-[node name="Lantern58" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-6249, -697)
-frame_progress = 0.830091
-light_color = Color(0.827451, 0, 0.0862745, 1)
-
-[node name="Lantern59" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-6105, -648)
-frame_progress = 0.830091
-light_color = Color(0.827451, 0, 0.0862745, 1)
-
-[node name="Lantern60" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-5910, -698)
-frame_progress = 0.830091
-light_color = Color(0.827451, 0, 0.0862745, 1)
-
-[node name="Lantern61" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-5777, -698)
+position = Vector2(-5489, -596)
 frame_progress = 0.830091
 light_color = Color(0.827451, 0, 0.0862745, 1)
 
@@ -729,7 +569,7 @@ position = Vector2(-1578, 48)
 position = Vector2(-3809, 352)
 
 [node name="SavePoint4" parent="SavePoints" instance=ExtResource("13_rvswv")]
-position = Vector2(-4375, -512)
+position = Vector2(-4255, -512)
 
 [node name="SwordPedistal" parent="." node_paths=PackedStringArray("gate_to_close", "gate_to_open") instance=ExtResource("21_hb5m1")]
 position = Vector2(72, -16)
@@ -827,7 +667,7 @@ position = Vector2(2, 7.5)
 shape = SubResource("RectangleShape2D_e8heu")
 
 [node name="SpiritBlade" parent="." instance=ExtResource("17_e8heu")]
-position = Vector2(-342, 161)
+position = Vector2(-1025.75, 360)
 movement_speed = 2.0
 max_health = 500
 
