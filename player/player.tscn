@@ -330,7 +330,7 @@ position = Vector2(0, -10)
 light_mask = 0
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_x7c3f")
-animation = &"IdleNoSword"
+animation = &"Jump"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -10)
@@ -395,9 +395,8 @@ dash_state = NodePath("../Dashing")
 running_state = NodePath("../Running")
 attacking_state = NodePath("../Attacking")
 
-[node name="Air" type="Node" parent="StateMan" node_paths=PackedStringArray("platform_checker", "idle_state", "running_state", "dash_state", "attacking_state")]
+[node name="Air" type="Node" parent="StateMan" node_paths=PackedStringArray("idle_state", "running_state", "dash_state", "attacking_state")]
 script = ExtResource("10_tqiix")
-platform_checker = NodePath("../../PlatformChecker")
 idle_state = NodePath("../Idle")
 running_state = NodePath("../Running")
 dash_state = NodePath("../Dashing")

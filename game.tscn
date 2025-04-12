@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://di6qlq0p6axaa" path="res://map/interactables/save_point/save_point.tscn" id="13_rvswv"]
 [ext_resource type="PackedScene" uid="uid://colmiolq4dmxc" path="res://map/props/lantern/lantern.tscn" id="15_7sc4i"]
 [ext_resource type="Script" uid="uid://r1dmijulheyr" path="res://dialogue/play_dialog.gd" id="16_80cx4"]
-[ext_resource type="PackedScene" uid="uid://bgnh4af87pgi2" path="res://enemy/enemies/Spirit_blade/spirit_blade.tscn" id="17_e8heu"]
+[ext_resource type="PackedScene" uid="uid://bgnh4af87pgi2" path="res://enemy/enemies/spirit_blade/spirit_blade.tscn" id="17_e8heu"]
 [ext_resource type="AudioStream" uid="uid://dxv2gkb4xdi4i" path="res://map/sfx/wind_loop_high.ogg" id="19_boyg6"]
 [ext_resource type="PackedScene" uid="uid://bh7ghs5botpue" path="res://map/interactables/sword_pedistal/sword_pedistal.tscn" id="21_hb5m1"]
 
@@ -766,7 +766,9 @@ time_between_spawns = 0.5
 spawing = ExtResource("3_feb5d")
 
 [node name="Spawner2" parent="Spawners" instance=ExtResource("4_fc0e3")]
-position = Vector2(-483, 362)
+position = Vector2(-500, 370)
+enable = false
+time_between_spawns = 2.0
 spawing = ExtResource("3_feb5d")
 
 [node name="Spawner3" parent="Spawners" instance=ExtResource("4_fc0e3")]
@@ -811,7 +813,7 @@ position = Vector2(2, 7.5)
 shape = SubResource("RectangleShape2D_e8heu")
 
 [node name="SpiritBlade" parent="." instance=ExtResource("17_e8heu")]
-position = Vector2(-531, 518)
+position = Vector2(-342, 161)
 movement_speed = 2.0
 max_health = 500
 

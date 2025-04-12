@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dxkds0tufkbmy"
-path="res://.godot/imported/spirit_blade.png-0d07ba3f298f2533218d986138cf3552.ctex"
+path="res://.godot/imported/spirit_blade.png-b3e42f56ef472ad4da35867256e354ae.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemy/enemies/Spirit_blade/spirit_blade.png"
-dest_files=["res://.godot/imported/spirit_blade.png-0d07ba3f298f2533218d986138cf3552.ctex"]
+source_file="res://enemy/enemies/spirit_blade/spirit_blade.png"
+dest_files=["res://.godot/imported/spirit_blade.png-b3e42f56ef472ad4da35867256e354ae.ctex"]
 
 [params]
 
