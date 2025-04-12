@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cxyaixyafk3lo" path="res://enemy/enemies/Spirit_blade/danger.png" id="8_d452a"]
 [ext_resource type="Script" uid="uid://c83k571khs3wu" path="res://enemy/enemies/Spirit_blade/targeting_crosshair.gd" id="9_qvs6r"]
 [ext_resource type="Script" uid="uid://damw04jyfsqsg" path="res://enemy/enemies/Spirit_blade/hitbox.gd" id="10_ar2px"]
-[ext_resource type="Script" path="res://enemy/enemies/spirit_blade/damage_caller.gd" id="12_xd6dx"]
+[ext_resource type="Script" uid="uid://2htiwmkmednh" path="res://enemy/enemies/spirit_blade/damage_caller.gd" id="12_xd6dx"]
 [ext_resource type="AudioStream" uid="uid://dceyvduije81h" path="res://enemy/hit.wav" id="13_okx8r"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5up54"]

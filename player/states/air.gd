@@ -1,6 +1,7 @@
 class_name PlayerAirState extends PlayerState
 
 @onready var timer: Timer = $Timer
+@onready var air_jump: GPUParticles2D = $"../../air_jump"
 
 
 @export var platform_checker: RayCast2D
@@ -53,7 +54,10 @@ func physics_update(delta):
 			player.velocity.y = JUMP_VELOCITY
 			jump_sfx.pitch_scale += 0.2
 			jump_sfx.play()
-		
+			air_jump.emitting = true
+
+			# jump
+			
 		return
 		
 	if Input.is_action_just_pressed("attack"):

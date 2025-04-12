@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://rwkai6jvkef4"]
+
+[ext_resource type="Material" uid="uid://c8olsu6xf0hu0" path="res://player/effects/air_jump.tres" id="1_4ts4a"]
+
+[node name="Blood" type="GPUParticles2D"]
+amount = 23
+lifetime = 0.59
+explosiveness = 0.53
+randomness = 0.1
+process_material = ExtResource("1_4ts4a")

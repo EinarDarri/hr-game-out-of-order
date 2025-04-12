@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://r2kg4a8p4sld"]
+[gd_scene load_steps=74 format=3 uid="uid://r2kg4a8p4sld"]
 
 [ext_resource type="Script" uid="uid://bvwwocn1ycoyr" path="res://player/player.gd" id="1_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://mlpbvaqcpuvt" path="res://player/player.png" id="2_qjkh3"]
@@ -35,6 +35,8 @@
 [ext_resource type="AudioStream" uid="uid://ddk61atsvknw4" path="res://player/footsteps/Parquet_  (14).wav" id="30_j55il"]
 [ext_resource type="AudioStream" uid="uid://bex3vmqaftysp" path="res://player/footsteps/Parquet_  (15).wav" id="31_hjies"]
 [ext_resource type="AudioStream" uid="uid://4uynml7770d6" path="res://player/footsteps/Parquet_  (16).wav" id="32_mmwog"]
+[ext_resource type="Script" uid="uid://2htiwmkmednh" path="res://enemy/enemies/spirit_blade/damage_caller.gd" id="36_pnw6m"]
+[ext_resource type="PackedScene" uid="uid://rwkai6jvkef4" path="res://player/effects/air_jump.tscn" id="37_1so5t"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g6k8r"]
 atlas = ExtResource("2_qjkh3")
@@ -441,6 +443,17 @@ color = Color(1, 0.290196, 1, 1)
 energy = 1.75
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_q28gw")
+
+[node name="Node" type="Node" parent="." node_paths=PackedStringArray("particles")]
+script = ExtResource("36_pnw6m")
+particles = NodePath("../air_jump")
+
+[node name="air_jump" parent="." instance=ExtResource("37_1so5t")]
+emitting = false
+amount = 12
+lifetime = 0.46
+one_shot = true
+explosiveness = 0.76
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="StateMan/Air/Timer" to="StateMan/Air" method="_on_timer_timeout"]
