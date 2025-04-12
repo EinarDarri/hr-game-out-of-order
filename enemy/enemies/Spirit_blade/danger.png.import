@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cxyaixyafk3lo"
-path="res://.godot/imported/danger.png-00063f4209f6a8a8dc7e56ace35eb32d.ctex"
+path="res://.godot/imported/danger.png-98ce7c3970c55e6785457018e7106ac8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemy/enemies/Spirit_blade/danger.png"
-dest_files=["res://.godot/imported/danger.png-00063f4209f6a8a8dc7e56ace35eb32d.ctex"]
+source_file="res://enemy/enemies/spirit_blade/danger.png"
+dest_files=["res://.godot/imported/danger.png-98ce7c3970c55e6785457018e7106ac8.ctex"]
 
 [params]
 

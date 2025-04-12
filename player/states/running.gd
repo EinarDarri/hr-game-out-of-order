@@ -57,7 +57,7 @@ func physics_update(delta):
 	
 	if player.has_sword and Input.is_action_just_pressed("move_dash"):
 		dash_state.previus_state = self
-		stateman.actiave_state = dash_state
+		stateman.active_state = dash_state
 		return
 
 func end_state() -> void:
