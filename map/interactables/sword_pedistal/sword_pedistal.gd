@@ -1,7 +1,7 @@
 extends AnimatedSprite2D
 
 @onready var interact_area: Area2D = $InteractArea
-@onready var interact_prompt: Label = $InteractPrompt
+@onready var interact_prompt: Node2D = $Prompts
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
 @onready var pickup_sfx: AudioStreamPlayer = $PickupSFX
