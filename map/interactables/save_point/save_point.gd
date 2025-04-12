@@ -24,6 +24,7 @@ func _process(delta: float) -> void:
 
 func activate():
 	Game.get_player().respawn_point = global_position
+	Game.get_player().restore_health()
 	animated_sprite_2d.play("activate")
 	activate_sfx.play()
 

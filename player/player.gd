@@ -39,6 +39,9 @@ func get_health() -> int:
 func get_max_health() -> int:
 	return _max_health
 
+func restore_health() -> void:
+	_health = _max_health
+
 func _init() -> void:
 	Game.set_player(self)
 	enable_extra_jump()
