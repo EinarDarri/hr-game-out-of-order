@@ -19,6 +19,7 @@ func _ready() -> void:
 	_coll_before = enemy.collision_layer
 	_mask_before = enemy.collision_mask
 	reaggro_delay_timer.timeout.connect(func(): state_manager.active_state = chase_state)
+	reaggro_delay_timer.start(reaggro_delay)
 
 func start_state() -> void:
 	_start_pos = enemy.global_position
@@ -34,12 +35,13 @@ func physics_update(delta: float) -> void:
 
 	var coll := enemy.get_last_slide_collision()
 	if coll != null:
-		enemy.velocity = Vector2.ZERO
 		_active = false
-		reaggro_delay_timer.start(reaggro_delay)
 		var atk := Attack.new()
 		atk.damage = damage_on_collision
 		enemy.take_damage(atk)
+		# Bounce the enemy off the wall, potentially ping-ponging.
+		enemy.velocity = enemy.velocity.bounce(coll.get_normal()) * 0.9
+		reaggro_delay_timer.start(reaggro_delay)
 	else:
 		enemy.velocity = Vector2(
 			move_toward(enemy.velocity.x, 0, ( absf(_dir.x) * deflect_speed * delta) / 2),
@@ -50,5 +52,6 @@ func physics_update(delta: float) -> void:
 			reaggro_delay_timer.start(reaggro_delay)
 
 func end_state() -> void:
+	enemy.velocity = Vector2.ZERO
 	enemy.collision_layer = _coll_before
 	enemy.collision_mask = _mask_before

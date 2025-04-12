@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bgnh4af87pgi2"]
+[gd_scene load_steps=25 format=3 uid="uid://bgnh4af87pgi2"]
 
 [ext_resource type="Script" uid="uid://bm7kn8cgsy3br" path="res://enemy/enemy.gd" id="1_jwmku"]
 [ext_resource type="Script" uid="uid://dxj8qrg4j1hio" path="res://enemy/enemy_state_manager.gd" id="2_i531w"]
@@ -7,12 +7,47 @@
 [ext_resource type="Script" uid="uid://dsltu5hqco1ln" path="res://enemy/enemies/Spirit_blade/states/charge_state.gd" id="5_2t328"]
 [ext_resource type="Script" uid="uid://du1oai83nge5w" path="res://enemy/enemies/Spirit_blade/states/launch_state.gd" id="6_hgo3a"]
 [ext_resource type="Texture2D" uid="uid://dxkds0tufkbmy" path="res://enemy/enemies/Spirit_blade/spirit_blade.png" id="7_4e5r2"]
-[ext_resource type="Script" path="res://enemy/enemies/Spirit_blade/deflect_state.gd" id="7_5up54"]
+[ext_resource type="Script" uid="uid://cwktjir0kgvrd" path="res://enemy/enemies/Spirit_blade/deflect_state.gd" id="7_5up54"]
 [ext_resource type="Texture2D" uid="uid://cxyaixyafk3lo" path="res://enemy/enemies/Spirit_blade/danger.png" id="8_d452a"]
 [ext_resource type="Script" uid="uid://c83k571khs3wu" path="res://enemy/enemies/Spirit_blade/targeting_crosshair.gd" id="9_qvs6r"]
 [ext_resource type="Script" uid="uid://damw04jyfsqsg" path="res://enemy/enemies/Spirit_blade/hitbox.gd" id="10_ar2px"]
-[ext_resource type="Script" uid="uid://fy6usyl46s50" path="res://enemy/enemies/Spirit_blade/damage_effects.gd" id="12_hgo3a"]
-[ext_resource type="PackedScene" uid="uid://dop4j5h3heonq" path="res://enemy/effects/metal.tscn" id="13_4e5r2"]
+[ext_resource type="Script" path="res://enemy/enemies/spirit_blade/damage_caller.gd" id="12_xd6dx"]
+[ext_resource type="AudioStream" uid="uid://dceyvduije81h" path="res://enemy/hit.wav" id="13_okx8r"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5up54"]
+
+[sub_resource type="Gradient" id="Gradient_xd6dx"]
+offsets = PackedFloat32Array(0, 0.234742, 0.737089)
+colors = PackedColorArray(0.641934, 0.641934, 0.641934, 1, 0.60933, 0.60933, 0.60933, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_okx8r"]
+gradient = SubResource("Gradient_xd6dx")
+
+[sub_resource type="Curve" id="Curve_xd6dx"]
+_limits = [0.0, 10.0, 0.0, 1.0]
+_data = [Vector2(0, 2.92135), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_okx8r"]
+curve = SubResource("Curve_xd6dx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7jfe1"]
+resource_local_to_scene = true
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 11.5
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_max = 81.94
+gravity = Vector3(0, 0, 0)
+scale_min = 0.7
+scale_max = 1.2
+scale_curve = SubResource("CurveTexture_okx8r")
+color_ramp = SubResource("GradientTexture1D_okx8r")
+hue_variation_min = -0.01
+hue_variation_max = 0.00999998
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wwi1j"]
 size = Vector2(22, 35)
@@ -63,6 +98,7 @@ collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_jwmku")
 movement_speed = 45.0
+max_health = 1000
 
 [node name="StateManager" type="Node" parent="." node_paths=PackedStringArray("enemy", "active_state")]
 script = ExtResource("2_i531w")
@@ -90,6 +126,7 @@ metadata/_custom_type_script = "uid://d3dsllt0af854"
 script = ExtResource("5_2t328")
 charge_time = 1.5
 launch_delay = 0.5
+delay_increase_when_hurt = 0.5
 launch_state = NodePath("../LaunchState")
 targeting_crosshair = NodePath("../../TargetingCrosshair")
 enemy = NodePath("../..")
@@ -125,6 +162,16 @@ metadata/_custom_type_script = "uid://d3dsllt0af854"
 
 [node name="ReaggroDelayTimer" type="Timer" parent="StateManager/DeflectState"]
 one_shot = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_5up54")
+emitting = false
+amount = 42
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_7jfe1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.55, 0.55)
@@ -173,11 +220,14 @@ libraries = {
 &"": SubResource("AnimationLibrary_kidv1")
 }
 
-[node name="DamageEffects" type="Node2D" parent="."]
-script = ExtResource("12_hgo3a")
-take_damage_particle = ExtResource("13_4e5r2")
+[node name="Node" type="Node" parent="." node_paths=PackedStringArray("particles")]
+script = ExtResource("12_xd6dx")
+particles = NodePath("../GPUParticles2D")
 
-[connection signal="attack_received" from="." to="DamageEffects" method="_on_spirit_blade_attack_received"]
+[node name="HitSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_okx8r")
+
+[connection signal="attack_received" from="." to="Node" method="emit_particles" unbinds=1]
 [connection signal="timeout" from="StateManager/ChargeState/LaunchTimer" to="StateManager/ChargeState" method="_on_launch_timer_timeout"]
 [connection signal="body_entered" from="Hitbox" to="Hitbox" method="_on_body_entered"]
 [connection signal="body_entered" from="AggroRadius" to="StateManager/WanderState" method="_on_aggro_radius_body_entered"]

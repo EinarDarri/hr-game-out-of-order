@@ -660,13 +660,16 @@ time_between_spawns = 0.5
 spawing = ExtResource("3_feb5d")
 
 [node name="Spawner" parent="Spawners" instance=ExtResource("4_fc0e3")]
-position = Vector2(-303, 189)
-total_spawns = 1
+position = Vector2(-300, 200)
+enable = false
+total_spawns = 2
 time_between_spawns = 0.5
 spawing = ExtResource("3_feb5d")
 
 [node name="Spawner2" parent="Spawners" instance=ExtResource("4_fc0e3")]
-position = Vector2(-483, 362)
+position = Vector2(-500, 370)
+enable = false
+time_between_spawns = 2.0
 spawing = ExtResource("3_feb5d")
 
 [node name="Spawner3" parent="Spawners" instance=ExtResource("4_fc0e3")]
@@ -711,7 +714,7 @@ position = Vector2(2, 7.5)
 shape = SubResource("RectangleShape2D_e8heu")
 
 [node name="SpiritBlade" parent="." instance=ExtResource("17_e8heu")]
-position = Vector2(-372, 155)
+position = Vector2(-342, 161)
 movement_speed = 2.0
 max_health = 500
 

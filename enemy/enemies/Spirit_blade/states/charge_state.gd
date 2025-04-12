@@ -4,6 +4,7 @@ extends EnemyState
 ## The time it takes to fully charge the spin attack
 @export var charge_time: float
 @export var launch_delay: float
+@export var delay_increase_when_hurt: float
 
 @export_group("Other States")
 @export var launch_state: EnemyState
@@ -43,4 +44,7 @@ func _on_launch_timer_timeout() -> void:
 	state_manager.active_state = launch_state
 
 func attack_received(atk: Attack) -> void:
-	enemy.velocity += (Game.get_player().global_position.direction_to(enemy.global_position) * (atk.knockback / 2))
+	# Attacking the enemy while it is charging interrupts it.
+	var time := launch_timer.time_left + delay_increase_when_hurt
+	launch_timer.start(time)
+	enemy.velocity += (Game.get_player().global_position.direction_to(enemy.global_position) * (atk.knockback)) * 0.3

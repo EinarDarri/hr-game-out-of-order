@@ -2,6 +2,8 @@ class_name PlayerAirState extends PlayerState
 
 @onready var timer: Timer = $Timer
 
+
+@export var platform_checker: RayCast2D
 @export_category("States")
 @export var idle_state: PlayerIdleState
 @export var running_state: PlayerRunState
@@ -22,20 +24,24 @@ var extra_jump_counter := 0
 
 func start_state() -> void:
 	jump_sfx.pitch_scale = 1.0
-	
-	player.animated_sprite_2d.play("Jump")
-	if player.is_on_floor() and player.is_extra_jump_enabled():
-		extra_jump_counter = EXTRA_JUMP_AMOUNT
 	if Input.is_action_pressed("look_down"): # jump while looking down moves you downwards
-		player.position.y += 2
+		#var height = player.position.y
+		if platform_checker.is_colliding():
+			player.position.y += 2
+			player.animated_sprite_2d.play("Jump")	
 		return
-	if Input.is_action_just_pressed("move_jump"):
-		player.velocity.y = JUMP_VELOCITY
-		jump_sfx.play()
-		return
+	else:
+		player.animated_sprite_2d.play("Jump")
+		if player.is_on_floor() and player.is_extra_jump_enabled():
+			extra_jump_counter = EXTRA_JUMP_AMOUNT
+	
+		if Input.is_action_just_pressed("move_jump"):
+			player.velocity.y = JUMP_VELOCITY
+			jump_sfx.play()
+			return
 
-	timer.start(COYOTE_TIME)
-	_coyote_flag = true
+		timer.start(COYOTE_TIME)
+		_coyote_flag = true
 
 
 func physics_update(delta):
