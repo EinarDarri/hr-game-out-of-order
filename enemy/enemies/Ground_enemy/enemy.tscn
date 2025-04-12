@@ -4,10 +4,10 @@
 [ext_resource type="Shader" uid="uid://cnctf4usjpyop" path="res://enemy/enemy.gdshader" id="1_pmsee"]
 [ext_resource type="Script" uid="uid://bm7kn8cgsy3br" path="res://enemy/enemy.gd" id="1_y5vj3"]
 [ext_resource type="Script" uid="uid://dxj8qrg4j1hio" path="res://enemy/enemy_state_manager.gd" id="2_y5vj3"]
-[ext_resource type="Script" uid="uid://dpr65lsms5xdf" path="res://enemy/enemies/ground_enemy/states/wander.gd" id="3_1amkc"]
+[ext_resource type="Script" uid="uid://dpr65lsms5xdf" path="res://enemy/enemies/Ground_enemy/states/wander.gd" id="3_1amkc"]
 [ext_resource type="PackedScene" uid="uid://cx4kt1teqeebj" path="res://ui/components/health_bar.tscn" id="4_p200p"]
-[ext_resource type="Script" uid="uid://cvil6v2pec58h" path="res://enemy/enemies/ground_enemy/states/chase.gd" id="4_thq3w"]
-[ext_resource type="Script" uid="uid://dyomlg2agvvva" path="res://enemy/enemies/ground_enemy/states/attacking.gd" id="5_0sx5v"]
+[ext_resource type="Script" uid="uid://cvil6v2pec58h" path="res://enemy/enemies/Ground_enemy/states/chase.gd" id="4_thq3w"]
+[ext_resource type="Script" uid="uid://dyomlg2agvvva" path="res://enemy/enemies/Ground_enemy/states/attacking.gd" id="5_0sx5v"]
 [ext_resource type="AudioStream" uid="uid://dceyvduije81h" path="res://enemy/hit.wav" id="6_1wwld"]
 [ext_resource type="Script" uid="uid://dqhd8o12dgg8b" path="res://enemy/enemies/Ground_enemy/states/air.gd" id="6_hqhio"]
 [ext_resource type="AudioStream" uid="uid://5aqcd02haw53" path="res://enemy/enemies/Ground_enemy/hammer_slam.wav" id="11_thq3w"]
@@ -208,7 +208,7 @@ light_mask = 0
 material = SubResource("ShaderMaterial_1amkc")
 position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_1amkc")
-animation = &"walk"
+animation = &"idle"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 

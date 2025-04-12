@@ -44,9 +44,21 @@ func physics_update(delta: float) -> void:
 		enemy.velocity = Vector2.ZERO
 		animated_sprite_2d.play("idle")
 	else:
-		enemy.velocity.x = _dir.x * speed
-		if animated_sprite_2d.animation == &"idle":
+		var to_player = (Game.get_player().get_global_position() - enemy.get_global_position())
+		var on_player = abs(to_player.x) < 5
+		
+		if not on_player:
+			enemy.velocity.x = _dir.x * speed
+		else:
+			enemy.velocity.x = 0
+		
+		
+		if not on_player and animated_sprite_2d.animation == &"idle":
 			animated_sprite_2d.play("walk")
+		
+		if on_player:
+			animated_sprite_2d.play("idle")
+		
 	if not attack_area.get_overlapping_bodies().is_empty():
 		state_manager.active_state = attack_state
 
