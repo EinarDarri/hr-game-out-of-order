@@ -32,6 +32,7 @@ func start_state() -> void:
 	animated_sprite_2d.play("walk")
 
 func physics_update(delta: float) -> void:
+	animated_sprite_2d.flip_h = _dir.x < 0
 	if !enemy.is_on_floor():
 		state_manager.active_state = Air_state
 		return

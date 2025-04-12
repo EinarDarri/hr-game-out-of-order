@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://dv2820m5578n2" path="res://map/interactables/gate/gate.tscn" id="14_hb5m1"]
 [ext_resource type="PackedScene" uid="uid://colmiolq4dmxc" path="res://map/props/lantern/lantern.tscn" id="15_7sc4i"]
 [ext_resource type="Script" uid="uid://r1dmijulheyr" path="res://dialogue/play_dialog.gd" id="16_80cx4"]
-[ext_resource type="PackedScene" uid="uid://bgnh4af87pgi2" path="res://enemy/enemies/Spirit_blade/spirit_blade.tscn" id="17_e8heu"]
+[ext_resource type="PackedScene" uid="uid://bgnh4af87pgi2" path="res://enemy/enemies/spirit_blade/spirit_blade.tscn" id="17_e8heu"]
 [ext_resource type="AudioStream" uid="uid://dxv2gkb4xdi4i" path="res://map/sfx/wind_loop_high.ogg" id="19_boyg6"]
 [ext_resource type="PackedScene" uid="uid://bh7ghs5botpue" path="res://map/interactables/sword_pedistal/sword_pedistal.tscn" id="21_hb5m1"]
 
@@ -853,3 +853,18 @@ stream = ExtResource("19_boyg6")
 autoplay = true
 max_distance = 300.0
 attenuation = 2.21914
+
+[node name="Enemy" parent="." instance=ExtResource("3_feb5d")]
+position = Vector2(176, 0)
+
+[node name="Enemy2" parent="." instance=ExtResource("3_feb5d")]
+position = Vector2(12, -1)
+
+[node name="Enemy3" parent="." instance=ExtResource("3_feb5d")]
+position = Vector2(122, 0)
+
+[node name="Enemy4" parent="." instance=ExtResource("3_feb5d")]
+position = Vector2(85, -3)
+
+[node name="Enemy5" parent="." instance=ExtResource("3_feb5d")]
+position = Vector2(237, -1)
