@@ -655,28 +655,23 @@ target = NodePath("../../Player")
 [node name="Spawner8" parent="Spawners" instance=ExtResource("4_fc0e3")]
 position = Vector2(-1352.59, 585.665)
 enable = false
-respawn = false
 total_spawns = 4
 time_between_spawns = 0.5
 spawing = ExtResource("3_feb5d")
 
 [node name="Spawner" parent="Spawners" instance=ExtResource("4_fc0e3")]
-position = Vector2(-300, 200)
-enable = false
-respawn = false
-total_spawns = 2
+position = Vector2(-303, 189)
+total_spawns = 1
 time_between_spawns = 0.5
 spawing = ExtResource("3_feb5d")
 
 [node name="Spawner2" parent="Spawners" instance=ExtResource("4_fc0e3")]
 position = Vector2(-483, 362)
-respawn = false
 spawing = ExtResource("3_feb5d")
 
 [node name="Spawner3" parent="Spawners" instance=ExtResource("4_fc0e3")]
 position = Vector2(-400, 560)
 enable = false
-respawn = false
 total_spawns = 5
 time_between_spawns = 2.0
 spawing = ExtResource("3_feb5d")
@@ -684,7 +679,6 @@ spawing = ExtResource("3_feb5d")
 [node name="Spawner4" parent="Spawners" instance=ExtResource("4_fc0e3")]
 position = Vector2(-1380, 50)
 enable = false
-respawn = false
 total_spawns = 4
 time_between_spawns = 2.0
 spawing = ExtResource("3_feb5d")
@@ -692,14 +686,12 @@ spawing = ExtResource("3_feb5d")
 [node name="Spawner5" parent="Spawners" instance=ExtResource("4_fc0e3")]
 position = Vector2(-2300, 70)
 enable = false
-respawn = false
 time_between_spawns = 2.0
 spawing = ExtResource("3_feb5d")
 
 [node name="Spawner6" parent="Spawners" instance=ExtResource("4_fc0e3")]
 position = Vector2(-2400, 423)
 enable = false
-respawn = false
 total_spawns = 5
 time_between_spawns = 2.0
 spawing = ExtResource("3_feb5d")

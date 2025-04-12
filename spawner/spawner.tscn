@@ -4,7 +4,6 @@
 
 [node name="Spawner" type="Node2D"]
 script = ExtResource("1_khvsl")
-respawn = null
 total_spawns = 3
 
 [node name="timer" type="Timer" parent="."]

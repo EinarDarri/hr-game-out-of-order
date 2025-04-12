@@ -1,9 +1,14 @@
-[gd_scene load_steps=18 format=3 uid="uid://bh7ghs5botpue"]
+[gd_scene load_steps=22 format=3 uid="uid://bh7ghs5botpue"]
 
 [ext_resource type="Texture2D" uid="uid://dcbjaphb716gs" path="res://map/interactables/sword_pedistal/sword_pedistal.png" id="1_udby7"]
 [ext_resource type="Script" uid="uid://be54j7tdbqkou" path="res://map/interactables/sword_pedistal/sword_pedistal.gd" id="2_3uviv"]
-[ext_resource type="FontFile" uid="uid://b115b4v6om1y7" path="res://fonts/BigBlueTermPlusNerdFontMono-Regular.ttf" id="3_hoh3l"]
 [ext_resource type="AudioStream" uid="uid://dqsi41qw0igni" path="res://map/interactables/save_point/activate.wav" id="4_bt038"]
+[ext_resource type="Script" uid="uid://by5v60c080u3x" path="res://key_prompts/promt_picker.gd" id="4_uqsh6"]
+[ext_resource type="Texture2D" uid="uid://coolpuklu78mc" path="res://key_prompts/Keyboard & Mouse/Light/E_Key_Light.png" id="5_nsl7r"]
+[ext_resource type="Texture2D" uid="uid://dieho7cgdhajf" path="res://key_prompts/Keyboard & Mouse/Dark/E_Key_Dark.png" id="6_74nky"]
+[ext_resource type="Texture2D" uid="uid://c861vgme5xjc7" path="res://key_prompts/PS5/PS5_Triangle.png" id="7_x70lm"]
+[ext_resource type="Texture2D" uid="uid://dyx0wy3vpwau8" path="res://key_prompts/Steam Deck/SteamDeck_Y.png" id="8_ia7u7"]
+[ext_resource type="Texture2D" uid="uid://d3ars55sbspix" path="res://key_prompts/Xbox Series/XboxSeriesX_Y.png" id="9_ubo2l"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3uviv"]
 atlas = ExtResource("1_udby7")
@@ -67,12 +72,6 @@ fill_to = Vector2(0.5, 0)
 [sub_resource type="CircleShape2D" id="CircleShape2D_bcjba"]
 radius = 28.0
 
-[sub_resource type="LabelSettings" id="LabelSettings_bt038"]
-font = ExtResource("3_hoh3l")
-font_size = 12
-outline_size = 4
-outline_color = Color(0, 0, 0, 1)
-
 [sub_resource type="Curve" id="Curve_bt038"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
@@ -111,16 +110,6 @@ collision_mask = 2
 position = Vector2(0, 12)
 shape = SubResource("CircleShape2D_bcjba")
 
-[node name="InteractPrompt" type="Label" parent="."]
-offset_left = -20.0
-offset_top = -47.0
-offset_right = 20.0
-offset_bottom = -24.0
-text = "[E]"
-label_settings = SubResource("LabelSettings_bt038")
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 position = Vector2(0, 4)
 emitting = false
@@ -132,3 +121,45 @@ process_material = SubResource("ParticleProcessMaterial_vg0ce")
 [node name="PickupSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_bt038")
 volume_db = -15.0
+
+[node name="Prompts" type="Node2D" parent="." node_paths=PackedStringArray("PC_light", "PC_dark", "PS5", "STEAM_deack", "Xbox")]
+script = ExtResource("4_uqsh6")
+PC_light = NodePath("EKeyLight")
+PC_dark = NodePath("EKeyDark")
+PS5 = NodePath("Ps5Triangle")
+STEAM_deack = NodePath("SteamDeckY")
+Xbox = NodePath("XboxSeriesXY")
+
+[node name="EKeyLight" type="Sprite2D" parent="Prompts"]
+visible = false
+light_mask = 0
+position = Vector2(0.25, -33.75)
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("5_nsl7r")
+
+[node name="EKeyDark" type="Sprite2D" parent="Prompts"]
+light_mask = 0
+position = Vector2(0.25, -33.75)
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("6_74nky")
+
+[node name="Ps5Triangle" type="Sprite2D" parent="Prompts"]
+visible = false
+light_mask = 0
+position = Vector2(0.25, -33.75)
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("7_x70lm")
+
+[node name="SteamDeckY" type="Sprite2D" parent="Prompts"]
+visible = false
+light_mask = 0
+position = Vector2(0.25, -33.75)
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("8_ia7u7")
+
+[node name="XboxSeriesXY" type="Sprite2D" parent="Prompts"]
+visible = false
+light_mask = 0
+position = Vector2(0.25, -33.75)
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("9_ubo2l")
