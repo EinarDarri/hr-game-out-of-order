@@ -26,3 +26,4 @@ func pickup():
 	gpu_particles_2d.emitting = true
 	Game.get_player().has_sword = true
 	_picked_up = true
+	Game.get_player().point_light_2d.enabled = true

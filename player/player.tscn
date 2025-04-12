@@ -311,7 +311,7 @@ size = Vector2(106, 24)
 [sub_resource type="Gradient" id="Gradient_q28gw"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_e7oew"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_q28gw"]
 gradient = SubResource("Gradient_q28gw")
 width = 256
 height = 256
@@ -428,18 +428,19 @@ volume_db = -35.0
 stream = ExtResource("17_tqiix")
 volume_db = -10.0
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
-color = Color(0.60403, 0.400233, 1, 1)
-energy = 0.5
-shadow_enabled = true
-texture = SubResource("GradientTexture2D_e7oew")
-
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
 
 [node name="PlatformChecker" type="RayCast2D" parent="."]
 position = Vector2(0, -4)
 target_position = Vector2(0, 16)
 collision_mask = 8
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+enabled = false
+color = Color(1, 0.290196, 1, 1)
+energy = 1.75
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_q28gw")
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="StateMan/Air/Timer" to="StateMan/Air" method="_on_timer_timeout"]

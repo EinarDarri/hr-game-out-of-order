@@ -1,7 +1,6 @@
 [gd_scene load_steps=27 format=3 uid="uid://dvum5k052ihe6"]
 
 [ext_resource type="Texture2D" uid="uid://b0v4v2u847xfk" path="res://enemy/enemies/Ground_enemy/enemy.png" id="1_2mvqj"]
-[ext_resource type="Shader" uid="uid://cnctf4usjpyop" path="res://enemy/enemy.gdshader" id="1_pmsee"]
 [ext_resource type="Script" uid="uid://bm7kn8cgsy3br" path="res://enemy/enemy.gd" id="1_y5vj3"]
 [ext_resource type="Script" uid="uid://dxj8qrg4j1hio" path="res://enemy/enemy_state_manager.gd" id="2_y5vj3"]
 [ext_resource type="Script" uid="uid://dpr65lsms5xdf" path="res://enemy/enemies/Ground_enemy/states/wander.gd" id="3_1amkc"]
@@ -121,7 +120,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk",
-"speed": 5.0
+"speed": 8.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y5vj3"]
@@ -180,8 +179,10 @@ position = Vector2(0, 6)
 shape = SubResource("CapsuleShape2D_fc0e3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+light_mask = 0
+position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_1amkc")
-animation = &"idle"
+animation = &"walk"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 

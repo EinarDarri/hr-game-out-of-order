@@ -11,8 +11,13 @@ extends EnemyState
 @export var LeftGroundRay: RayCast2D
 @export var RightGroundRay: RayCast2D
 
+@onready var animated_sprite_2d: AnimatedSprite2D = $"../../AnimatedSprite2D"
+
 var _dir := Vector2.ZERO
 var _currentRAY: RayCast2D
+
+func start_state() -> void:
+	animated_sprite_2d.play("walk")
 
 func _update_ground_ray() -> void:
 	if _dir.x >= 0:
@@ -22,6 +27,7 @@ func _update_ground_ray() -> void:
 
 func physics_update(delta: float) -> void:
 	_dir = (Game.get_player().get_global_position() - enemy.get_global_position()).normalized()
+	animated_sprite_2d.flip_h = _dir.x <= 0
 
 	_update_ground_ray()
 	
@@ -31,8 +37,11 @@ func physics_update(delta: float) -> void:
 		
 	if not _currentRAY.is_colliding():
 		enemy.velocity = Vector2.ZERO
+		animated_sprite_2d.play("idle")
 	else:
 		enemy.velocity.x = _dir.x * speed
+		if animated_sprite_2d.animation == &"idle":
+			animated_sprite_2d.play("walk")
 
 func attack_received(_attack: Attack) -> void:
 	pass

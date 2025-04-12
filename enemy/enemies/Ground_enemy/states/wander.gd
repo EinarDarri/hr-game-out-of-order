@@ -12,6 +12,8 @@ extends EnemyState
 @export var LeftGroundRay: RayCast2D
 @export var RightGroundRay: RayCast2D
 
+@onready var animated_sprite_2d: AnimatedSprite2D = $"../../AnimatedSprite2D"
+
 var _active = true
 var _dir := Vector2.RIGHT
 var _currentRAY: RayCast2D
@@ -27,6 +29,7 @@ func _update_ground_ray() -> void:
 
 func start_state() -> void:
 	_active = true
+	animated_sprite_2d.play("walk")
 
 func physics_update(delta: float) -> void:
 	if !enemy.is_on_floor():
