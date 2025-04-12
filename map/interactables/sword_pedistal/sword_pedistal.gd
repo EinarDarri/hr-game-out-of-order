@@ -1,5 +1,8 @@
 extends AnimatedSprite2D
 
+@export var gate_to_close: Gate
+@export var gate_to_open: Gate
+
 @onready var interact_area: Area2D = $InteractArea
 @onready var interact_prompt: Label = $InteractPrompt
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
@@ -23,3 +26,5 @@ func pickup():
 	pickup_sfx.play()
 	gpu_particles_2d.emitting = true
 	Game.get_player().has_sword = true
+	gate_to_close.close()
+	gate_to_open.open()

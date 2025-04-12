@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://ouqwelutt3ob"]
+[gd_scene load_steps=29 format=4 uid="uid://ouqwelutt3ob"]
 
 [ext_resource type="PackedScene" uid="uid://r2kg4a8p4sld" path="res://player/player.tscn" id="2_e2o6t"]
 [ext_resource type="Texture2D" uid="uid://ddrtsvcu03bbj" path="res://map/background/layer1.png" id="2_iotsf"]
@@ -17,9 +17,10 @@
 [ext_resource type="PackedScene" uid="uid://di6qlq0p6axaa" path="res://map/interactables/save_point/save_point.tscn" id="13_rvswv"]
 [ext_resource type="PackedScene" uid="uid://colmiolq4dmxc" path="res://map/props/lantern/lantern.tscn" id="15_7sc4i"]
 [ext_resource type="Script" uid="uid://r1dmijulheyr" path="res://dialogue/play_dialog.gd" id="16_80cx4"]
-[ext_resource type="PackedScene" uid="uid://bgnh4af87pgi2" path="res://enemy/enemies/spirit_blade/spirit_blade.tscn" id="17_e8heu"]
+[ext_resource type="PackedScene" uid="uid://bgnh4af87pgi2" path="res://enemy/enemies/Spirit_blade/spirit_blade.tscn" id="17_e8heu"]
 [ext_resource type="AudioStream" uid="uid://dxv2gkb4xdi4i" path="res://map/sfx/wind_loop_high.ogg" id="19_boyg6"]
 [ext_resource type="PackedScene" uid="uid://bh7ghs5botpue" path="res://map/interactables/sword_pedistal/sword_pedistal.tscn" id="21_hb5m1"]
+[ext_resource type="PackedScene" uid="uid://dv2820m5578n2" path="res://map/interactables/gate/gate.tscn" id="21_x5p1p"]
 
 [sub_resource type="Gradient" id="Gradient_80cx4"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -631,8 +632,21 @@ position = Vector2(-3809, 352)
 [node name="SavePoint4" parent="SavePoints" instance=ExtResource("13_rvswv")]
 position = Vector2(-4375, -512)
 
-[node name="SwordPedistal" parent="." instance=ExtResource("21_hb5m1")]
+[node name="SwordPedistal" parent="." node_paths=PackedStringArray("gate_to_close", "gate_to_open") instance=ExtResource("21_hb5m1")]
 position = Vector2(72, -16)
+gate_to_close = NodePath("../Gate")
+gate_to_open = NodePath("../Gate2")
+
+[node name="Gate2" parent="." instance=ExtResource("21_x5p1p")]
+position = Vector2(-168, -16)
+begin_open = false
+closed_collider_height = 64.0
+closed_collider_pos_y = 0.0
+
+[node name="Gate" parent="." instance=ExtResource("21_x5p1p")]
+position = Vector2(280, -16)
+closed_collider_height = 64.0
+closed_collider_pos_y = 0.0
 
 [node name="Player" parent="." instance=ExtResource("2_e2o6t")]
 unique_name_in_owner = true
@@ -655,6 +669,7 @@ target = NodePath("../../Player")
 [node name="Spawner8" parent="Spawners" instance=ExtResource("4_fc0e3")]
 position = Vector2(-1352.59, 585.665)
 enable = false
+respawn = false
 total_spawns = 4
 time_between_spawns = 0.5
 spawing = ExtResource("3_feb5d")
@@ -662,6 +677,7 @@ spawing = ExtResource("3_feb5d")
 [node name="Spawner" parent="Spawners" instance=ExtResource("4_fc0e3")]
 position = Vector2(-300, 200)
 enable = false
+respawn = false
 total_spawns = 2
 time_between_spawns = 0.5
 spawing = ExtResource("3_feb5d")
@@ -669,12 +685,14 @@ spawing = ExtResource("3_feb5d")
 [node name="Spawner2" parent="Spawners" instance=ExtResource("4_fc0e3")]
 position = Vector2(-500, 370)
 enable = false
+respawn = false
 time_between_spawns = 2.0
 spawing = ExtResource("3_feb5d")
 
 [node name="Spawner3" parent="Spawners" instance=ExtResource("4_fc0e3")]
 position = Vector2(-400, 560)
 enable = false
+respawn = false
 total_spawns = 5
 time_between_spawns = 2.0
 spawing = ExtResource("3_feb5d")
@@ -682,6 +700,7 @@ spawing = ExtResource("3_feb5d")
 [node name="Spawner4" parent="Spawners" instance=ExtResource("4_fc0e3")]
 position = Vector2(-1380, 50)
 enable = false
+respawn = false
 total_spawns = 4
 time_between_spawns = 2.0
 spawing = ExtResource("3_feb5d")
@@ -689,12 +708,14 @@ spawing = ExtResource("3_feb5d")
 [node name="Spawner5" parent="Spawners" instance=ExtResource("4_fc0e3")]
 position = Vector2(-2300, 70)
 enable = false
+respawn = false
 time_between_spawns = 2.0
 spawing = ExtResource("3_feb5d")
 
 [node name="Spawner6" parent="Spawners" instance=ExtResource("4_fc0e3")]
 position = Vector2(-2400, 423)
 enable = false
+respawn = false
 total_spawns = 5
 time_between_spawns = 2.0
 spawing = ExtResource("3_feb5d")
@@ -710,7 +731,7 @@ script = ExtResource("16_80cx4")
 dialog_name = "stole_the_sword"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dialog/StoleSword"]
-position = Vector2(2, 7.5)
+position = Vector2(-37, 7)
 shape = SubResource("RectangleShape2D_e8heu")
 
 [node name="SpiritBlade" parent="." instance=ExtResource("17_e8heu")]
