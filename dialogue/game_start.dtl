@@ -1,5 +1,2 @@
-if {enable} == false:
-	return
-You just stole the orders holy sword of legandary greatness
-Now you must make it outside alive by any means nessisary
+You stole the legendary sword. Try to make it out!
 [wait time="1.0"]

@@ -1,5 +1,4 @@
 if {enable} == false:
 	return
-guard: Hey that is the HOLY sword you are not supposed to have that
-What are you going to do about it, I have a HOLY sword and you don't
+Press down + jump to go down platforms
 [wait time="1.0"]

@@ -32,3 +32,4 @@ func pickup():
 	gate_to_open.open()
 	_picked_up = true
 	Game.get_player().point_light_2d.enabled = true
+	Dialogic.start('game_start')

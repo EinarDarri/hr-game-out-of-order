@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://ouqwelutt3ob"]
+[gd_scene load_steps=29 format=4 uid="uid://ouqwelutt3ob"]
 
 [ext_resource type="Texture2D" uid="uid://dsnt7ubbhghcb" path="res://map/props/background Items/order_banner.png" id="1_x5p1p"]
 [ext_resource type="PackedScene" uid="uid://r2kg4a8p4sld" path="res://player/player.tscn" id="2_e2o6t"]
@@ -19,7 +19,6 @@
 [ext_resource type="PackedScene" uid="uid://dv2820m5578n2" path="res://map/interactables/gate/gate.tscn" id="14_hb5m1"]
 [ext_resource type="PackedScene" uid="uid://colmiolq4dmxc" path="res://map/props/lantern/lantern.tscn" id="15_7sc4i"]
 [ext_resource type="Script" uid="uid://r1dmijulheyr" path="res://dialogue/play_dialog.gd" id="16_80cx4"]
-[ext_resource type="PackedScene" uid="uid://bgnh4af87pgi2" path="res://enemy/enemies/Spirit_blade/spirit_blade.tscn" id="17_e8heu"]
 [ext_resource type="AudioStream" uid="uid://dxv2gkb4xdi4i" path="res://map/sfx/wind_loop_high.ogg" id="19_boyg6"]
 [ext_resource type="PackedScene" uid="uid://bh7ghs5botpue" path="res://map/interactables/sword_pedistal/sword_pedistal.tscn" id="21_hb5m1"]
 
@@ -666,6 +665,12 @@ begin_open = false
 closed_collider_height = 64.0
 closed_collider_pos_y = 0.0
 
+[node name="Gate3" parent="." instance=ExtResource("14_hb5m1")]
+position = Vector2(-6120, -544)
+begin_open = false
+closed_collider_height = 64.0
+closed_collider_pos_y = 0.0
+
 [node name="Player" parent="." instance=ExtResource("2_e2o6t")]
 unique_name_in_owner = true
 position = Vector2(424, 16)
@@ -734,6 +739,17 @@ spawing = ExtResource("3_feb5d")
 [node name="Dialog" type="Node2D" parent="."]
 position = Vector2(-2400, 423)
 
+[node name="GameEnd" type="Area2D" parent="Dialog"]
+position = Vector2(-3696, -975)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("16_80cx4")
+dialog_name = "game_end"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dialog/GameEnd"]
+position = Vector2(2, 7.5)
+shape = SubResource("RectangleShape2D_e8heu")
+
 [node name="StoleSword" type="Area2D" parent="Dialog"]
 position = Vector2(2231, -447)
 collision_layer = 0
@@ -744,11 +760,6 @@ dialog_name = "stole_the_sword"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dialog/StoleSword"]
 position = Vector2(2, 7.5)
 shape = SubResource("RectangleShape2D_e8heu")
-
-[node name="SpiritBlade" parent="." instance=ExtResource("17_e8heu")]
-position = Vector2(-1025.75, 360)
-movement_speed = 2.0
-max_health = 500
 
 [node name="SFX" type="Node2D" parent="."]
 
@@ -913,27 +924,3 @@ position = Vector2(-5494, -452)
 
 [node name="Enemy50" parent="." instance=ExtResource("3_feb5d")]
 position = Vector2(-5265, -452)
-
-[node name="SpiritBlade2" parent="." instance=ExtResource("17_e8heu")]
-position = Vector2(-3740, -134)
-
-[node name="SpiritBlade3" parent="." instance=ExtResource("17_e8heu")]
-position = Vector2(-3400, 271)
-
-[node name="SpiritBlade4" parent="." instance=ExtResource("17_e8heu")]
-position = Vector2(-4681, -264)
-
-[node name="SpiritBlade5" parent="." instance=ExtResource("17_e8heu")]
-position = Vector2(-5181, -420)
-
-[node name="SpiritBlade6" parent="." instance=ExtResource("17_e8heu")]
-position = Vector2(-5588, -418)
-
-[node name="SpiritBlade7" parent="." instance=ExtResource("17_e8heu")]
-position = Vector2(-2166, -55)
-
-[node name="SpiritBlade9" parent="." instance=ExtResource("17_e8heu")]
-position = Vector2(-2734, 285)
-
-[node name="SpiritBlade8" parent="." instance=ExtResource("17_e8heu")]
-position = Vector2(-1526, -86)

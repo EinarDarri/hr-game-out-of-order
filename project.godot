@@ -31,6 +31,7 @@ directories/dch_directory={
 "player": "res://dialogue/characters/player.dch"
 }
 directories/dtl_directory={
+"game_end": "res://dialogue/game_end.dtl",
 "game_start": "res://dialogue/game_start.dtl",
 "stole_the_sword": "res://dialogue/text/stole_the_sword.dtl"
 }

@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dcbjaphb716gs" path="res://map/interactables/sword_pedistal/sword_pedistal.png" id="1_udby7"]
 [ext_resource type="Script" uid="uid://be54j7tdbqkou" path="res://map/interactables/sword_pedistal/sword_pedistal.gd" id="2_3uviv"]
 [ext_resource type="AudioStream" uid="uid://dqsi41qw0igni" path="res://map/interactables/save_point/activate.wav" id="4_bt038"]
-[ext_resource type="Script" path="res://key_prompts/picker.gd" id="4_uqsh6"]
+[ext_resource type="Script" uid="uid://cdtva2gmipmrf" path="res://key_prompts/picker.gd" id="4_uqsh6"]
 [ext_resource type="Texture2D" uid="uid://ydotvgq4moje" path="res://key_prompts/Keyboard & Mouse/Light/E_Key_Light.png" id="5_nsl7r"]
 [ext_resource type="Texture2D" uid="uid://crbsuva7ek5s3" path="res://key_prompts/Keyboard & Mouse/Dark/E_Key_Dark.png" id="6_74nky"]
 [ext_resource type="Texture2D" uid="uid://d2mia51ergpyt" path="res://key_prompts/PS5/PS5_Triangle.png" id="7_x70lm"]
