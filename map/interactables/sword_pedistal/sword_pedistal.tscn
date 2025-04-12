@@ -3,12 +3,12 @@
 [ext_resource type="Texture2D" uid="uid://dcbjaphb716gs" path="res://map/interactables/sword_pedistal/sword_pedistal.png" id="1_udby7"]
 [ext_resource type="Script" uid="uid://be54j7tdbqkou" path="res://map/interactables/sword_pedistal/sword_pedistal.gd" id="2_3uviv"]
 [ext_resource type="AudioStream" uid="uid://dqsi41qw0igni" path="res://map/interactables/save_point/activate.wav" id="4_bt038"]
-[ext_resource type="Script" uid="uid://by5v60c080u3x" path="res://key_prompts/promt_picker.gd" id="4_uqsh6"]
-[ext_resource type="Texture2D" uid="uid://coolpuklu78mc" path="res://key_prompts/Keyboard & Mouse/Light/E_Key_Light.png" id="5_nsl7r"]
-[ext_resource type="Texture2D" uid="uid://dieho7cgdhajf" path="res://key_prompts/Keyboard & Mouse/Dark/E_Key_Dark.png" id="6_74nky"]
-[ext_resource type="Texture2D" uid="uid://c861vgme5xjc7" path="res://key_prompts/PS5/PS5_Triangle.png" id="7_x70lm"]
-[ext_resource type="Texture2D" uid="uid://dyx0wy3vpwau8" path="res://key_prompts/Steam Deck/SteamDeck_Y.png" id="8_ia7u7"]
-[ext_resource type="Texture2D" uid="uid://d3ars55sbspix" path="res://key_prompts/Xbox Series/XboxSeriesX_Y.png" id="9_ubo2l"]
+[ext_resource type="Script" uid="uid://cdtva2gmipmrf" path="res://key_prompts/picker.gd" id="4_uqsh6"]
+[ext_resource type="Texture2D" uid="uid://ydotvgq4moje" path="res://key_prompts/Keyboard & Mouse/Light/E_Key_Light.png" id="5_nsl7r"]
+[ext_resource type="Texture2D" uid="uid://crbsuva7ek5s3" path="res://key_prompts/Keyboard & Mouse/Dark/E_Key_Dark.png" id="6_74nky"]
+[ext_resource type="Texture2D" uid="uid://d2mia51ergpyt" path="res://key_prompts/PS5/PS5_Triangle.png" id="7_x70lm"]
+[ext_resource type="Texture2D" uid="uid://hjixa768u8ja" path="res://key_prompts/Steam Deck/SteamDeck_Y.png" id="8_ia7u7"]
+[ext_resource type="Texture2D" uid="uid://bh5jck81tbyrc" path="res://key_prompts/Xbox Series/XboxSeriesX_Y.png" id="9_ubo2l"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3uviv"]
 atlas = ExtResource("1_udby7")
