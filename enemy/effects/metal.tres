@@ -1,4 +1,4 @@
-[gd_resource type="ParticleProcessMaterial" format=3 uid="uid://b8qvq4oby64ty"]
+[gd_resource type="ParticleProcessMaterial" load_steps=0 format=3 uid="uid://b8qvq4oby64ty"]
 
 [resource]
 lifetime_randomness = 0.1
