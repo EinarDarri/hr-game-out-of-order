@@ -8,6 +8,7 @@ const DEAD_ZONE = .2
 @onready var state_man: StateManager = $StateMan
 @onready var hit_sfx: AudioStreamPlayer = $HitSFX
 @onready var center: Marker2D = $Center
+@onready var point_light_2d: PointLight2D = $PointLight2D
 
 var respawn_point := Vector2.ZERO
 var has_sword := false

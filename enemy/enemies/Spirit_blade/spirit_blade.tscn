@@ -149,6 +149,9 @@ enemy = NodePath("../..")
 state_manager = NodePath("..")
 metadata/_custom_type_script = "uid://d3dsllt0af854"
 
+[node name="ReaggroDelayTimer" type="Timer" parent="StateManager/LaunchState"]
+one_shot = true
+
 [node name="DeflectState" type="Node" parent="StateManager" node_paths=PackedStringArray("chase_state", "enemy", "state_manager")]
 script = ExtResource("7_5up54")
 deflect_speed = 350.0

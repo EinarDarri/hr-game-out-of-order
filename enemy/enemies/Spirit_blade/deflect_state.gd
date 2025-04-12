@@ -6,6 +6,7 @@ extends EnemyState
 @export var world_collision_layer: int
 @export var reaggro_delay: float
 @export var damage_on_collision: int
+@export var reaggro_time: float = 2.0
 
 @onready var reaggro_delay_timer: Timer = $ReaggroDelayTimer
 
@@ -28,6 +29,7 @@ func start_state() -> void:
 	_dir = enemy.get_last_attack_received().knockback.normalized()
 	enemy.velocity = _dir * deflect_speed
 	_active = true
+	reaggro_delay_timer.start(reaggro_time)
 
 func physics_update(delta: float) -> void:
 	if !_active:
