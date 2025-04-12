@@ -4,6 +4,7 @@ class_name Enemy extends CharacterBody2D
 @export var max_health: int = 100
 @export var take_damage_particle: PackedScene
 @export var death_effect_scene: PackedScene
+@export var sprite: CanvasItem
 @onready var hit_sfx: AudioStreamPlayer = $HitSFX
 
 var _health: int
@@ -29,9 +30,13 @@ func take_damage(attack: Attack) -> void:
 	_last_attack_received = attack
 	_health = clamp(_health - attack.damage, 0, max_health)
 	attack_received.emit(attack)
+	sprite.material.set_shader_parameter("flash", true)
 	if _health == 0:
 		Died.emit()
 		queue_free()
+	else:
+		await get_tree().create_timer(0.1).timeout
+		sprite.material.set_shader_parameter("flash", false)
 	
 func _physics_process(delta: float) -> void:
 	move_and_slide()

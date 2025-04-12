@@ -1,7 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://bgnh4af87pgi2"]
+[gd_scene load_steps=27 format=3 uid="uid://bgnh4af87pgi2"]
 
+[ext_resource type="Shader" uid="uid://cnctf4usjpyop" path="res://enemy/enemy.gdshader" id="1_hhynq"]
 [ext_resource type="Script" uid="uid://bm7kn8cgsy3br" path="res://enemy/enemy.gd" id="1_jwmku"]
-[ext_resource type="Script" path="res://enemy/enemy_state_manager.gd" id="2_i531w"]
+[ext_resource type="Script" uid="uid://dxj8qrg4j1hio" path="res://enemy/enemy_state_manager.gd" id="2_i531w"]
 [ext_resource type="Script" uid="uid://jqadv650vbp1" path="res://enemy/enemies/Spirit_blade/states/wander_state.gd" id="3_kidv1"]
 [ext_resource type="Script" uid="uid://bpe3wg8tiq4cq" path="res://enemy/enemies/Spirit_blade/states/chase_state.gd" id="4_mcgxg"]
 [ext_resource type="Script" uid="uid://dsltu5hqco1ln" path="res://enemy/enemies/Spirit_blade/states/charge_state.gd" id="5_2t328"]
@@ -11,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cxyaixyafk3lo" path="res://enemy/enemies/Spirit_blade/danger.png" id="8_d452a"]
 [ext_resource type="Script" uid="uid://c83k571khs3wu" path="res://enemy/enemies/Spirit_blade/targeting_crosshair.gd" id="9_qvs6r"]
 [ext_resource type="Script" uid="uid://damw04jyfsqsg" path="res://enemy/enemies/Spirit_blade/hitbox.gd" id="10_ar2px"]
-[ext_resource type="Script" uid="uid://2htiwmkmednh" path="res://enemy/enemies/spirit_blade/damage_caller.gd" id="12_xd6dx"]
+[ext_resource type="Script" uid="uid://2htiwmkmednh" path="res://enemy/enemies/Spirit_blade/damage_caller.gd" id="12_xd6dx"]
 [ext_resource type="AudioStream" uid="uid://dceyvduije81h" path="res://enemy/hit.wav" id="13_okx8r"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5up54"]
@@ -48,6 +49,11 @@ scale_curve = SubResource("CurveTexture_okx8r")
 color_ramp = SubResource("GradientTexture1D_okx8r")
 hue_variation_min = -0.01
 hue_variation_max = 0.00999998
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hhynq"]
+resource_local_to_scene = true
+shader = ExtResource("1_hhynq")
+shader_parameter/flash = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wwi1j"]
 size = Vector2(22, 35)
@@ -93,12 +99,13 @@ _data = {
 &"wander": SubResource("Animation_jwmku")
 }
 
-[node name="SpiritBlade" type="CharacterBody2D"]
+[node name="SpiritBlade" type="CharacterBody2D" node_paths=PackedStringArray("sprite")]
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_jwmku")
 movement_speed = 45.0
 max_health = 1000
+sprite = NodePath("Sprite2D")
 
 [node name="StateManager" type="Node" parent="." node_paths=PackedStringArray("enemy", "active_state")]
 script = ExtResource("2_i531w")
@@ -177,6 +184,7 @@ randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_7jfe1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_hhynq")
 scale = Vector2(0.55, 0.55)
 texture = ExtResource("7_4e5r2")
 

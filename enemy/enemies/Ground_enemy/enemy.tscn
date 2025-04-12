@@ -1,6 +1,7 @@
-[gd_scene load_steps=27 format=3 uid="uid://dvum5k052ihe6"]
+[gd_scene load_steps=29 format=3 uid="uid://dvum5k052ihe6"]
 
 [ext_resource type="Texture2D" uid="uid://b0v4v2u847xfk" path="res://enemy/enemies/Ground_enemy/enemy.png" id="1_2mvqj"]
+[ext_resource type="Shader" uid="uid://cnctf4usjpyop" path="res://enemy/enemy.gdshader" id="1_pmsee"]
 [ext_resource type="Script" uid="uid://bm7kn8cgsy3br" path="res://enemy/enemy.gd" id="1_y5vj3"]
 [ext_resource type="Script" uid="uid://dxj8qrg4j1hio" path="res://enemy/enemy_state_manager.gd" id="2_y5vj3"]
 [ext_resource type="Script" uid="uid://dpr65lsms5xdf" path="res://enemy/enemies/Ground_enemy/states/wander.gd" id="3_1amkc"]
@@ -13,6 +14,11 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fc0e3"]
 radius = 4.0
 height = 20.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1amkc"]
+resource_local_to_scene = true
+shader = ExtResource("1_pmsee")
+shader_parameter/flash = false
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_37qnr"]
 atlas = ExtResource("1_2mvqj")
@@ -37,6 +43,10 @@ region = Rect2(448, 96, 112, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_2cl8w"]
 atlas = ExtResource("1_2mvqj")
 region = Rect2(560, 96, 112, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ua7yr"]
+atlas = ExtResource("1_2mvqj")
+region = Rect2(672, 96, 112, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dfv3u"]
 atlas = ExtResource("1_2mvqj")
@@ -69,13 +79,13 @@ region = Rect2(560, 48, 112, 48)
 [sub_resource type="SpriteFrames" id="SpriteFrames_1amkc"]
 animations = [{
 "frames": [{
-"duration": 1.0,
+"duration": 4.0,
 "texture": SubResource("AtlasTexture_37qnr")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_6l0er")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_80uko")
 }, {
 "duration": 1.0,
@@ -86,10 +96,13 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2cl8w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ua7yr")
 }],
 "loop": false,
 "name": &"attack",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -123,18 +136,15 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y5vj3"]
-radius = 7.0
-height = 28.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_mh5ve"]
 radius = 120.0
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("sprite")]
 light_mask = 0
-collision_layer = 0
+collision_layer = 4
 collision_mask = 5
 script = ExtResource("1_y5vj3")
+sprite = NodePath("AnimatedSprite2D")
 
 [node name="StateManager" type="Node" parent="." node_paths=PackedStringArray("enemy", "active_state")]
 script = ExtResource("2_y5vj3")
@@ -152,20 +162,34 @@ RightGroundRay = NodePath("../../RightFloorRay")
 enemy = NodePath("../..")
 state_manager = NodePath("..")
 
-[node name="ChaseState" type="Node" parent="StateManager" node_paths=PackedStringArray("air_state", "attack_state", "LeftGroundRay", "RightGroundRay", "enemy", "state_manager")]
+[node name="ChaseState" type="Node" parent="StateManager" node_paths=PackedStringArray("air_state", "attack_state", "LeftGroundRay", "RightGroundRay", "attack_area", "enemy", "state_manager")]
 script = ExtResource("4_thq3w")
 speed = 75.0
 air_state = NodePath("../Air State")
 attack_state = NodePath("../AttackState")
 LeftGroundRay = NodePath("../../LeftFloorRay")
 RightGroundRay = NodePath("../../RightFloorRay")
+attack_area = NodePath("../../AttackArea")
 enemy = NodePath("../..")
 state_manager = NodePath("..")
 metadata/_custom_type_script = "uid://d3dsllt0af854"
 
-[node name="AttackState" type="Node" parent="StateManager"]
+[node name="AttackState" type="Node" parent="StateManager" node_paths=PackedStringArray("attack_area", "aggro_state", "sprite", "enemy", "state_manager")]
 script = ExtResource("5_0sx5v")
+attack_delay = 0.667
+reaggro_delay = 2.0
+damage = 35
+knockback_amount = 35.0
+attack_area = NodePath("../../AttackArea")
+aggro_state = NodePath("../ChaseState")
+sprite = NodePath("../../AnimatedSprite2D")
+enemy = NodePath("../..")
+state_manager = NodePath("..")
 metadata/_custom_type_script = "uid://d3dsllt0af854"
+
+[node name="AttackDelayTimer" type="Timer" parent="StateManager/AttackState"]
+
+[node name="ReaggroDelayTimer" type="Timer" parent="StateManager/AttackState"]
 
 [node name="Air State" type="Node" parent="StateManager" node_paths=PackedStringArray("wander_state", "enemy", "state_manager")]
 script = ExtResource("6_hqhio")
@@ -180,6 +204,7 @@ shape = SubResource("CapsuleShape2D_fc0e3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 light_mask = 0
+material = SubResource("ShaderMaterial_1amkc")
 position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_1amkc")
 animation = &"walk"
@@ -197,13 +222,6 @@ show_number = false
 [node name="HitSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_1wwld")
 volume_db = -10.0
-
-[node name="AttackArea" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-shape = SubResource("CapsuleShape2D_y5vj3")
 
 [node name="AttackCooldown" type="Timer" parent="."]
 wait_time = 0.25
@@ -226,6 +244,13 @@ target_position = Vector2(0, 20)
 [node name="WallRay" type="RayCast2D" parent="."]
 position = Vector2(0, 11)
 target_position = Vector2(45, 0)
+
+[node name="AttackArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AttackArea"]
+polygon = PackedVector2Array(-16, -18, 2, -30, 15, -29, 31, -27, 47, -17, 55, -1, 56, 14, 4, 13, -6, -13)
 
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="body_entered" from="AggroRadius" to="StateManager/WanderState" method="_on_aggro_radius_body_entered"]
