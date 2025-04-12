@@ -1,5 +1,6 @@
-[gd_scene load_steps=29 format=4 uid="uid://ouqwelutt3ob"]
+[gd_scene load_steps=30 format=4 uid="uid://ouqwelutt3ob"]
 
+[ext_resource type="Texture2D" uid="uid://dsnt7ubbhghcb" path="res://map/props/background Items/order_banner.png" id="1_x5p1p"]
 [ext_resource type="PackedScene" uid="uid://r2kg4a8p4sld" path="res://player/player.tscn" id="2_e2o6t"]
 [ext_resource type="Texture2D" uid="uid://ddrtsvcu03bbj" path="res://map/background/layer1.png" id="2_iotsf"]
 [ext_resource type="PackedScene" uid="uid://dvum5k052ihe6" path="res://enemy/enemies/Ground_enemy/enemy.tscn" id="3_feb5d"]
@@ -153,6 +154,80 @@ height = 1
 size = Vector2(48, 65)
 
 [node name="Game" type="Node2D"]
+
+[node name="props" type="Node" parent="."]
+
+[node name="OrderBanner" type="Sprite2D" parent="props"]
+position = Vector2(-4649, -607)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_x5p1p")
+
+[node name="OrderBanner2" type="Sprite2D" parent="props"]
+position = Vector2(-4425, -591)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_x5p1p")
+flip_h = true
+
+[node name="OrderBanner3" type="Sprite2D" parent="props"]
+position = Vector2(-5195, -607)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_x5p1p")
+
+[node name="OrderBanner4" type="Sprite2D" parent="props"]
+position = Vector2(-5576, -607)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_x5p1p")
+
+[node name="OrderBanner5" type="Sprite2D" parent="props"]
+position = Vector2(-3862, -158)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_x5p1p")
+
+[node name="OrderBanner6" type="Sprite2D" parent="props"]
+position = Vector2(-3610, -158)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_x5p1p")
+flip_h = true
+
+[node name="OrderBanner7" type="Sprite2D" parent="props"]
+position = Vector2(-4671, -275)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_x5p1p")
+
+[node name="OrderBanner8" type="Sprite2D" parent="props"]
+position = Vector2(-4521, -273)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_x5p1p")
+
+[node name="OrderBanner9" type="Sprite2D" parent="props"]
+position = Vector2(-3037, 402)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_x5p1p")
+
+[node name="OrderBanner10" type="Sprite2D" parent="props"]
+position = Vector2(-2318, 257)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_x5p1p")
+
+[node name="OrderBanner11" type="Sprite2D" parent="props"]
+position = Vector2(-2489, 257)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_x5p1p")
+
+[node name="OrderBanner12" type="Sprite2D" parent="props"]
+position = Vector2(-1155, 321)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_x5p1p")
+
+[node name="OrderBanner13" type="Sprite2D" parent="props"]
+position = Vector2(-886, 321)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_x5p1p")
+
+[node name="OrderBanner14" type="Sprite2D" parent="props"]
+position = Vector2(-479, 49)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_x5p1p")
 
 [node name="Background" type="Node2D" parent="."]
 light_mask = 0
@@ -390,7 +465,7 @@ frame_progress = 0.830091
 light_color = Color(0.827451, 0, 0.0862745, 1)
 
 [node name="Lantern45" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
-position = Vector2(-4759, -542)
+position = Vector2(-4759, -547)
 frame_progress = 0.830091
 light_color = Color(0.827451, 0, 0.0862745, 1)
 
@@ -427,12 +502,12 @@ light_color = Color(0.827451, 0, 0.0862745, 1)
 [node name="Lantern54" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
 position = Vector2(-5955, -568)
 frame_progress = 0.830091
-light_color = Color(0.827451, 0, 0.0862745, 1)
+light_color = Color(0.645049, 0, 0.0271698, 1)
 
 [node name="Lantern55" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
 position = Vector2(-6378, -536)
 frame_progress = 0.830091
-light_color = Color(0.827451, 0, 0.0862745, 1)
+light_color = Color(0.881759, 0.460007, 0.0304292, 1)
 
 [node name="Lantern66" parent="Lights/FinalArea" instance=ExtResource("15_7sc4i")]
 position = Vector2(-5489, -596)
