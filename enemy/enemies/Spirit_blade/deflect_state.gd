@@ -20,7 +20,7 @@ func _ready() -> void:
 	_coll_before = enemy.collision_layer
 	_mask_before = enemy.collision_mask
 	reaggro_delay_timer.timeout.connect(func(): state_manager.active_state = chase_state)
-
+	
 
 func start_state() -> void:
 	_start_pos = enemy.global_position
