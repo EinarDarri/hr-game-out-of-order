@@ -22,8 +22,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	active_state.input(event)
 
 func gui() -> void:
-	ImGui.Text("Active State: %s" % active_state.name)
-	ImGui.Separator()
+	# ImGui.Text("Active State: %s" % active_state.name)
+	# ImGui.Separator()
 	active_state.gui()
 
 func _physics_process(delta: float) -> void:

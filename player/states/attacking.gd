@@ -55,8 +55,9 @@ func end_state() -> void:
 	delay_timer.start()
 
 func gui() -> void:
-	ImGui.Text("Attack: [%d] %s" % [current_slash, slashes[current_slash]])
-	ImGui.Text("Frame: %d" % animated_sprite_2d.frame)
+	# ImGui.Text("Attack: [%d] %s" % [current_slash, slashes[current_slash]])
+	# ImGui.Text("Frame: %d" % animated_sprite_2d.frame)
+	pass
 
 func _on_animation_finish() -> void:
 	if current_slash + 1 < len(slashes) and attack_buffer:

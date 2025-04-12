@@ -1,14 +1,12 @@
-[gd_scene load_steps=25 format=3 uid="uid://di6qlq0p6axaa"]
+[gd_scene load_steps=24 format=3 uid="uid://di6qlq0p6axaa"]
 
 [ext_resource type="Texture2D" uid="uid://bdm0wwis5t3vu" path="res://map/interactables/save_point/save_point.png" id="1_i1gpb"]
 [ext_resource type="Script" uid="uid://7rflvtsvqaqj" path="res://map/interactables/save_point/save_point.gd" id="1_rmrh2"]
-[ext_resource type="Texture2D" uid="uid://crbsuva7ek5s3" path="res://key_prompts/Keyboard & Mouse/Dark/E_Key_Dark.png" id="4_amda5"]
+[ext_resource type="Texture2D" uid="uid://caht7voahopak" path="res://key_prompts/Keyboard & Mouse/Dark/E_Key_Dark.png" id="4_amda5"]
 [ext_resource type="AudioStream" uid="uid://dqsi41qw0igni" path="res://map/interactables/save_point/activate.wav" id="4_jukjh"]
-[ext_resource type="Script" uid="uid://cdtva2gmipmrf" path="res://key_prompts/picker.gd" id="4_qb0lh"]
-[ext_resource type="Texture2D" uid="uid://ydotvgq4moje" path="res://key_prompts/Keyboard & Mouse/Light/E_Key_Light.png" id="5_hea2r"]
-[ext_resource type="Texture2D" uid="uid://d2mia51ergpyt" path="res://key_prompts/PS5/PS5_Triangle.png" id="7_fkfsy"]
-[ext_resource type="Texture2D" uid="uid://hjixa768u8ja" path="res://key_prompts/Steam Deck/SteamDeck_Y.png" id="8_it03t"]
-[ext_resource type="Texture2D" uid="uid://bh5jck81tbyrc" path="res://key_prompts/Xbox Series/XboxSeriesX_Y.png" id="9_105jd"]
+[ext_resource type="Texture2D" uid="uid://dd3x3aeacd686" path="res://key_prompts/PS5/PS5_Triangle.png" id="7_fkfsy"]
+[ext_resource type="Texture2D" uid="uid://by7wmu7kfabjt" path="res://key_prompts/Steam Deck/SteamDeck_Y.png" id="8_it03t"]
+[ext_resource type="Texture2D" uid="uid://c10hb35ut6ssv" path="res://key_prompts/Xbox Series/XboxSeriesX_Y.png" id="9_105jd"]
 
 [sub_resource type="Curve" id="Curve_8hd83"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -107,6 +105,50 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_rmrh2"]
 radius = 28.0
 
+[sub_resource type="GDScript" id="GDScript_lp2ea"]
+script/source = "extends Node
+
+@export_category(\"Prompts\")
+@export var PC_light: Sprite2D
+@export var PC_dark: Sprite2D
+@export var PS5: Sprite2D
+@export var STEAM_deack: Sprite2D
+@export var Xbox: Sprite2D
+
+func _ready() -> void:
+	_hide_all()
+	_update_prompt()
+
+func _hide_all() -> void:
+	PC_light.visible = false
+	PC_dark.visible = false
+	PS5.visible = false
+	STEAM_deack.visible = false
+	Xbox.visible = false
+
+func _update_prompt() -> void:
+	_hide_all()
+	var controler_type = Input.get_joy_name(0)
+	if controler_type == null:
+		controler_type = \"\"
+	
+	if \"PS\" in controler_type:
+		PS5.visible = true
+		
+	elif \"Steam\" in controler_type:
+		STEAM_deack.visible = true
+		
+	elif \"Xbox\" in controler_type:
+		Xbox.visible = true
+		
+	else:
+		if Game.LightMode:
+			PC_light.visible = true
+		else:
+			PC_dark.visible = true 
+	
+"
+
 [sub_resource type="Gradient" id="Gradient_qb0lh"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
@@ -148,7 +190,7 @@ stream = ExtResource("4_jukjh")
 volume_db = -15.0
 
 [node name="Prompts" type="Node2D" parent="." node_paths=PackedStringArray("PC_light", "PC_dark", "PS5", "STEAM_deack", "Xbox")]
-script = ExtResource("4_qb0lh")
+script = SubResource("GDScript_lp2ea")
 PC_light = NodePath("EKeyLight")
 PC_dark = NodePath("EKeyDark")
 PS5 = NodePath("Ps5Triangle")
@@ -159,7 +201,7 @@ Xbox = NodePath("XboxSeriesXY")
 visible = false
 position = Vector2(0.25, -33.75)
 scale = Vector2(0.125, 0.125)
-texture = ExtResource("5_hea2r")
+texture = ExtResource("4_amda5")
 
 [node name="EKeyDark" type="Sprite2D" parent="Prompts"]
 position = Vector2(0.25, -33.75)

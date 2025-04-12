@@ -68,15 +68,16 @@ func _process(_delta: float) -> void:
 		_player_movement = Vector2.ZERO
 	
 	if Debug.enabled:
-		ImGui.Begin("Player Info")
-		ImGui.Text("Position: %.1f, %.1f" % [global_position.x, global_position.y])
-		ImGui.Text("Velocity: %.1f, %.1f" % [velocity.x, velocity.y])
-		ImGui.Text("Input: %.1f, %.1f" % [_player_movement.x, _player_movement.y])
-		ImGui.Text("Health: %d / %d" % [_health, _max_health])
-		ImGui.Text("Respawn: %.1f, %.1f" % [respawn_point.x, respawn_point.y])
-		ImGui.Separator()
-		state_man.gui()
-		ImGui.End()
+		# ImGui.Begin("Player Info")
+		# ImGui.Text("Position: %.1f, %.1f" % [global_position.x, global_position.y])
+		# ImGui.Text("Velocity: %.1f, %.1f" % [velocity.x, velocity.y])
+		# ImGui.Text("Input: %.1f, %.1f" % [_player_movement.x, _player_movement.y])
+		# ImGui.Text("Health: %d / %d" % [_health, _max_health])
+		# ImGui.Text("Respawn: %.1f, %.1f" % [respawn_point.x, respawn_point.y])
+		# ImGui.Separator()
+		# state_man.gui()
+		# ImGui.End()
+		pass
 
 func take_damage(attack: Attack) -> void:
 	attack_received.emit(attack)

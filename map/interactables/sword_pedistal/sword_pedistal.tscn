@@ -3,12 +3,11 @@
 [ext_resource type="Texture2D" uid="uid://dcbjaphb716gs" path="res://map/interactables/sword_pedistal/sword_pedistal.png" id="1_udby7"]
 [ext_resource type="Script" uid="uid://be54j7tdbqkou" path="res://map/interactables/sword_pedistal/sword_pedistal.gd" id="2_3uviv"]
 [ext_resource type="AudioStream" uid="uid://dqsi41qw0igni" path="res://map/interactables/save_point/activate.wav" id="4_bt038"]
-[ext_resource type="Script" uid="uid://cdtva2gmipmrf" path="res://key_prompts/picker.gd" id="4_uqsh6"]
-[ext_resource type="Texture2D" uid="uid://ydotvgq4moje" path="res://key_prompts/Keyboard & Mouse/Light/E_Key_Light.png" id="5_nsl7r"]
-[ext_resource type="Texture2D" uid="uid://crbsuva7ek5s3" path="res://key_prompts/Keyboard & Mouse/Dark/E_Key_Dark.png" id="6_74nky"]
-[ext_resource type="Texture2D" uid="uid://d2mia51ergpyt" path="res://key_prompts/PS5/PS5_Triangle.png" id="7_x70lm"]
-[ext_resource type="Texture2D" uid="uid://hjixa768u8ja" path="res://key_prompts/Steam Deck/SteamDeck_Y.png" id="8_ia7u7"]
-[ext_resource type="Texture2D" uid="uid://bh5jck81tbyrc" path="res://key_prompts/Xbox Series/XboxSeriesX_Y.png" id="9_ubo2l"]
+[ext_resource type="Texture2D" uid="uid://bnjpluwuxm40y" path="res://key_prompts/Keyboard & Mouse/Light/E_Key_Light.png" id="5_nsl7r"]
+[ext_resource type="Texture2D" uid="uid://caht7voahopak" path="res://key_prompts/Keyboard & Mouse/Dark/E_Key_Dark.png" id="6_74nky"]
+[ext_resource type="Texture2D" uid="uid://dd3x3aeacd686" path="res://key_prompts/PS5/PS5_Triangle.png" id="7_x70lm"]
+[ext_resource type="Texture2D" uid="uid://by7wmu7kfabjt" path="res://key_prompts/Steam Deck/SteamDeck_Y.png" id="8_ia7u7"]
+[ext_resource type="Texture2D" uid="uid://c10hb35ut6ssv" path="res://key_prompts/Xbox Series/XboxSeriesX_Y.png" id="9_ubo2l"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3uviv"]
 atlas = ExtResource("1_udby7")
@@ -92,6 +91,50 @@ hue_variation_min = -0.05
 hue_variation_max = 0.05
 turbulence_enabled = true
 
+[sub_resource type="GDScript" id="GDScript_lp2ea"]
+script/source = "extends Node
+
+@export_category(\"Prompts\")
+@export var PC_light: Sprite2D
+@export var PC_dark: Sprite2D
+@export var PS5: Sprite2D
+@export var STEAM_deack: Sprite2D
+@export var Xbox: Sprite2D
+
+func _ready() -> void:
+	_hide_all()
+	_update_prompt()
+
+func _hide_all() -> void:
+	PC_light.visible = false
+	PC_dark.visible = false
+	PS5.visible = false
+	STEAM_deack.visible = false
+	Xbox.visible = false
+
+func _update_prompt() -> void:
+	_hide_all()
+	var controler_type = Input.get_joy_name(0)
+	if controler_type == null:
+		controler_type = \"\"
+	
+	if \"PS\" in controler_type:
+		PS5.visible = true
+		
+	elif \"Steam\" in controler_type:
+		STEAM_deack.visible = true
+		
+	elif \"Xbox\" in controler_type:
+		Xbox.visible = true
+		
+	else:
+		if Game.LightMode:
+			PC_light.visible = true
+		else:
+			PC_dark.visible = true 
+	
+"
+
 [node name="SwordPedistal" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_6ral7")
 script = ExtResource("2_3uviv")
@@ -123,7 +166,7 @@ stream = ExtResource("4_bt038")
 volume_db = -15.0
 
 [node name="Prompts" type="Node2D" parent="." node_paths=PackedStringArray("PC_light", "PC_dark", "PS5", "STEAM_deack", "Xbox")]
-script = ExtResource("4_uqsh6")
+script = SubResource("GDScript_lp2ea")
 PC_light = NodePath("EKeyLight")
 PC_dark = NodePath("EKeyDark")
 PS5 = NodePath("Ps5Triangle")
