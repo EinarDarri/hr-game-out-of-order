@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://di6qlq0p6axaa" path="res://map/interactables/save_point/save_point.tscn" id="13_rvswv"]
 [ext_resource type="PackedScene" uid="uid://colmiolq4dmxc" path="res://map/props/lantern/lantern.tscn" id="15_7sc4i"]
 [ext_resource type="Script" uid="uid://r1dmijulheyr" path="res://dialogue/play_dialog.gd" id="16_80cx4"]
-[ext_resource type="PackedScene" uid="uid://bgnh4af87pgi2" path="res://enemy/enemies/spirit_blade/spirit_blade.tscn" id="17_e8heu"]
+[ext_resource type="PackedScene" uid="uid://bgnh4af87pgi2" path="res://enemy/enemies/Spirit_blade/spirit_blade.tscn" id="17_e8heu"]
 [ext_resource type="AudioStream" uid="uid://dxv2gkb4xdi4i" path="res://map/sfx/wind_loop_high.ogg" id="19_boyg6"]
 [ext_resource type="PackedScene" uid="uid://bh7ghs5botpue" path="res://map/interactables/sword_pedistal/sword_pedistal.tscn" id="21_hb5m1"]
 
