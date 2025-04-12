@@ -29,7 +29,9 @@ func _update_ground_ray() -> void:
 		_currentRAY = LeftGroundRay
 
 func physics_update(delta: float) -> void:
-	_dir = (Game.get_player().get_global_position() - enemy.get_global_position()).normalized()
+	_dir = (Game.get_player().get_global_position() - enemy.get_global_position())
+	_dir.y = 0
+	_dir = _dir.normalized()
 	animated_sprite_2d.flip_h = _dir.x <= 0
 
 	_update_ground_ray()
