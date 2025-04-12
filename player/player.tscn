@@ -35,7 +35,7 @@
 [ext_resource type="AudioStream" uid="uid://ddk61atsvknw4" path="res://player/footsteps/Parquet_  (14).wav" id="30_j55il"]
 [ext_resource type="AudioStream" uid="uid://bex3vmqaftysp" path="res://player/footsteps/Parquet_  (15).wav" id="31_hjies"]
 [ext_resource type="AudioStream" uid="uid://4uynml7770d6" path="res://player/footsteps/Parquet_  (16).wav" id="32_mmwog"]
-[ext_resource type="Script" uid="uid://2htiwmkmednh" path="res://enemy/enemies/spirit_blade/damage_caller.gd" id="36_pnw6m"]
+[ext_resource type="Script" uid="uid://2htiwmkmednh" path="res://enemy/enemies/Spirit_blade/damage_caller.gd" id="36_pnw6m"]
 [ext_resource type="PackedScene" uid="uid://rwkai6jvkef4" path="res://player/effects/air_jump.tscn" id="37_1so5t"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g6k8r"]
