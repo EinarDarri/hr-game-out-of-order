@@ -53,6 +53,7 @@ func physics_update(delta):
 			player.velocity.y = JUMP_VELOCITY
 			jump_sfx.pitch_scale += 0.2
 			jump_sfx.play()
+			
 		
 		return
 		
