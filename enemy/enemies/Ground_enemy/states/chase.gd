@@ -11,6 +11,9 @@ extends EnemyState
 @export var LeftGroundRay: RayCast2D
 @export var RightGroundRay: RayCast2D
 
+@export_group("Other")
+@export var attack_area: Area2D
+
 @onready var animated_sprite_2d: AnimatedSprite2D = $"../../AnimatedSprite2D"
 
 var _dir := Vector2.ZERO
@@ -42,6 +45,8 @@ func physics_update(delta: float) -> void:
 		enemy.velocity.x = _dir.x * speed
 		if animated_sprite_2d.animation == &"idle":
 			animated_sprite_2d.play("walk")
+	if not attack_area.get_overlapping_bodies().is_empty():
+		state_manager.active_state = attack_state
 
 func attack_received(_attack: Attack) -> void:
 	pass
